@@ -52,9 +52,9 @@ public class FrmDrawing extends JFrame implements Observer {
 	private ButtonGroup btnsShapes = new ButtonGroup();
 	
 	private JButton btnFileOpen = new JButton("Otvori");
-	private JButton btnFileSave = new JButton("SaÄ�uvaj");
-	private JButton btnReadNextCommand = new JButton("UÄ�itaj sledeÄ‡u komandu");
-	private JButton btnUndo = new JButton("PoniÅ¡ti");
+	private JButton btnFileSave = new JButton("Sacuvaj");
+	private JButton btnReadNextCommand = new JButton("Ucitaj sledecu komandu");
+	private JButton btnUndo = new JButton("Ponisti");
 	private JButton btnRedo = new JButton("Ponovi");
 	
 	private JButton btnPositionToFront = new JButton("Ispred");
@@ -65,18 +65,18 @@ public class FrmDrawing extends JFrame implements Observer {
 	private JToggleButton btnOperationDrawing = new JToggleButton("Crtanje");
 	private JToggleButton btnOperationEditOrDelete = new JToggleButton("Izmena/Brisanje");
 	private JButton btnActionEdit = new JButton("Izmeni");
-	private JButton btnActionDelete = new JButton("ObriÅ¡i");
-	private JButton btnActionDeleteAll = new JButton("ObriÅ¡i sve");
-	private JToggleButton btnShapePoint = new JToggleButton("TaÄ�ka");
+	private JButton btnActionDelete = new JButton("Obrisi");
+	private JButton btnActionDeleteAll = new JButton("Obrisi sve");
+	private JToggleButton btnShapePoint = new JToggleButton("Tacka");
 	private JToggleButton btnShapeLine = new JToggleButton("Linija");
 	private JToggleButton btnShapeRectangle = new JToggleButton("Pravougaonik");
 	private JToggleButton btnShapeCircle = new JToggleButton("Krug");
 	private JToggleButton btnShapeDonut = new JToggleButton("Krofna");
-	private JToggleButton btnShapeHexagon = new JToggleButton("Å estougao");
+	private JToggleButton btnShapeHexagon = new JToggleButton("Sestougao");
 	
 	private JLabel lblColorEdge = new JLabel("Boja ivice");
 	private JButton btnColorEdge = new JButton(" ");
-	private JLabel lblColorInner = new JLabel("Boja unutraÅ¡njosti");
+	private JLabel lblColorInner = new JLabel("Boja unutrasnjosti");
 	private JButton btnColorInner = new JButton(" ");
 	
 	private JFileChooser readFromFileChooser;
@@ -85,7 +85,7 @@ public class FrmDrawing extends JFrame implements Observer {
 	private JList listLog = new JList();
 	private DefaultListModel<String> defaultListModel = new DefaultListModel<String>();
 	
-	private FileNameExtensionFilter drwFileFilter = new FileNameExtensionFilter("CrteÅ¾", "drw");
+	private FileNameExtensionFilter drwFileFilter = new FileNameExtensionFilter("Crtez", "drw");
 	private FileNameExtensionFilter logFileFilter = new FileNameExtensionFilter("Log", "log");
 	
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
@@ -112,7 +112,7 @@ public class FrmDrawing extends JFrame implements Observer {
 
 
 	public FrmDrawing() {
-		setTitle("IT 48-2017 Å ekara Danilo");
+		setTitle("IT 48-2017 Sekara Danilo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 900);
 		setLocationRelativeTo(null);
@@ -172,7 +172,7 @@ public class FrmDrawing extends JFrame implements Observer {
 				saveToFileChooser.setMultiSelectionEnabled(false);
 				saveToFileChooser.setFileHidingEnabled(false);
 				saveToFileChooser.setEnabled(true);
-				saveToFileChooser.setDialogTitle("SaÄ�uvaj");
+				saveToFileChooser.setDialogTitle("Sacuvaj");
 				saveToFileChooser.setAcceptAllFileFilterUsed(false);
 //				saveToFileChooser.setFileFilter(drwFileFilter);
 //				saveToFileChooser.setFileFilter(logFileFilter);
@@ -426,7 +426,7 @@ public class FrmDrawing extends JFrame implements Observer {
 	private ActionListener btnColorInnerClickListener() {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Color innerColor = JColorChooser.showDialog(null, "Izaberite boju unutraÅ¡njosti", controller.getInnerColor());
+				Color innerColor = JColorChooser.showDialog(null, "Izaberite boju unutrasnjosti", controller.getInnerColor());
 				if (innerColor != null) {
 					controller.setInnerColor(innerColor);
 					btnColorInner.setBackground(innerColor);
