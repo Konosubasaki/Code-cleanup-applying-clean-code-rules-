@@ -25,7 +25,8 @@ public class DlgPoint extends JDialog {
 	private JTextField txtY;
 	
 	private Point point = null;
-	private Color edgeColor = null, innerColor = null;
+	private Color edgeColor = null; 
+	//, innerColor = null;
 	
 	private boolean isSelected = false;
 	

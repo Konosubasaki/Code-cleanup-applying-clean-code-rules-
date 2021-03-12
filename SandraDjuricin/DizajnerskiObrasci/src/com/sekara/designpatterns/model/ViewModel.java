@@ -3,8 +3,6 @@ package com.sekara.designpatterns.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.sekara.designpatterns.model.geometry.Point;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class ViewModel {

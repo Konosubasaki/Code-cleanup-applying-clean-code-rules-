@@ -2,7 +2,6 @@ package com.sekara.designpatterns.command;
 
 import com.sekara.designpatterns.model.geometry.Circle;
 import com.sekara.designpatterns.model.geometry.Point;
-import com.sekara.designpatterns.model.geometry.Shape;
 
 public class CmdUpdateCircle extends Command {
 	

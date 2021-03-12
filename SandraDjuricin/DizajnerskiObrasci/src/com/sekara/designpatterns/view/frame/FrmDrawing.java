@@ -9,14 +9,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import java.awt.ScrollPane;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.DefaultCaret;
 
 import com.sekara.designpatterns.controller.MainController;
 import com.sekara.designpatterns.enumerator.ModeType;
@@ -54,9 +52,9 @@ public class FrmDrawing extends JFrame implements Observer {
 	private ButtonGroup btnsShapes = new ButtonGroup();
 	
 	private JButton btnFileOpen = new JButton("Otvori");
-	private JButton btnFileSave = new JButton("Sačuvaj");
-	private JButton btnReadNextCommand = new JButton("Učitaj sledeću komandu");
-	private JButton btnUndo = new JButton("Poništi");
+	private JButton btnFileSave = new JButton("SaÄ�uvaj");
+	private JButton btnReadNextCommand = new JButton("UÄ�itaj sledeÄ‡u komandu");
+	private JButton btnUndo = new JButton("PoniÅ¡ti");
 	private JButton btnRedo = new JButton("Ponovi");
 	
 	private JButton btnPositionToFront = new JButton("Ispred");
@@ -67,18 +65,18 @@ public class FrmDrawing extends JFrame implements Observer {
 	private JToggleButton btnOperationDrawing = new JToggleButton("Crtanje");
 	private JToggleButton btnOperationEditOrDelete = new JToggleButton("Izmena/Brisanje");
 	private JButton btnActionEdit = new JButton("Izmeni");
-	private JButton btnActionDelete = new JButton("Obriši");
-	private JButton btnActionDeleteAll = new JButton("Obriši sve");
-	private JToggleButton btnShapePoint = new JToggleButton("Tačka");
+	private JButton btnActionDelete = new JButton("ObriÅ¡i");
+	private JButton btnActionDeleteAll = new JButton("ObriÅ¡i sve");
+	private JToggleButton btnShapePoint = new JToggleButton("TaÄ�ka");
 	private JToggleButton btnShapeLine = new JToggleButton("Linija");
 	private JToggleButton btnShapeRectangle = new JToggleButton("Pravougaonik");
 	private JToggleButton btnShapeCircle = new JToggleButton("Krug");
 	private JToggleButton btnShapeDonut = new JToggleButton("Krofna");
-	private JToggleButton btnShapeHexagon = new JToggleButton("Šestougao");
+	private JToggleButton btnShapeHexagon = new JToggleButton("Å estougao");
 	
 	private JLabel lblColorEdge = new JLabel("Boja ivice");
 	private JButton btnColorEdge = new JButton(" ");
-	private JLabel lblColorInner = new JLabel("Boja unutrašnjosti");
+	private JLabel lblColorInner = new JLabel("Boja unutraÅ¡njosti");
 	private JButton btnColorInner = new JButton(" ");
 	
 	private JFileChooser readFromFileChooser;
@@ -87,7 +85,7 @@ public class FrmDrawing extends JFrame implements Observer {
 	private JList listLog = new JList();
 	private DefaultListModel<String> defaultListModel = new DefaultListModel<String>();
 	
-	private FileNameExtensionFilter drwFileFilter = new FileNameExtensionFilter("Crtež", "drw");
+	private FileNameExtensionFilter drwFileFilter = new FileNameExtensionFilter("CrteÅ¾", "drw");
 	private FileNameExtensionFilter logFileFilter = new FileNameExtensionFilter("Log", "log");
 	
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
@@ -114,7 +112,7 @@ public class FrmDrawing extends JFrame implements Observer {
 
 
 	public FrmDrawing() {
-		setTitle("IT 48-2017 Šekara Danilo");
+		setTitle("IT 48-2017 Å ekara Danilo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 900);
 		setLocationRelativeTo(null);
@@ -174,7 +172,7 @@ public class FrmDrawing extends JFrame implements Observer {
 				saveToFileChooser.setMultiSelectionEnabled(false);
 				saveToFileChooser.setFileHidingEnabled(false);
 				saveToFileChooser.setEnabled(true);
-				saveToFileChooser.setDialogTitle("Sačuvaj");
+				saveToFileChooser.setDialogTitle("SaÄ�uvaj");
 				saveToFileChooser.setAcceptAllFileFilterUsed(false);
 //				saveToFileChooser.setFileFilter(drwFileFilter);
 //				saveToFileChooser.setFileFilter(logFileFilter);
@@ -290,7 +288,7 @@ public class FrmDrawing extends JFrame implements Observer {
 		pnlChoosePosition.add(btnPositionBringToBack);
 		
 		JPanel pnlUndoRedo = new JPanel();
-		pnlUndoRedo.setBorder(new TitledBorder(null, "Poništi/ponovi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlUndoRedo.setBorder(new TitledBorder(null, "Ponisti/ponovi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlRightOperations.add(pnlUndoRedo);
 		pnlUndoRedo.setLayout(new BoxLayout(pnlUndoRedo, BoxLayout.Y_AXIS));
 		
@@ -428,7 +426,7 @@ public class FrmDrawing extends JFrame implements Observer {
 	private ActionListener btnColorInnerClickListener() {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Color innerColor = JColorChooser.showDialog(null, "Izaberite boju unutrašnjosti", controller.getInnerColor());
+				Color innerColor = JColorChooser.showDialog(null, "Izaberite boju unutraÅ¡njosti", controller.getInnerColor());
 				if (innerColor != null) {
 					controller.setInnerColor(innerColor);
 					btnColorInner.setBackground(innerColor);

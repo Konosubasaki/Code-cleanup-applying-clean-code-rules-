@@ -28,7 +28,8 @@ public class DlgLine extends JDialog {
 	private JTextField txtSecondY;
 	
 	private Line line = null;
-	private Color edgeColor = null, innerColor = null;
+	private Color edgeColor = null;
+	//, innerColor = null;
 	
 	private boolean isSelected = false;
 	
