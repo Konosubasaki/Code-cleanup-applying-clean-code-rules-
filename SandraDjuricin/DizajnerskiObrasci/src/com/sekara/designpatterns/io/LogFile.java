@@ -33,10 +33,10 @@ public class LogFile implements Strategy {
 				writer.newLine();
 			}
 			writer.close();
-			controller.showMessageDialog("Log uspeÅ¡no saÄ�uvan!");
+			controller.showMessageDialog("Log uspesno sacuvan!");
 		} catch (IOException e) {
 			e.printStackTrace();
-			controller.showMessageDialog("GreÅ¡ka! " + e.getMessage());
+			controller.showMessageDialog("Greska! " + e.getMessage());
 		}
 	}
 
@@ -45,7 +45,7 @@ public class LogFile implements Strategy {
 		try {
 			reader = new BufferedReader(new FileReader(file));
 			controller.setEnabledBtnReadNextCommand(true);
-			controller.showMessageDialog("Log uspeÅ¡no uÄ�itan! Kliknite dugme za uÄ�itavanje naredne komande iz loga.");
+			controller.showMessageDialog("Log uspesno ucitan! Kliknite dugme za ucitavanje naredne komande iz loga.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -58,7 +58,7 @@ public class LogFile implements Strategy {
 			
 			if ((line = reader.readLine()) == null) {
 				controller.setEnabledBtnReadNextCommand(false);
-				controller.showMessageDialog("Nema viÅ¡e dostupnih komandi iz loga!");
+				controller.showMessageDialog("Nema vise dostupnih komandi iz loga!");
 				return;
 			}
 			

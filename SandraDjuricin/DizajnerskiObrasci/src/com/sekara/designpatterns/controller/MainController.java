@@ -174,7 +174,8 @@ public class MainController implements Subject {
 	}
 	
 	public void selectDeselectShape(int x, int y) {
-		MouseEvent event = new MouseEvent(view.getDrawingPanel(), MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, x, y, 1, false);
+		MouseEvent event = new MouseEvent(view.getDrawingPanel(), MouseEvent.MOUSE_CLICKED, 
+				System.currentTimeMillis(), 0, x, y, 1, false);
 		mouseClickedSelect(event);
 	}
 	
@@ -205,7 +206,8 @@ public class MainController implements Subject {
 			dlgRectangle.setVisible(true);
 			
 			if(dlgRectangle.getRectangle() != null) {
-				CmdUpdateRectangle cmdUpdateRectangle = new CmdUpdateRectangle((Rectangle)selectedShape, dlgRectangle.getRectangle());
+				CmdUpdateRectangle cmdUpdateRectangle = new CmdUpdateRectangle((Rectangle)selectedShape, 
+						dlgRectangle.getRectangle());
 				executeCommand(cmdUpdateRectangle);
 			}
 		} else if (selectedShape instanceof Donut) {
@@ -239,14 +241,15 @@ public class MainController implements Subject {
 	}
 	
 	public void deleteSelectedShapes() {
-		if (JOptionPane.showConfirmDialog(null, "Da li zaista želite da obrišete selektovane oblike?", "Potvrda", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+		if (JOptionPane.showConfirmDialog(null, "Da li zaista zelite da obrisete selektovane oblike?", "Potvrda", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
 			CmdDeleteShapes cmdDeleteShapes = new CmdDeleteShapes(viewModel.getSelectedShapes(), viewModel);
 			executeCommand(cmdDeleteShapes);
 		}
 	}
 	
 	public void deleteAllShapes() {
-		if (JOptionPane.showConfirmDialog(null, "Da li zaista želite da obrišete crtež?", "Potvrda", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+		if (JOptionPane.showConfirmDialog(null, "Da li zaista zelite da obrisete crtez?", "Potvrda", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
 			CmdDeleteShapes cmdDeleteShapes = new CmdDeleteShapes(viewModel.getAllShapes(), viewModel);
 			executeCommand(cmdDeleteShapes);
 		}
@@ -284,7 +287,7 @@ public class MainController implements Subject {
 		int shapeCount = viewModel.getSize();
 		
 		if (shapeIndex >= shapeCount - 1) {
-			showMessageDialog("Izabrani oblik se već nalazi na najvišoj poziciji!");
+			showMessageDialog("Izabrani oblik se već nalazi na najvisoj poziciji!");
 			return;
 		}
 		
@@ -298,7 +301,7 @@ public class MainController implements Subject {
 		int shapeCount = viewModel.getSize();
 		
 		if (shapeIndex >= shapeCount - 1) {
-			showMessageDialog("Izabrani oblik se već nalazi na najvišoj poziciji!");
+			showMessageDialog("Izabrani oblik se već nalazi na najvisoj poziciji!");
 			return;
 		}
 		
@@ -311,7 +314,7 @@ public class MainController implements Subject {
 		int shapeIndex = viewModel.getIndex(selectedShape);
 		
 		if (shapeIndex <= 0) {
-			showMessageDialog("Izabrani oblik se već nalazi na najnižoj poziciji!");
+			showMessageDialog("Izabrani oblik se već nalazi na najnizoj poziciji!");
 			return;
 		}
 		
@@ -324,7 +327,7 @@ public class MainController implements Subject {
 		int shapeIndex = viewModel.getIndex(selectedShape);
 		
 		if (shapeIndex <= 0) {
-			showMessageDialog("Izabrani oblik se već nalazi na najnižoj poziciji!");
+			showMessageDialog("Izabrani oblik se već nalazi na najnizoj poziciji!");
 			return;
 		}
 		
@@ -337,7 +340,7 @@ public class MainController implements Subject {
 		
 		if (saveToFileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 			switch (saveToFileChooser.getFileFilter().getDescription()) {
-				case "Crtež":
+				case "Crtez":
 					ioContext.setStrategy(drawingSerializationStrategy);
 					break;
 					
@@ -360,7 +363,7 @@ public class MainController implements Subject {
 		
 		if (readFromFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			switch (readFromFileChooser.getFileFilter().getDescription()) {
-				case "Crtež":
+				case "Crtez":
 					ioContext.setStrategy(drawingSerializationStrategy);
 					break;
 					
