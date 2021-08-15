@@ -1,5 +1,7 @@
 package com.sekara.designpatterns.command;
 
+import com.sekara.designpatterns.model.geometry.Circle;
+import com.sekara.designpatterns.model.geometry.Point;
 import com.sekara.designpatterns.model.geometry.Rectangle;
 
 public class CmdUpdateRectangle extends Command {
@@ -16,26 +18,23 @@ public class CmdUpdateRectangle extends Command {
 
 	@Override
 	public void execute() {
-		currentRectangle.getUpperLeftPoint().setX(newRectangle.getUpperLeftPoint().getX());
-		currentRectangle.getUpperLeftPoint().setY(newRectangle.getUpperLeftPoint().getY());
-		currentRectangle.setWidth(newRectangle.getWidth());
-		currentRectangle.setHeight(newRectangle.getHeight());
-		currentRectangle.setEdgeColor(newRectangle.getEdgeColor());
-		currentRectangle.setInnerColor(newRectangle.getInnerColor());
-		currentRectangle.setSelected(newRectangle.isSelected());
+		updatingCurrentRectangle(newRectangle);
 		super.setLog("CMD_UPDATE_RECTANGLE_EXECUTE#" + oldRectangle + "->" + currentRectangle);
 	}
 
 	@Override
 	public void unExecute() {
-		currentRectangle.getUpperLeftPoint().setX(oldRectangle.getUpperLeftPoint().getX());
-		currentRectangle.getUpperLeftPoint().setY(oldRectangle.getUpperLeftPoint().getY());
-		currentRectangle.setWidth(oldRectangle.getWidth());
-		currentRectangle.setHeight(oldRectangle.getHeight());
-		currentRectangle.setEdgeColor(oldRectangle.getEdgeColor());
-		currentRectangle.setInnerColor(oldRectangle.getInnerColor());
-		currentRectangle.setSelected(oldRectangle.isSelected());
+		updatingCurrentRectangle(oldRectangle);
 		super.setLog("CMD_UPDATE_RECTANGLE_UNEXECUTE#" + currentRectangle + "->" + oldRectangle);
 	}
 
+	public void updatingCurrentRectangle(Rectangle rectangle) {
+		currentRectangle.getUpperLeftPoint().setX(rectangle.getUpperLeftPoint().getX());
+		currentRectangle.getUpperLeftPoint().setY(rectangle.getUpperLeftPoint().getY());
+		currentRectangle.setWidth(rectangle.getWidth());
+		currentRectangle.setHeight(rectangle.getHeight());
+		currentRectangle.setEdgeColor(rectangle.getEdgeColor());
+		currentRectangle.setInnerColor(rectangle.getInnerColor());
+		currentRectangle.setSelected(rectangle.isSelected());
+	}
 }

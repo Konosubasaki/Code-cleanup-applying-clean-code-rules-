@@ -1,6 +1,8 @@
 package com.sekara.designpatterns.command;
 
+import com.sekara.designpatterns.model.geometry.Circle;
 import com.sekara.designpatterns.model.geometry.HexagonShape;
+import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdateHexagon extends Command {
 
@@ -16,23 +18,22 @@ public class CmdUpdateHexagon extends Command {
 
 	@Override
 	public void execute() {
-		currentHexagon.getHexagon().setX(newHexagon.getHexagon().getX());
-		currentHexagon.getHexagon().setY(newHexagon.getHexagon().getY());
-		currentHexagon.getHexagon().setR(newHexagon.getHexagon().getR());
-		currentHexagon.setEdgeColor(newHexagon.getEdgeColor());
-		currentHexagon.setInnerColor(newHexagon.getInnerColor());
-		currentHexagon.setSelected(newHexagon.isSelected());
+		updatingCurrentHexagon(newHexagon);
 		super.setLog("CMD_UPDATE_HEXAGON_EXECUTE#" + oldHexagon + "->" + currentHexagon);
 	}
 
 	@Override
 	public void unExecute() {
-		currentHexagon.getHexagon().setX(oldHexagon.getHexagon().getX());
-		currentHexagon.getHexagon().setY(oldHexagon.getHexagon().getY());
-		currentHexagon.getHexagon().setR(oldHexagon.getHexagon().getR());
-		currentHexagon.setEdgeColor(oldHexagon.getEdgeColor());
-		currentHexagon.setInnerColor(oldHexagon.getInnerColor());
-		currentHexagon.setSelected(oldHexagon.isSelected());
+		updatingCurrentHexagon(oldHexagon);
 		super.setLog("CMD_UPDATE_HEXAGON_UNEXECUTE#" + currentHexagon + "->" + oldHexagon);
+	}
+	
+	public void updatingCurrentHexagon(HexagonShape hexagon) {
+		currentHexagon.getHexagon().setX(hexagon.getHexagon().getX());
+		currentHexagon.getHexagon().setY(hexagon.getHexagon().getY());
+		currentHexagon.getHexagon().setR(hexagon.getHexagon().getR());
+		currentHexagon.setEdgeColor(hexagon.getEdgeColor());
+		currentHexagon.setInnerColor(hexagon.getInnerColor());
+		currentHexagon.setSelected(hexagon.isSelected());
 	}
 }

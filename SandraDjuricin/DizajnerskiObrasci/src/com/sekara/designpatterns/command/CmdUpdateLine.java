@@ -1,6 +1,8 @@
 package com.sekara.designpatterns.command;
 
+import com.sekara.designpatterns.model.geometry.Circle;
 import com.sekara.designpatterns.model.geometry.Line;
+import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdateLine extends Command {
 
@@ -16,23 +18,22 @@ public class CmdUpdateLine extends Command {
 
 	@Override
 	public void execute() {
-		currentLine.getStartPoint().setX(newLine.getStartPoint().getX());
-		currentLine.getStartPoint().setY(newLine.getStartPoint().getY());
-		currentLine.getEndPoint().setX(newLine.getEndPoint().getX());
-		currentLine.getEndPoint().setY(newLine.getEndPoint().getY());
-		currentLine.setEdgeColor(newLine.getEdgeColor());
-		currentLine.setSelected(newLine.isSelected());
+		updatingCurrentLine(newLine);
 		super.setLog("CMD_UPDATE_LINE_EXECUTE#" + oldLine + "->" + currentLine);
 	}
 
 	@Override
 	public void unExecute() {
-		currentLine.getStartPoint().setX(oldLine.getStartPoint().getX());
-		currentLine.getStartPoint().setY(oldLine.getStartPoint().getY());
-		currentLine.getEndPoint().setX(oldLine.getEndPoint().getX());
-		currentLine.getEndPoint().setY(oldLine.getEndPoint().getY());
-		currentLine.setEdgeColor(oldLine.getEdgeColor());
-		currentLine.setSelected(oldLine.isSelected());
+		updatingCurrentLine(oldLine);
 		super.setLog("CMD_UPDATE_LINE_UNEXECUTE#" + currentLine + "->" + oldLine);
+	}
+	
+	public void updatingCurrentLine(Line line) {
+		currentLine.getStartPoint().setX(line.getStartPoint().getX());
+		currentLine.getStartPoint().setY(line.getStartPoint().getY());
+		currentLine.getEndPoint().setX(line.getEndPoint().getX());
+		currentLine.getEndPoint().setY(line.getEndPoint().getY());
+		currentLine.setEdgeColor(line.getEdgeColor());
+		currentLine.setSelected(line.isSelected());
 	}
 }

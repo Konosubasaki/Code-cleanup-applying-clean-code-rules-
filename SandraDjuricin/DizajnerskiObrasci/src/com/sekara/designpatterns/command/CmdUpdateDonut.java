@@ -1,5 +1,6 @@
 package com.sekara.designpatterns.command;
 
+import com.sekara.designpatterns.model.geometry.Circle;
 import com.sekara.designpatterns.model.geometry.Donut;
 import com.sekara.designpatterns.model.geometry.Point;
 
@@ -17,23 +18,22 @@ public class CmdUpdateDonut extends Command {
 
 	@Override
 	public void execute() {
-		currentDonut.setCenter(new Point(newDonut.getCenter().getX(), newDonut.getCenter().getY()));
-		currentDonut.setRadius(newDonut.getRadius());
-		currentDonut.setInnerRadius(newDonut.getInnerRadius());
-		currentDonut.setEdgeColor(newDonut.getEdgeColor());
-		currentDonut.setInnerColor(newDonut.getInnerColor());
-		currentDonut.setSelected(newDonut.isSelected());
+		updatingCurrentDonut(newDonut);
 		super.setLog("CMD_UPDATE_DONUT_EXECUTE#" + oldDonut + "->" + currentDonut);
 	}
 
 	@Override
 	public void unExecute() {
-		currentDonut.setCenter(new Point(oldDonut.getCenter().getX(), oldDonut.getCenter().getY()));
-		currentDonut.setRadius(oldDonut.getRadius());
-		currentDonut.setInnerRadius(oldDonut.getInnerRadius());
-		currentDonut.setEdgeColor(oldDonut.getEdgeColor());
-		currentDonut.setInnerColor(oldDonut.getInnerColor());
-		currentDonut.setSelected(oldDonut.isSelected());
+		updatingCurrentDonut(oldDonut);
 		super.setLog("CMD_UPDATE_DONUT_UNEXECUTE#" + currentDonut + "->" + oldDonut);
+	}
+	
+	public void updatingCurrentDonut(Donut donut) {
+		currentDonut.setCenter(new Point(donut.getCenter().getX(), donut.getCenter().getY()));
+		currentDonut.setRadius(donut.getRadius());
+		currentDonut.setInnerRadius(donut.getInnerRadius());
+		currentDonut.setEdgeColor(donut.getEdgeColor());
+		currentDonut.setInnerColor(donut.getInnerColor());
+		currentDonut.setSelected(donut.isSelected());
 	}
 }

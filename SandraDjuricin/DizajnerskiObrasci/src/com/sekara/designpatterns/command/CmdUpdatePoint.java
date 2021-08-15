@@ -1,5 +1,6 @@
 package com.sekara.designpatterns.command;
 
+import com.sekara.designpatterns.model.geometry.Circle;
 import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdatePoint extends Command {
@@ -16,19 +17,20 @@ public class CmdUpdatePoint extends Command {
 
 	@Override
 	public void execute() {
-		currentPoint.setX(newPoint.getX());
-		currentPoint.setY(newPoint.getY());
-		currentPoint.setEdgeColor(newPoint.getEdgeColor());
-		currentPoint.setSelected(newPoint.isSelected());
+		updatingCurrentPoint(newPoint);
 		super.setLog("CMD_UPDATE_POINT_EXECUTE#" + oldPoint + "->" + currentPoint);
 	}
 
 	@Override
 	public void unExecute() {
-		currentPoint.setX(oldPoint.getX());
-		currentPoint.setY(oldPoint.getY());
-		currentPoint.setEdgeColor(oldPoint.getEdgeColor());
-		currentPoint.setSelected(oldPoint.isSelected());
+		updatingCurrentPoint(oldPoint);
 		super.setLog("CMD_UPDATE_POINT_UNEXECUTE#" + currentPoint + "->" + oldPoint);
+	}
+	
+	public void updatingCurrentPoint(Point point) {
+		currentPoint.setX(point.getX());
+		currentPoint.setY(point.getY());
+		currentPoint.setEdgeColor(point.getEdgeColor());
+		currentPoint.setSelected(point.isSelected());
 	}
 }
