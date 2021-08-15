@@ -42,7 +42,8 @@ public class LogFile implements Strategy {
 	private ViewModel viewModel;
 	private BufferedReader reader;
 	private BufferedWriter writer;
-	
+	private BufferedWriter obrisi;
+	//didat komentar test
 	public LogFile(FrmDrawing view, MainController controller, ViewModel viewModel) {
 		this.view = view;
 		this.controller = controller;
@@ -59,10 +60,10 @@ public class LogFile implements Strategy {
 				writer.newLine();
 			}
 			writer.close();
-			controller.showMessageDialog("Log uspešno sačuvan!");
+			controller.showMessageDialog("Log uspeÅ¡no saÄ�uvan!");
 		} catch (IOException e) {
 			e.printStackTrace();
-			controller.showMessageDialog("Greška! " + e.getMessage());
+			controller.showMessageDialog("GreÅ¡ka! " + e.getMessage());
 		}
 	}
 
@@ -71,7 +72,7 @@ public class LogFile implements Strategy {
 		try {
 			reader = new BufferedReader(new FileReader(file));
 			controller.setEnabledBtnReadNextCommand(true);
-			controller.showMessageDialog("Log uspešno učitan! Kliknite dugme za učitavanje naredne komande iz loga.");
+			controller.showMessageDialog("Log uspeÅ¡no uÄ�itan! Kliknite dugme za uÄ�itavanje naredne komande iz loga.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,7 +85,7 @@ public class LogFile implements Strategy {
 			
 			if ((line = reader.readLine()) == null) {
 				controller.setEnabledBtnReadNextCommand(false);
-				controller.showMessageDialog("Nema više dostupnih komandi iz loga!");
+				controller.showMessageDialog("Nema viÅ¡e dostupnih komandi iz loga!");
 				return;
 			}
 			
