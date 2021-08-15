@@ -17,21 +17,21 @@ public class CmdUpdateCircle extends Command {
 
 	@Override
 	public void execute() {
-		currentCircle.setCenter(new Point(newCircle.getCenter().getX(), newCircle.getCenter().getY()));
-		currentCircle.setRadius(newCircle.getRadius());
-		currentCircle.setEdgeColor(newCircle.getEdgeColor());
-		currentCircle.setInnerColor(newCircle.getInnerColor());
-		currentCircle.setSelected(newCircle.isSelected());
+		updatingCurrentCircle(newCircle);
 		super.setLog("CMD_UPDATE_CIRCLE_EXECUTE#" + oldCircle + "->" + currentCircle);
 	}
 
 	@Override
 	public void unExecute() {
-		currentCircle.setCenter(new Point(oldCircle.getCenter().getX(), oldCircle.getCenter().getY()));
-		currentCircle.setRadius(oldCircle.getRadius());
-		currentCircle.setEdgeColor(oldCircle.getEdgeColor());
-		currentCircle.setInnerColor(oldCircle.getInnerColor());
-		currentCircle.setSelected(oldCircle.isSelected());
+		updatingCurrentCircle(oldCircle);
 		super.setLog("CMD_UPDATE_CIRCLE_UNEXECUTE#" + currentCircle + "->" + oldCircle);
+	}
+	
+	public void updatingCurrentCircle(Circle circle) {
+		currentCircle.setCenter(new Point(circle.getCenter().getX(), circle.getCenter().getY()));
+		currentCircle.setRadius(circle.getRadius());
+		currentCircle.setEdgeColor(circle.getEdgeColor());
+		currentCircle.setInnerColor(circle.getInnerColor());
+		currentCircle.setSelected(circle.isSelected());
 	}
 }
