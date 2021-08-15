@@ -4,16 +4,16 @@ import com.sekara.designpatterns.model.geometry.Donut;
 import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdateDonut extends Command {
-	
+
 	private Donut oldDonut;
 	private Donut newDonut;
 	private Donut currentDonut;
-	
+
 	public CmdUpdateDonut(Donut currentDonut, Donut newDonut) {
 		this.currentDonut = currentDonut;
 		this.newDonut = newDonut;
-		
-		oldDonut = (Donut)currentDonut.clone();
+
+		oldDonut = (Donut) currentDonut.clone();
 	}
 
 	@Override

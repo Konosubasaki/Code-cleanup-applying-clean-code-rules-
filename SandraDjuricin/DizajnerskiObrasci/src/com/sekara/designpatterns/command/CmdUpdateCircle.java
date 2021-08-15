@@ -4,16 +4,16 @@ import com.sekara.designpatterns.model.geometry.Circle;
 import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdateCircle extends Command {
-	
+
 	private Circle oldCircle;
 	private Circle newCircle;
 	private Circle currentCircle;
-	
+
 	public CmdUpdateCircle(Circle currentCircle, Circle newCircle) {
 		this.currentCircle = currentCircle;
 		this.newCircle = newCircle;
-		
-		oldCircle = (Circle)currentCircle.clone();
+
+		oldCircle = (Circle) currentCircle.clone();
 	}
 
 	@Override

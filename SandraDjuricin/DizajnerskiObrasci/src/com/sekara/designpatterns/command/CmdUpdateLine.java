@@ -3,16 +3,16 @@ package com.sekara.designpatterns.command;
 import com.sekara.designpatterns.model.geometry.Line;
 
 public class CmdUpdateLine extends Command {
-	
+
 	private Line oldLine;
 	private Line newLine;
 	private Line currentLine;
-	
+
 	public CmdUpdateLine(Line currentLine, Line newLine) {
 		this.currentLine = currentLine;
 		this.newLine = newLine;
-		
-		oldLine = (Line)currentLine.clone();
+
+		oldLine = (Line) currentLine.clone();
 	}
 
 	@Override

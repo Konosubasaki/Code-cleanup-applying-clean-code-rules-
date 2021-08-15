@@ -4,11 +4,11 @@ import com.sekara.designpatterns.model.ViewModel;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class CmdBringToFront extends Command {
-	
+
 	private Shape shape;
 	private ViewModel viewModel;
 	private int index;
-	
+
 	public CmdBringToFront(Shape shape, ViewModel viewModel) {
 		this.shape = shape;
 		this.viewModel = viewModel;

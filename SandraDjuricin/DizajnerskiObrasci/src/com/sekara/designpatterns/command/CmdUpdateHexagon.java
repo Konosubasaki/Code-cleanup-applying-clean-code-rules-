@@ -3,16 +3,16 @@ package com.sekara.designpatterns.command;
 import com.sekara.designpatterns.model.geometry.HexagonShape;
 
 public class CmdUpdateHexagon extends Command {
-	
+
 	private HexagonShape oldHexagon;
 	private HexagonShape newHexagon;
 	private HexagonShape currentHexagon;
-	
+
 	public CmdUpdateHexagon(HexagonShape currentHexagon, HexagonShape newHexagon) {
 		this.currentHexagon = currentHexagon;
 		this.newHexagon = newHexagon;
-		
-		oldHexagon = (HexagonShape)currentHexagon.clone();
+
+		oldHexagon = (HexagonShape) currentHexagon.clone();
 	}
 
 	@Override

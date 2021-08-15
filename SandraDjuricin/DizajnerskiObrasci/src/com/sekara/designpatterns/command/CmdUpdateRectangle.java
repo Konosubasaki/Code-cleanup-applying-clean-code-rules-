@@ -3,16 +3,16 @@ package com.sekara.designpatterns.command;
 import com.sekara.designpatterns.model.geometry.Rectangle;
 
 public class CmdUpdateRectangle extends Command {
-	
+
 	private Rectangle oldRectangle;
 	private Rectangle newRectangle;
 	private Rectangle currentRectangle;
-	
+
 	public CmdUpdateRectangle(Rectangle currentRectangle, Rectangle newRectangle) {
 		this.currentRectangle = currentRectangle;
 		this.newRectangle = newRectangle;
-		
-		oldRectangle = (Rectangle)currentRectangle.clone();
+
+		oldRectangle = (Rectangle) currentRectangle.clone();
 	}
 
 	@Override

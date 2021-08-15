@@ -3,16 +3,16 @@ package com.sekara.designpatterns.command;
 import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdatePoint extends Command {
-	
+
 	private Point oldPoint;
 	private Point newPoint;
 	private Point currentPoint;
-	
+
 	public CmdUpdatePoint(Point currentPoint, Point newPoint) {
 		this.currentPoint = currentPoint;
 		this.newPoint = newPoint;
-		
-		oldPoint = (Point)currentPoint.clone();
+
+		oldPoint = (Point) currentPoint.clone();
 	}
 
 	@Override
