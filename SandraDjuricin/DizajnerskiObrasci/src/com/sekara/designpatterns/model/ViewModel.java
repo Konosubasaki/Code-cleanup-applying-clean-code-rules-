@@ -17,11 +17,11 @@ public class ViewModel {
 		return listOfShapes.get(index);
 	}
 	
-	public int getIndex(Shape shape) {
+	public int getIndexOfShape(Shape shape) {
 		return listOfShapes.indexOf(shape);
 	}
 	
-	public int getSize() {
+	public int getSizeOfShapeList() {
 		return listOfShapes.size();
 	}
 	

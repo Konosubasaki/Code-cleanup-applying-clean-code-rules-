@@ -16,7 +16,7 @@ public class CmdToBack extends Command {
 
 	@Override
 	public void execute() {
-		index = viewModel.getIndex(shape);
+		index = viewModel.getIndexOfShape(shape);
 		viewModel.remove(shape);
 		viewModel.addAtIndex(shape, index - 1);
 		super.setLog("CMD_TO_BACK_EXECUTE#" + shape);

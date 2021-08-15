@@ -283,8 +283,8 @@ public class MainController implements Subject {
 	
 	public void positionToFront() {
 		Shape selectedShape = viewModel.getSelectedShapes().get(0);
-		int shapeIndex = viewModel.getIndex(selectedShape);
-		int shapeCount = viewModel.getSize();
+		int shapeIndex = viewModel.getIndexOfShape(selectedShape);
+		int shapeCount = viewModel.getSizeOfShapeList();
 		
 		if (shapeIndex >= shapeCount - 1) {
 			showMessageDialog("Izabrani oblik se već nalazi na najvisoj poziciji!");
@@ -297,8 +297,8 @@ public class MainController implements Subject {
 	
 	public void positionBringToFront() {
 		Shape selectedShape = viewModel.getSelectedShapes().get(0);
-		int shapeIndex = viewModel.getIndex(selectedShape);
-		int shapeCount = viewModel.getSize();
+		int shapeIndex = viewModel.getIndexOfShape(selectedShape);
+		int shapeCount = viewModel.getSizeOfShapeList();
 		
 		if (shapeIndex >= shapeCount - 1) {
 			showMessageDialog("Izabrani oblik se već nalazi na najvisoj poziciji!");
@@ -311,7 +311,7 @@ public class MainController implements Subject {
 	
 	public void positionToBack() {
 		Shape selectedShape = viewModel.getSelectedShapes().get(0);
-		int shapeIndex = viewModel.getIndex(selectedShape);
+		int shapeIndex = viewModel.getIndexOfShape(selectedShape);
 		
 		if (shapeIndex <= 0) {
 			showMessageDialog("Izabrani oblik se već nalazi na najnizoj poziciji!");
@@ -324,7 +324,7 @@ public class MainController implements Subject {
 	
 	public void positionBringToBack() {
 		Shape selectedShape = viewModel.getSelectedShapes().get(0);
-		int shapeIndex = viewModel.getIndex(selectedShape);
+		int shapeIndex = viewModel.getIndexOfShape(selectedShape);
 		
 		if (shapeIndex <= 0) {
 			showMessageDialog("Izabrani oblik se već nalazi na najnizoj poziciji!");
@@ -438,7 +438,7 @@ public class MainController implements Subject {
 	@Override
 	public void notifyObservers() {
 		for(Observer observer : listOfObservers) {
-			observer.update(currentMode, viewModel.getSize(), executedCommands.size(), unexecutedCommands.size(), viewModel.getSizeSelectedShapes(), !isLogEmpty);
+			observer.update(currentMode, viewModel.getSizeOfShapeList(), executedCommands.size(), unexecutedCommands.size(), viewModel.getSizeSelectedShapes(), !isLogEmpty);
 		}
 	}
 }

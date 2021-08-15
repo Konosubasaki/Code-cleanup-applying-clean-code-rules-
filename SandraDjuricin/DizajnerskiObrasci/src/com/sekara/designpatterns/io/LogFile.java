@@ -88,7 +88,7 @@ public class LogFile implements Strategy {
 					Point currentPoint = Point.parse(points[0]);
 					Point newPoint = Point.parse(points[1]);
 					
-					currentPoint = (Point) viewModel.getShape(viewModel.getIndex(currentPoint));
+					currentPoint = (Point) viewModel.getShape(viewModel.getIndexOfShape(currentPoint));
 					
 					command = new CmdUpdatePoint(currentPoint, newPoint);
 					controller.executeCommand(command);
@@ -99,7 +99,7 @@ public class LogFile implements Strategy {
 					Line currentLine = Line.parse(lines[0]);
 					Line newLine = Line.parse(lines[1]);
 					
-					currentLine = (Line) viewModel.getShape(viewModel.getIndex(currentLine));
+					currentLine = (Line) viewModel.getShape(viewModel.getIndexOfShape(currentLine));
 					
 					command = new CmdUpdateLine(currentLine, newLine);
 					controller.executeCommand(command);
@@ -110,7 +110,7 @@ public class LogFile implements Strategy {
 					Rectangle currentRectangle = Rectangle.parse(rectangles[0]);
 					Rectangle newRectangle = Rectangle.parse(rectangles[1]);
 					
-					currentRectangle = (Rectangle) viewModel.getShape(viewModel.getIndex(currentRectangle));
+					currentRectangle = (Rectangle) viewModel.getShape(viewModel.getIndexOfShape(currentRectangle));
 					
 					command = new CmdUpdateRectangle(currentRectangle, newRectangle);
 					controller.executeCommand(command);
@@ -121,7 +121,7 @@ public class LogFile implements Strategy {
 					Circle currentCircle = Circle.parse(circles[0]);
 					Circle newCircle = Circle.parse(circles[1]);
 					
-					currentCircle = (Circle) viewModel.getShape(viewModel.getIndex(currentCircle));
+					currentCircle = (Circle) viewModel.getShape(viewModel.getIndexOfShape(currentCircle));
 					
 					command = new CmdUpdateCircle(currentCircle, newCircle);
 					controller.executeCommand(command);
@@ -132,7 +132,7 @@ public class LogFile implements Strategy {
 					Donut currentDonut = Donut.parse(donuts[0]);
 					Donut newDonut = Donut.parse(donuts[1]);
 					
-					currentDonut = (Donut) viewModel.getShape(viewModel.getIndex(currentDonut));
+					currentDonut = (Donut) viewModel.getShape(viewModel.getIndexOfShape(currentDonut));
 					
 					command = new CmdUpdateDonut(currentDonut, newDonut);
 					controller.executeCommand(command);
@@ -143,7 +143,7 @@ public class LogFile implements Strategy {
 					HexagonShape currentHexagon = HexagonShape.parse(hexagons[0]);
 					HexagonShape newHexagon = HexagonShape.parse(hexagons[1]);
 					
-					currentHexagon = (HexagonShape) viewModel.getShape(viewModel.getIndex(currentHexagon));
+					currentHexagon = (HexagonShape) viewModel.getShape(viewModel.getIndexOfShape(currentHexagon));
 					
 					command = new CmdUpdateHexagon(currentHexagon, newHexagon);
 					controller.executeCommand(command);

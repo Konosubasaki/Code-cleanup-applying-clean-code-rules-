@@ -16,7 +16,7 @@ public class CmdBringToBack extends Command {
 
 	@Override
 	public void execute() {
-		index = viewModel.getIndex(shape);
+		index = viewModel.getIndexOfShape(shape);
 		viewModel.remove(shape);
 		viewModel.addAtIndex(shape, 0);
 		super.setLog("CMD_BRING_TO_BACK_EXECUTE#" + shape);

@@ -16,9 +16,9 @@ public class CmdBringToFront extends Command {
 
 	@Override
 	public void execute() {
-		index = viewModel.getIndex(shape);
+		index = viewModel.getIndexOfShape(shape);
 		viewModel.remove(shape);
-		viewModel.addAtIndex(shape, viewModel.getSize());
+		viewModel.addAtIndex(shape, viewModel.getSizeOfShapeList());
 		super.setLog("CMD_BRING_TO_FRONT_EXECUTE#" + shape);
 	}
 
