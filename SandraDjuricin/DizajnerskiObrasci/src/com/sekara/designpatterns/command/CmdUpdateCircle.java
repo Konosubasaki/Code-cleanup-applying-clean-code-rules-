@@ -12,7 +12,6 @@ public class CmdUpdateCircle extends Command {
 	public CmdUpdateCircle(Circle currentCircle, Circle newCircle) {
 		this.currentCircle = currentCircle;
 		this.newCircle = newCircle;
-
 		oldCircle = (Circle) currentCircle.clone();
 	}
 
@@ -35,5 +34,4 @@ public class CmdUpdateCircle extends Command {
 		currentCircle.setSelected(oldCircle.isSelected());
 		super.setLog("CMD_UPDATE_CIRCLE_UNEXECUTE#" + currentCircle + "->" + oldCircle);
 	}
-
 }

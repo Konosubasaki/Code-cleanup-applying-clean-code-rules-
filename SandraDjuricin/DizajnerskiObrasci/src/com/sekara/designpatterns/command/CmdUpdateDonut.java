@@ -12,7 +12,6 @@ public class CmdUpdateDonut extends Command {
 	public CmdUpdateDonut(Donut currentDonut, Donut newDonut) {
 		this.currentDonut = currentDonut;
 		this.newDonut = newDonut;
-
 		oldDonut = (Donut) currentDonut.clone();
 	}
 
@@ -37,5 +36,4 @@ public class CmdUpdateDonut extends Command {
 		currentDonut.setSelected(oldDonut.isSelected());
 		super.setLog("CMD_UPDATE_DONUT_UNEXECUTE#" + currentDonut + "->" + oldDonut);
 	}
-
 }

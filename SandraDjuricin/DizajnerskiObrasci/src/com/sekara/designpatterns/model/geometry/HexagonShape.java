@@ -110,5 +110,4 @@ public class HexagonShape extends Shape {
 			return false;
 		}
 	}
-	
 }

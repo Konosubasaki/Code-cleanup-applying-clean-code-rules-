@@ -11,7 +11,6 @@ public class CmdUpdateLine extends Command {
 	public CmdUpdateLine(Line currentLine, Line newLine) {
 		this.currentLine = currentLine;
 		this.newLine = newLine;
-
 		oldLine = (Line) currentLine.clone();
 	}
 
@@ -36,5 +35,4 @@ public class CmdUpdateLine extends Command {
 		currentLine.setSelected(oldLine.isSelected());
 		super.setLog("CMD_UPDATE_LINE_UNEXECUTE#" + currentLine + "->" + oldLine);
 	}
-
 }

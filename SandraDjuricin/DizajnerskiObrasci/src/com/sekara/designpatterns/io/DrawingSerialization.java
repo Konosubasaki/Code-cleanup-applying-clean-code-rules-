@@ -47,5 +47,4 @@ public class DrawingSerialization implements Strategy {
 			e.printStackTrace();
 		}
 	}
-
 }

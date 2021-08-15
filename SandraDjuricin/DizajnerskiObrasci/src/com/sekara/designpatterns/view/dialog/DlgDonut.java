@@ -186,7 +186,6 @@ public class DlgDonut extends JDialog {
 		edgeColor = donut.getEdgeColor();
 		innerColor = donut.getInnerColor();
 		isSelected = donut.isSelected();
-		
 		setColors(donut.getEdgeColor(), donut.getInnerColor());
 	}
 }

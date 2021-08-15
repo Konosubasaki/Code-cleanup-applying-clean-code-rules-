@@ -42,8 +42,6 @@ public class LogFile implements Strategy {
 	private ViewModel viewModel;
 	private BufferedReader reader;
 	private BufferedWriter writer;
-	private BufferedWriter obrisi;
-	//didat komentar test
 	public LogFile(FrmDrawing view, MainController controller, ViewModel viewModel) {
 		this.view = view;
 		this.controller = controller;

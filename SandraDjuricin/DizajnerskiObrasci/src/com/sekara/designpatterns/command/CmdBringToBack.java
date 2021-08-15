@@ -28,5 +28,4 @@ public class CmdBringToBack extends Command {
 		viewModel.addAtIndex(shape, index);
 		super.setLog("CMD_BRING_TO_BACK_UNEXECUTE#" + shape);
 	}
-
 }

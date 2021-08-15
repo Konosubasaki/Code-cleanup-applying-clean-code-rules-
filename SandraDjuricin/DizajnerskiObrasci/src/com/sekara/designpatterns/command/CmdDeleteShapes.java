@@ -27,5 +27,4 @@ public class CmdDeleteShapes extends Command {
 		viewModel.addAll(shapes);
 		super.setLog("CMD_DELETE_UNEXECUTE#" + shapes);
 	}
-
 }

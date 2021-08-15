@@ -10,7 +10,6 @@ public class Rectangle extends Shape {
 	private int height;
 	
 	public Rectangle() {
-
 	}
 
 	public Rectangle(Point upperLeftPoint, int height, int width) {
@@ -148,5 +147,4 @@ public class Rectangle extends Shape {
 		
 		return new Rectangle(new Point(x, y), h, w, edgeColor, innerColor);
 	}
-	
 }

@@ -122,5 +122,4 @@ public class Point extends Shape {
 		
 		return new Point(x, y, edgeColor);
 	}
-
 }

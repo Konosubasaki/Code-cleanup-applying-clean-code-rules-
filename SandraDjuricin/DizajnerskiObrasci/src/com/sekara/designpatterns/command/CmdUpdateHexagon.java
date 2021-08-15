@@ -11,7 +11,6 @@ public class CmdUpdateHexagon extends Command {
 	public CmdUpdateHexagon(HexagonShape currentHexagon, HexagonShape newHexagon) {
 		this.currentHexagon = currentHexagon;
 		this.newHexagon = newHexagon;
-
 		oldHexagon = (HexagonShape) currentHexagon.clone();
 	}
 
@@ -36,5 +35,4 @@ public class CmdUpdateHexagon extends Command {
 		currentHexagon.setSelected(oldHexagon.isSelected());
 		super.setLog("CMD_UPDATE_HEXAGON_UNEXECUTE#" + currentHexagon + "->" + oldHexagon);
 	}
-
 }

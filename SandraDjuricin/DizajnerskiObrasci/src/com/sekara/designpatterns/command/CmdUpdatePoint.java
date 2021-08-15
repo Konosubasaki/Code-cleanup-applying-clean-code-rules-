@@ -11,7 +11,6 @@ public class CmdUpdatePoint extends Command {
 	public CmdUpdatePoint(Point currentPoint, Point newPoint) {
 		this.currentPoint = currentPoint;
 		this.newPoint = newPoint;
-
 		oldPoint = (Point) currentPoint.clone();
 	}
 
@@ -32,5 +31,4 @@ public class CmdUpdatePoint extends Command {
 		currentPoint.setSelected(oldPoint.isSelected());
 		super.setLog("CMD_UPDATE_POINT_UNEXECUTE#" + currentPoint + "->" + oldPoint);
 	}
-
 }

@@ -28,5 +28,4 @@ public class CmdBringToFront extends Command {
 		viewModel.addAtIndex(shape, index);
 		super.setLog("CMD_BRING_TO_FRONT_UNEXECUTE#" + shape);
 	}
-
 }

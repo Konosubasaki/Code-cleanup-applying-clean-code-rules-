@@ -11,7 +11,6 @@ public class CmdUpdateRectangle extends Command {
 	public CmdUpdateRectangle(Rectangle currentRectangle, Rectangle newRectangle) {
 		this.currentRectangle = currentRectangle;
 		this.newRectangle = newRectangle;
-
 		oldRectangle = (Rectangle) currentRectangle.clone();
 	}
 

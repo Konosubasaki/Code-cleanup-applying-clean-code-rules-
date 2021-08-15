@@ -19,5 +19,4 @@ public class Context implements Strategy {
 	public void readFromFile(File file) {
 		strategy.readFromFile(file);
 	}
-
 }

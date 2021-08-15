@@ -173,7 +173,6 @@ public class DlgCircle extends JDialog {
 		edgeColor = circle.getEdgeColor();
 		innerColor = circle.getInnerColor();
 		isSelected = circle.isSelected();
-		
 		setColors(circle.getEdgeColor(), circle.getInnerColor());
 	}
 }

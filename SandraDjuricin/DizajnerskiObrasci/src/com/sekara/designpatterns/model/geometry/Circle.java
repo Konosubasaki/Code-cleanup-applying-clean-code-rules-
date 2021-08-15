@@ -114,21 +114,17 @@ public class Circle extends Shape {
 		circle.setEdgeColor(getEdgeColor());
 		circle.setInnerColor(getInnerColor());
 		circle.setSelected(isSelected());
-		
 		return circle;
 	}
 	
 	public static Circle parse(String line) {
 		line = line.replace("Circle(", "").replace(")", "");
 		String[] parts = line.split("\\|");
-		
 		int x = Integer.parseInt(parts[0].replace("X:", ""));
 		int y = Integer.parseInt(parts[1].replace("Y:", ""));
 		int r = Integer.parseInt(parts[2].replace("R:", ""));
 		Color edgeColor = Color.decode(parts[3].replace("EdgeColor:", ""));
 		Color innerColor = Color.decode(parts[4].replace("InnerColor:", ""));
-		
 		return new Circle(new Point(x, y), r, edgeColor, innerColor);
 	}
-	
 }

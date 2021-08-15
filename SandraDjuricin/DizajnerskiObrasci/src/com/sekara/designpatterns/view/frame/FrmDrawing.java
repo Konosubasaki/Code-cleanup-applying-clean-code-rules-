@@ -523,7 +523,6 @@ public class FrmDrawing extends JFrame implements Observer {
 			btnShapeCircle.setEnabled(false);
 			btnShapeDonut.setEnabled(false);
 			btnShapeHexagon.setEnabled(false);
-			
 			btnColorEdge.setEnabled(false);
 			btnColorInner.setEnabled(false);
 			

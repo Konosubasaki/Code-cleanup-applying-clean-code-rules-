@@ -26,12 +26,9 @@ public class DlgRectangle extends JDialog {
 	private JTextField txtY;
 	private JTextField txtHeight;
 	private JTextField txtWidth;
-	
 	private Rectangle rectangle = null;
 	private Color edgeColor = null, innerColor = null;
-	
 	private boolean isSelected = false;
-	
 	private JButton btnEdgeColor = new JButton(" ");
 	private JButton btnInnerColor = new JButton(" ");
 
@@ -173,7 +170,6 @@ public class DlgRectangle extends JDialog {
 	public void setColors(Color edgeColor, Color innerColor) {
 		this.edgeColor = edgeColor;
 		this.innerColor = innerColor;
-		
 		btnEdgeColor.setBackground(edgeColor);
 		btnInnerColor.setBackground(innerColor);
 	}
@@ -186,7 +182,6 @@ public class DlgRectangle extends JDialog {
 		edgeColor = rect.getEdgeColor();
 		innerColor = rect.getInnerColor();
 		isSelected = rect.isSelected();
-		
 		setColors(rect.getEdgeColor(), rect.getInnerColor());
 	}
 }

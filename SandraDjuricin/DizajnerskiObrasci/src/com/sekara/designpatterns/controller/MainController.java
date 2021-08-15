@@ -50,27 +50,19 @@ public class MainController implements Subject {
 	
 	private ViewModel viewModel;
 	private FrmDrawing view;
-
 	private Stack<Command> executedCommands;
 	private Stack<Command> unexecutedCommands;
-	
 	private ShapeType selectedShape;
 	private ModeType currentMode;
-	
 	private Color edgeColor;
 	private Color innerColor;
-	
 	private boolean lineWaitingForSecondPoint;
 	private Point lineFirstPoint;
-	
 	private DefaultListModel<String> logger;
-	
 	private Context ioContext;
 	private DrawingSerialization drawingSerializationStrategy;
 	private LogFile logToFileStrategy;
-	
 	private List<Observer> listOfObservers;
-	
 	private boolean isLogEmpty = true;
 	
 	public MainController(ViewModel viewModel, FrmDrawing view) {
@@ -478,5 +470,4 @@ public class MainController implements Subject {
 			observer.update(currentMode, viewModel.getSize(), executedCommands.size(), unexecutedCommands.size(), viewModel.getSizeSelectedShapes(), !isLogEmpty);
 		}
 	}
-
 }

@@ -124,5 +124,4 @@ public class Donut extends Circle {
 		
 		return new Donut(new Point(x, y), r1, r2, edgeColor, innerColor);
 	}
-	
 }

@@ -57,5 +57,4 @@ public class ViewModel {
 	public void removeAll(List<Shape> shapes) {
 		listOfShapes.removeAll(shapes);
 	}
-
 }

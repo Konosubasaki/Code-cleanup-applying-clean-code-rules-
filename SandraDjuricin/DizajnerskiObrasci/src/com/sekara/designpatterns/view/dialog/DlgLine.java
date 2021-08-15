@@ -26,13 +26,9 @@ public class DlgLine extends JDialog {
 	private JTextField txtFirstY;
 	private JTextField txtSecondX;
 	private JTextField txtSecondY;
-	
 	private Line line = null;
 	private Color edgeColor = null;
-	//, innerColor = null;
-	
 	private boolean isSelected = false;
-	
 	private JButton btnEdgeColor = new JButton(" ");
 	
 	public DlgLine() {
@@ -155,7 +151,6 @@ public class DlgLine extends JDialog {
 		txtSecondY.setText("" + line.getEndPoint().getY());
 		edgeColor = line.getEdgeColor();
 		isSelected = line.isSelected();
-		
 		btnEdgeColor.setBackground(line.getEdgeColor());
 	}
 }

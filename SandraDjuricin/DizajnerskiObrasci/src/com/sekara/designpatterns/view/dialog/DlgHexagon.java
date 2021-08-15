@@ -25,12 +25,9 @@ public class DlgHexagon extends JDialog {
 	private JTextField txtX;
 	private JTextField txtY;
 	private JTextField txtRadius;
-	
 	private HexagonShape hexagon = null;
 	private Color edgeColor = null, innerColor = null;
-	
 	private boolean isSelected = false;
-	
 	private JButton btnEdgeColor = new JButton(" ");
 	private JButton btnInnerColor = new JButton(" ");
 	
@@ -161,7 +158,6 @@ public class DlgHexagon extends JDialog {
 	public void setColors(Color edgeColor, Color innerColor) {
 		this.edgeColor = edgeColor;
 		this.innerColor = innerColor;
-		
 		btnEdgeColor.setBackground(edgeColor);
 		btnInnerColor.setBackground(innerColor);
 	}
@@ -173,7 +169,6 @@ public class DlgHexagon extends JDialog {
 		edgeColor = hexagon.getHexagon().getBorderColor();
 		innerColor = hexagon.getHexagon().getAreaColor();
 		isSelected = hexagon.isSelected();
-		
 		setColors(hexagon.getEdgeColor(), hexagon.getInnerColor());
 	}
 }

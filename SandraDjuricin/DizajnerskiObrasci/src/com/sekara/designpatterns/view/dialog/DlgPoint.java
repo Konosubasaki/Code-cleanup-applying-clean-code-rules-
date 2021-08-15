@@ -26,7 +26,6 @@ public class DlgPoint extends JDialog {
 	
 	private Point point = null;
 	private Color edgeColor = null; 
-	//, innerColor = null;
 	
 	private boolean isSelected = false;
 	
