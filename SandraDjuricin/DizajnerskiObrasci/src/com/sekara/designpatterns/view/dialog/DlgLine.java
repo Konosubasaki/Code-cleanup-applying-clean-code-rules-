@@ -1,25 +1,11 @@
 package com.sekara.designpatterns.view.dialog;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
 import com.sekara.designpatterns.model.geometry.Line;
 import com.sekara.designpatterns.model.geometry.Point;
+import java.awt.*;
+import java.awt.event.*;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.*;
 
 public class DlgLine extends JDialog {
 	private JTextField txtFirstX;

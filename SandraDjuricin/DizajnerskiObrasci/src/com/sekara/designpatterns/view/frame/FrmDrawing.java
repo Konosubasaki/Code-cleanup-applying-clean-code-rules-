@@ -1,47 +1,17 @@
 package com.sekara.designpatterns.view.frame;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JFileChooser;
-import javax.swing.border.TitledBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import com.sekara.designpatterns.controller.MainController;
-import com.sekara.designpatterns.enumerator.ModeType;
-import com.sekara.designpatterns.enumerator.ShapeType;
+import com.sekara.designpatterns.enumerator.*;
 import com.sekara.designpatterns.observable.Observer;
 import com.sekara.designpatterns.view.panel.PnlDrawing;
-
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
-
-import java.awt.Component;
-import javax.swing.border.LineBorder;
-import java.awt.SystemColor;
-import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JList;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FrmDrawing extends JFrame implements Observer {
 	

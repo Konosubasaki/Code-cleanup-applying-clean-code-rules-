@@ -1,39 +1,14 @@
 package com.sekara.designpatterns.io;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.DefaultListModel;
-
-import com.sekara.designpatterns.command.CmdAddShape;
-import com.sekara.designpatterns.command.CmdBringToBack;
-import com.sekara.designpatterns.command.CmdBringToFront;
-import com.sekara.designpatterns.command.CmdDeleteShapes;
-import com.sekara.designpatterns.command.CmdToBack;
-import com.sekara.designpatterns.command.CmdToFront;
-import com.sekara.designpatterns.command.CmdUpdateCircle;
-import com.sekara.designpatterns.command.CmdUpdateDonut;
-import com.sekara.designpatterns.command.CmdUpdateHexagon;
-import com.sekara.designpatterns.command.CmdUpdateLine;
-import com.sekara.designpatterns.command.CmdUpdatePoint;
-import com.sekara.designpatterns.command.CmdUpdateRectangle;
-import com.sekara.designpatterns.command.Command;
+import com.sekara.designpatterns.command.*;
 import com.sekara.designpatterns.controller.MainController;
 import com.sekara.designpatterns.model.ViewModel;
-import com.sekara.designpatterns.model.geometry.Circle;
-import com.sekara.designpatterns.model.geometry.Donut;
-import com.sekara.designpatterns.model.geometry.HexagonShape;
-import com.sekara.designpatterns.model.geometry.Line;
-import com.sekara.designpatterns.model.geometry.Point;
-import com.sekara.designpatterns.model.geometry.Rectangle;
-import com.sekara.designpatterns.model.geometry.Shape;
+import com.sekara.designpatterns.model.geometry.*;
 import com.sekara.designpatterns.view.frame.FrmDrawing;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
 
 public class LogFile implements Strategy {
 	

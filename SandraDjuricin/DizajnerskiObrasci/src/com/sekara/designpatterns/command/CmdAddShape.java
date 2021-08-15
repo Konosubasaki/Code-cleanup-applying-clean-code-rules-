@@ -15,13 +15,13 @@ public class CmdAddShape extends Command {
 
 	@Override
 	public void execute() {
-		this.viewModel.addShape(shape);
+		viewModel.addShape(shape);
 		super.setLog("CMD_ADD_EXECUTE#" + shape);
 	}
 
 	@Override
 	public void unExecute() {
-		this.viewModel.remove(shape);
+		viewModel.remove(shape);
 		super.setLog("CMD_ADD_UNEXECUTE#" + shape);
 	}
 }

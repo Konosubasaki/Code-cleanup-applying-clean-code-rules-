@@ -1,50 +1,18 @@
 package com.sekara.designpatterns.controller;
 
+import com.sekara.designpatterns.command.*;
+import com.sekara.designpatterns.enumerator.*;
+import com.sekara.designpatterns.io.*;
+import com.sekara.designpatterns.model.ViewModel;
+import com.sekara.designpatterns.model.geometry.*;
+import com.sekara.designpatterns.observable.Subject;
+import com.sekara.designpatterns.observable.Observer;
+import com.sekara.designpatterns.view.dialog.*;
+import com.sekara.designpatterns.view.frame.FrmDrawing;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
-import javax.swing.DefaultListModel;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
-import com.sekara.designpatterns.command.CmdAddShape;
-import com.sekara.designpatterns.command.CmdBringToBack;
-import com.sekara.designpatterns.command.CmdBringToFront;
-import com.sekara.designpatterns.command.CmdDeleteShapes;
-import com.sekara.designpatterns.command.CmdToBack;
-import com.sekara.designpatterns.command.CmdToFront;
-import com.sekara.designpatterns.command.CmdUpdateCircle;
-import com.sekara.designpatterns.command.CmdUpdateDonut;
-import com.sekara.designpatterns.command.CmdUpdateHexagon;
-import com.sekara.designpatterns.command.CmdUpdateLine;
-import com.sekara.designpatterns.command.CmdUpdatePoint;
-import com.sekara.designpatterns.command.CmdUpdateRectangle;
-import com.sekara.designpatterns.command.Command;
-import com.sekara.designpatterns.enumerator.ModeType;
-import com.sekara.designpatterns.enumerator.ShapeType;
-import com.sekara.designpatterns.io.Context;
-import com.sekara.designpatterns.io.DrawingSerialization;
-import com.sekara.designpatterns.io.LogFile;
-import com.sekara.designpatterns.model.ViewModel;
-import com.sekara.designpatterns.model.geometry.Circle;
-import com.sekara.designpatterns.model.geometry.Donut;
-import com.sekara.designpatterns.model.geometry.HexagonShape;
-import com.sekara.designpatterns.model.geometry.Line;
-import com.sekara.designpatterns.model.geometry.Point;
-import com.sekara.designpatterns.model.geometry.Rectangle;
-import com.sekara.designpatterns.model.geometry.Shape;
-import com.sekara.designpatterns.observable.Observer;
-import com.sekara.designpatterns.observable.Subject;
-import com.sekara.designpatterns.view.dialog.DlgCircle;
-import com.sekara.designpatterns.view.dialog.DlgDonut;
-import com.sekara.designpatterns.view.dialog.DlgHexagon;
-import com.sekara.designpatterns.view.dialog.DlgLine;
-import com.sekara.designpatterns.view.dialog.DlgPoint;
-import com.sekara.designpatterns.view.dialog.DlgRectangle;
-import com.sekara.designpatterns.view.frame.FrmDrawing;
+import java.util.*;
+import javax.swing.*;
 
 public class MainController implements Subject {
 	

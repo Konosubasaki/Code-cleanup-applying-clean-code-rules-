@@ -1,8 +1,6 @@
 package com.sekara.designpatterns.command;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import com.sekara.designpatterns.model.ViewModel;
 import com.sekara.designpatterns.model.geometry.Shape;
 
