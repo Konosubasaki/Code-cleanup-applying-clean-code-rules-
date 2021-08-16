@@ -2,7 +2,7 @@ package com.sekara.designpatterns.view.panel;
 
 import javax.swing.JPanel;
 
-import com.sekara.designpatterns.model.ViewModel;
+import com.sekara.designpatterns.model.Model;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,13 +11,13 @@ import java.awt.RenderingHints;
 
 public class PnlDrawing extends JPanel {
 
-	private ViewModel viewModel;
+	private Model viewModel;
 
 	public PnlDrawing() {
 		setBackground(Color.WHITE);
 	}
 
-	public void setViewModel(ViewModel viewModel) {
+	public void setViewModel(Model viewModel) {
 		this.viewModel = viewModel;
 	}
 

@@ -3,7 +3,7 @@ package com.sekara.designpatterns.controller;
 import com.sekara.designpatterns.command.*;
 import com.sekara.designpatterns.enumerator.*;
 import com.sekara.designpatterns.io.*;
-import com.sekara.designpatterns.model.ViewModel;
+import com.sekara.designpatterns.model.Model;
 import com.sekara.designpatterns.model.geometry.*;
 import com.sekara.designpatterns.observable.Subject;
 import com.sekara.designpatterns.observable.Observer;
@@ -16,7 +16,7 @@ import javax.swing.*;
 
 public class MainController implements Subject {
 	
-	private ViewModel viewModel;
+	private Model viewModel;
 	private FrmDrawing view;
 	private Stack<Command> executedCommands;
 	private Stack<Command> unexecutedCommands;
@@ -33,7 +33,7 @@ public class MainController implements Subject {
 	private List<Observer> listOfObservers;
 	private boolean isLogEmpty = true;
 	
-	public MainController(ViewModel viewModel, FrmDrawing view) {
+	public MainController(Model viewModel, FrmDrawing view) {
 		this.viewModel = viewModel;
 		this.view = view;
 		

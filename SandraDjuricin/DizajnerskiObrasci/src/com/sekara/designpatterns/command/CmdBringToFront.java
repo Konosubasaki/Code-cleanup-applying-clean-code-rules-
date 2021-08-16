@@ -1,15 +1,15 @@
 package com.sekara.designpatterns.command;
 
-import com.sekara.designpatterns.model.ViewModel;
+import com.sekara.designpatterns.model.Model;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class CmdBringToFront extends Command {
 
 	private Shape shape;
-	private ViewModel viewModel;
+	private Model viewModel;
 	private int indexOfShape;
 
-	public CmdBringToFront(Shape shape, ViewModel viewModel) {
+	public CmdBringToFront(Shape shape, Model viewModel) {
 		this.shape = shape;
 		this.viewModel = viewModel;
 		indexOfShape = viewModel.getIndexOfShape(shape);
@@ -17,15 +17,15 @@ public class CmdBringToFront extends Command {
 
 	@Override
 	public void execute() {
-		viewModel.remove(shape);
-		viewModel.addAtIndex(shape, viewModel.getSizeOfShapeList());
+		viewModel.removeShape(shape);
+		viewModel.addShapeAtIndex(shape, viewModel.getSizeOfShapeList());
 		super.setLog("CMD_BRING_TO_FRONT_EXECUTE#" + shape);
 	}
 
 	@Override
 	public void unExecute() {
-		viewModel.remove(shape);
-		viewModel.addAtIndex(shape, indexOfShape);
+		viewModel.removeShape(shape);
+		viewModel.addShapeAtIndex(shape, indexOfShape);
 		super.setLog("CMD_BRING_TO_FRONT_UNEXECUTE#" + shape);
 	}
 }

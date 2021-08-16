@@ -1,14 +1,14 @@
 package com.sekara.designpatterns.command;
 
-import com.sekara.designpatterns.model.ViewModel;
+import com.sekara.designpatterns.model.Model;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class CmdAddShape extends Command {
 
 	private Shape shape;
-	private ViewModel viewModel;
+	private Model viewModel;
 
-	public CmdAddShape(Shape shape, ViewModel viewModel) {
+	public CmdAddShape(Shape shape, Model viewModel) {
 		this.shape = shape;
 		this.viewModel = viewModel;
 	}
@@ -21,7 +21,7 @@ public class CmdAddShape extends Command {
 
 	@Override
 	public void unExecute() {
-		viewModel.remove(shape);
+		viewModel.removeShape(shape);
 		super.setLog("CMD_ADD_UNEXECUTE#" + shape);
 	}
 }

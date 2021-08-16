@@ -2,7 +2,7 @@ package com.sekara.designpatterns.io;
 
 import com.sekara.designpatterns.command.*;
 import com.sekara.designpatterns.controller.MainController;
-import com.sekara.designpatterns.model.ViewModel;
+import com.sekara.designpatterns.model.Model;
 import com.sekara.designpatterns.model.geometry.*;
 import com.sekara.designpatterns.view.frame.FrmDrawing;
 import java.io.*;
@@ -14,10 +14,10 @@ public class LogFile implements Strategy {
 	
 	private FrmDrawing view;
 	private MainController controller;
-	private ViewModel viewModel;
+	private Model viewModel;
 	private BufferedReader reader;
 	private BufferedWriter writer;
-	public LogFile(FrmDrawing view, MainController controller, ViewModel viewModel) {
+	public LogFile(FrmDrawing view, MainController controller, Model viewModel) {
 		this.view = view;
 		this.controller = controller;
 		this.viewModel = viewModel;
@@ -88,7 +88,7 @@ public class LogFile implements Strategy {
 					Point currentPoint = Point.parse(points[0]);
 					Point newPoint = Point.parse(points[1]);
 					
-					currentPoint = (Point) viewModel.getShape(viewModel.getIndexOfShape(currentPoint));
+					currentPoint = (Point) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentPoint));
 					
 					command = new CmdUpdatePoint(currentPoint, newPoint);
 					controller.executeCommand(command);
@@ -99,7 +99,7 @@ public class LogFile implements Strategy {
 					Line currentLine = Line.parse(lines[0]);
 					Line newLine = Line.parse(lines[1]);
 					
-					currentLine = (Line) viewModel.getShape(viewModel.getIndexOfShape(currentLine));
+					currentLine = (Line) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentLine));
 					
 					command = new CmdUpdateLine(currentLine, newLine);
 					controller.executeCommand(command);
@@ -110,7 +110,7 @@ public class LogFile implements Strategy {
 					Rectangle currentRectangle = Rectangle.parse(rectangles[0]);
 					Rectangle newRectangle = Rectangle.parse(rectangles[1]);
 					
-					currentRectangle = (Rectangle) viewModel.getShape(viewModel.getIndexOfShape(currentRectangle));
+					currentRectangle = (Rectangle) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentRectangle));
 					
 					command = new CmdUpdateRectangle(currentRectangle, newRectangle);
 					controller.executeCommand(command);
@@ -121,7 +121,7 @@ public class LogFile implements Strategy {
 					Circle currentCircle = Circle.parse(circles[0]);
 					Circle newCircle = Circle.parse(circles[1]);
 					
-					currentCircle = (Circle) viewModel.getShape(viewModel.getIndexOfShape(currentCircle));
+					currentCircle = (Circle) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentCircle));
 					
 					command = new CmdUpdateCircle(currentCircle, newCircle);
 					controller.executeCommand(command);
@@ -132,7 +132,7 @@ public class LogFile implements Strategy {
 					Donut currentDonut = Donut.parse(donuts[0]);
 					Donut newDonut = Donut.parse(donuts[1]);
 					
-					currentDonut = (Donut) viewModel.getShape(viewModel.getIndexOfShape(currentDonut));
+					currentDonut = (Donut) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentDonut));
 					
 					command = new CmdUpdateDonut(currentDonut, newDonut);
 					controller.executeCommand(command);
@@ -143,7 +143,7 @@ public class LogFile implements Strategy {
 					HexagonShape currentHexagon = HexagonShape.parse(hexagons[0]);
 					HexagonShape newHexagon = HexagonShape.parse(hexagons[1]);
 					
-					currentHexagon = (HexagonShape) viewModel.getShape(viewModel.getIndexOfShape(currentHexagon));
+					currentHexagon = (HexagonShape) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentHexagon));
 					
 					command = new CmdUpdateHexagon(currentHexagon, newHexagon);
 					controller.executeCommand(command);

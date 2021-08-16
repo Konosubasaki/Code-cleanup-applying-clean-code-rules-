@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import com.sekara.designpatterns.model.geometry.Shape;
 
-public class ViewModel {
+public class Model {
 	
 	private List<Shape> shapes = new ArrayList<Shape>();
 	
@@ -13,7 +13,7 @@ public class ViewModel {
 		return shapes;
 	}
 	
-	public Shape getShape(int index) {
+	public Shape getShapeByIndex(int index) {
 		return shapes.get(index);
 	}
 	
@@ -37,11 +37,11 @@ public class ViewModel {
 		shapes.add(shape);
 	}
 	
-	public void addAtIndex(Shape shape, int index) {
+	public void addShapeAtIndex(Shape shape, int index) {
 		shapes.add(index, shape);
 	}
 	
-	public void addAll(List<Shape> shapes) {
+	public void addAllShapes(List<Shape> shapes) {
 		this.shapes.addAll(shapes);
 	}
 	
@@ -50,11 +50,11 @@ public class ViewModel {
 		shapes.set(index, newShape);
 	}
 	
-	public void remove(Shape shape) {
+	public void removeShape(Shape shape) {
 		shapes.remove(shape);
 	}
 	
-	public void removeAll(List<Shape> shapes) {
+	public void removeAllShapes(List<Shape> shapes) {
 		this.shapes.removeAll(shapes);
 	}
 }
