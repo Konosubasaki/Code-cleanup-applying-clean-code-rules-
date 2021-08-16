@@ -1,22 +1,22 @@
 package com.sekara.designpatterns.command;
 
 import java.util.*;
-import com.sekara.designpatterns.model.Model;
+import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class CmdDeleteShapes extends Command {
 
 	private List<Shape> shapes;
-	private Model viewModel;
+	private ModelDrawing viewModel;
 
-	public CmdDeleteShapes(List<Shape> shapes, Model viewModel) {
+	public CmdDeleteShapes(List<Shape> shapes, ModelDrawing viewModel) {
 		this.shapes = new ArrayList<Shape>(shapes);
 		this.viewModel = viewModel;
 	}
 
 	@Override
 	public void execute() {
-		viewModel.removeAll(shapes);
+		viewModel.removeAllShapes(shapes);
 		super.setLog("CMD_DELETE_EXECUTE#" + shapes);
 	}
 

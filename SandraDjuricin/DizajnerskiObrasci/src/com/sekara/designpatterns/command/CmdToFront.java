@@ -1,15 +1,15 @@
 package com.sekara.designpatterns.command;
 
-import com.sekara.designpatterns.model.Model;
+import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class CmdToFront extends Command {
 
 	private Shape shape;
-	private Model viewModel;
+	private ModelDrawing viewModel;
 	private int indexOfShape;
 
-	public CmdToFront(Shape shape, Model viewModel) {
+	public CmdToFront(Shape shape, ModelDrawing viewModel) {
 		this.shape = shape;
 		this.viewModel = viewModel;
 		indexOfShape = viewModel.getIndexOfShape(shape);

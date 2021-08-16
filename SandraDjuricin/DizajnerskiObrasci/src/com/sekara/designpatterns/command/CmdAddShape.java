@@ -1,14 +1,14 @@
 package com.sekara.designpatterns.command;
 
-import com.sekara.designpatterns.model.Model;
+import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class CmdAddShape extends Command {
 
 	private Shape shape;
-	private Model viewModel;
+	private ModelDrawing viewModel;
 
-	public CmdAddShape(Shape shape, Model viewModel) {
+	public CmdAddShape(Shape shape, ModelDrawing viewModel) {
 		this.shape = shape;
 		this.viewModel = viewModel;
 	}

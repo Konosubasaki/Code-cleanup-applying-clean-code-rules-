@@ -2,31 +2,31 @@ package com.sekara.designpatterns.view.panel;
 
 import javax.swing.JPanel;
 
-import com.sekara.designpatterns.model.Model;
+import com.sekara.designpatterns.model.ModelDrawing;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-public class PnlDrawing extends JPanel {
+public class ViewDrawing extends JPanel {
 
-	private Model viewModel;
+	private ModelDrawing modelDrawing;
 
-	public PnlDrawing() {
+	public ViewDrawing() {
 		setBackground(Color.WHITE);
 	}
 
-	public void setViewModel(Model viewModel) {
-		this.viewModel = viewModel;
+	public void setModel(ModelDrawing modelDrawing) {
+		this.modelDrawing = modelDrawing;
 	}
 
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 		super.paint(g);
-		if (viewModel != null) {
-			viewModel.getAllShapes().forEach(shape -> shape.draw(g));
+		if (modelDrawing != null) {
+			modelDrawing.getAllShapes().forEach(shape -> shape.draw(g));
 		}
 	}
 }

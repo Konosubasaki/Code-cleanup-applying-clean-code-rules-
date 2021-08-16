@@ -3,7 +3,7 @@ package com.sekara.designpatterns.view.frame;
 import com.sekara.designpatterns.controller.MainController;
 import com.sekara.designpatterns.enumerator.*;
 import com.sekara.designpatterns.observable.Observer;
-import com.sekara.designpatterns.view.panel.PnlDrawing;
+import com.sekara.designpatterns.view.panel.ViewDrawing;
 import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.event.*;
@@ -13,11 +13,11 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class FrmDrawing extends JFrame implements Observer {
+public class FrameDrawing extends JFrame implements Observer {
 	
 	private MainController controller;
+	private ViewDrawing viewDrawing = new ViewDrawing();
 	
-	private PnlDrawing pnlDrawing = new PnlDrawing();
 	private ButtonGroup btnsOperation = new ButtonGroup();
 	private ButtonGroup btnsShapes = new ButtonGroup();
 	
@@ -26,17 +26,18 @@ public class FrmDrawing extends JFrame implements Observer {
 	private JButton btnReadNextCommand = new JButton("Ucitaj sledecu komandu");
 	private JButton btnUndo = new JButton("Ponisti");
 	private JButton btnRedo = new JButton("Ponovi");
-	
 	private JButton btnPositionToFront = new JButton("Ispred");
 	private JButton btnPositionBringToFront = new JButton("Ispred svih");
 	private JButton btnPositionToBack = new JButton("Iza");
 	private JButton btnPositionBringToBack = new JButton("Iza svih");
-	
-	private JToggleButton btnOperationDrawing = new JToggleButton("Crtanje");
-	private JToggleButton btnOperationEditOrDelete = new JToggleButton("Izmena/Brisanje");
 	private JButton btnActionEdit = new JButton("Izmeni");
 	private JButton btnActionDelete = new JButton("Obrisi");
 	private JButton btnActionDeleteAll = new JButton("Obrisi sve");
+	private JButton btnColorEdge = new JButton(" ");
+	private JButton btnColorInner = new JButton(" ");
+
+	private JToggleButton btnOperationDrawing = new JToggleButton("Crtanje");
+	private JToggleButton btnOperationEditOrDelete = new JToggleButton("Izmena/Brisanje");
 	private JToggleButton btnShapePoint = new JToggleButton("Tacka");
 	private JToggleButton btnShapeLine = new JToggleButton("Linija");
 	private JToggleButton btnShapeRectangle = new JToggleButton("Pravougaonik");
@@ -45,10 +46,9 @@ public class FrmDrawing extends JFrame implements Observer {
 	private JToggleButton btnShapeHexagon = new JToggleButton("Sestougao");
 	
 	private JLabel lblColorEdge = new JLabel("Boja ivice");
-	private JButton btnColorEdge = new JButton(" ");
-	private JLabel lblColorInner = new JLabel("Boja unutrasnjosti");
-	private JButton btnColorInner = new JButton(" ");
-	
+ 	private JLabel lblColorInner = new JLabel("Boja unutrasnjosti");
+	private JPanel contentPanel;
+
 	private JFileChooser readFromFileChooser;
 	private JFileChooser saveToFileChooser;
 	
@@ -60,52 +60,34 @@ public class FrmDrawing extends JFrame implements Observer {
 	
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
 	
-	private JPanel contentPane;
-
-	
-	public PnlDrawing getDrawingPanel() {
-		return this.pnlDrawing;
-	}
-	
-	public DefaultListModel<String> getDefaultListLogModel() {
-		return this.defaultListModel;
-	}
-	
-	public void setController(MainController controller) {
-		this.controller = controller;
-		
-		btnColorEdge.setBackground(controller.getEdgeColor());
-		btnColorInner.setBackground(controller.getInnerColor());
-		
-		controller.setCurrentMode(ModeType.Drawing);
-	}
 
 
-	public FrmDrawing() {
+
+	public FrameDrawing() {
 		setTitle("IT 48-2017 Sekara Danilo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 900);
 		setLocationRelativeTo(null);
 		setMinimumSize(new Dimension(1100, 700));
 		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		contentPanel = new JPanel();
+		contentPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		contentPanel.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPanel);
 
-		pnlDrawing.addMouseListener(new MouseAdapter() {
+		viewDrawing.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				controller.mouseClicked(arg0);
 			}
 		});
-		pnlDrawing.setBorder(new LineBorder(SystemColor.textHighlight, 5));
-		contentPane.add(pnlDrawing, BorderLayout.CENTER);
+		viewDrawing.setBorder(new LineBorder(SystemColor.textHighlight, 5));
+		contentPanel.add(viewDrawing, BorderLayout.CENTER);
 		
 		JPanel pnlLeftOperations = new JPanel();
 		JPanel pnlRightOperations = new JPanel();
 		pnlRightOperations.setLayout(new GridLayout(3, 0, 0, 0));
 		JPanel pnlLog = new JPanel();
-		contentPane.add(pnlLeftOperations, BorderLayout.WEST);
+		contentPanel.add(pnlLeftOperations, BorderLayout.WEST);
 		pnlLeftOperations.setLayout(new GridLayout(4, 0, 0, 0));
 		
 		JPanel pnlChooseFile = new JPanel();
@@ -358,7 +340,7 @@ public class FrmDrawing extends JFrame implements Observer {
 		btnColorInner.setAlignmentX(Component.CENTER_ALIGNMENT);
 		pnlChooseColor.add(btnColorInner);
 		
-		contentPane.add(pnlLog, BorderLayout.SOUTH);
+		contentPanel.add(pnlLog, BorderLayout.SOUTH);
 		
 		listLog.setModel(defaultListModel);
 		listLog.setVisibleRowCount(10);
@@ -375,9 +357,27 @@ public class FrmDrawing extends JFrame implements Observer {
 		
 		pnlLog.add(scrollPane);
 		
-		contentPane.add(pnlRightOperations, BorderLayout.EAST);
+		contentPanel.add(pnlRightOperations, BorderLayout.EAST);
 	}
 	
+	
+	public ViewDrawing getViewDrawing() {
+		return this.viewDrawing;
+	}
+	//+++++++++++
+	public DefaultListModel<String> getDefaultListLogModel() {
+		return this.defaultListModel;
+	}
+	
+	public void setController(MainController controller) {
+		this.controller = controller;
+		
+		btnColorEdge.setBackground(controller.getEdgeColor());
+		btnColorInner.setBackground(controller.getInnerColor());
+		
+		controller.setCurrentMode(ModeType.Drawing);
+	}
+
 	private ActionListener btnColorEdgeClickListener() {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

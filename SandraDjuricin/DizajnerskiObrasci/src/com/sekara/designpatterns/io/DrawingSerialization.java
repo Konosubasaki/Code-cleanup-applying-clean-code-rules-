@@ -3,16 +3,16 @@ package com.sekara.designpatterns.io;
 import java.io.*;
 import java.util.*;
 
-import com.sekara.designpatterns.model.Model;
+import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class DrawingSerialization implements Strategy {
 	
-	private Model viewModel;
+	private ModelDrawing viewModel;
 	private FileOutputStream outputStream;
 	private FileInputStream inputStream;
 	
-	public DrawingSerialization(Model viewModel) {
+	public DrawingSerialization(ModelDrawing viewModel) {
 		this.viewModel = viewModel;
 	}
 

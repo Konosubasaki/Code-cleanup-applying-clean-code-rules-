@@ -2,9 +2,9 @@ package com.sekara.designpatterns.io;
 
 import com.sekara.designpatterns.command.*;
 import com.sekara.designpatterns.controller.MainController;
-import com.sekara.designpatterns.model.Model;
+import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.model.geometry.*;
-import com.sekara.designpatterns.view.frame.FrmDrawing;
+import com.sekara.designpatterns.view.frame.FrameDrawing;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,12 @@ import javax.swing.DefaultListModel;
 
 public class LogFile implements Strategy {
 	
-	private FrmDrawing view;
+	private FrameDrawing view;
 	private MainController controller;
-	private Model viewModel;
+	private ModelDrawing viewModel;
 	private BufferedReader reader;
 	private BufferedWriter writer;
-	public LogFile(FrmDrawing view, MainController controller, Model viewModel) {
+	public LogFile(FrameDrawing view, MainController controller, ModelDrawing viewModel) {
 		this.view = view;
 		this.controller = controller;
 		this.viewModel = viewModel;

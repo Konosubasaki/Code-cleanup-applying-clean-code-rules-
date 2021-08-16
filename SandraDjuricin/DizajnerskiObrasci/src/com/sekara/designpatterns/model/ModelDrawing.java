@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import com.sekara.designpatterns.model.geometry.Shape;
 
-public class Model {
+public class ModelDrawing {
 	
 	private List<Shape> shapes = new ArrayList<Shape>();
 	
