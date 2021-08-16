@@ -42,7 +42,7 @@ public class ViewModel {
 	}
 	
 	public void addAll(List<Shape> shapes) {
-		shapes.addAll(shapes);
+		this.shapes.addAll(shapes);
 	}
 	
 	public void updateShape(Shape oldShape, Shape newShape) {
@@ -55,6 +55,6 @@ public class ViewModel {
 	}
 	
 	public void removeAll(List<Shape> shapes) {
-		shapes.removeAll(shapes);
+		this.shapes.removeAll(shapes);
 	}
 }

@@ -287,7 +287,7 @@ public class MainController implements Subject {
 		int shapeCount = viewModel.getSizeOfShapeList();
 		
 		if (shapeIndex >= shapeCount - 1) {
-			showMessageDialog("Izabrani oblik se već nalazi na najvisoj poziciji!");
+			showMessageDialog("Izabrani oblik se vec nalazi na najvisoj poziciji!");
 			return;
 		}
 		
@@ -301,7 +301,7 @@ public class MainController implements Subject {
 		int shapeCount = viewModel.getSizeOfShapeList();
 		
 		if (shapeIndex >= shapeCount - 1) {
-			showMessageDialog("Izabrani oblik se već nalazi na najvisoj poziciji!");
+			showMessageDialog("Izabrani oblik se vec nalazi na najvisoj poziciji!");
 			return;
 		}
 		
@@ -314,7 +314,7 @@ public class MainController implements Subject {
 		int shapeIndex = viewModel.getIndexOfShape(selectedShape);
 		
 		if (shapeIndex <= 0) {
-			showMessageDialog("Izabrani oblik se već nalazi na najnizoj poziciji!");
+			showMessageDialog("Izabrani oblik se vec nalazi na najnizoj poziciji!");
 			return;
 		}
 		
@@ -327,7 +327,7 @@ public class MainController implements Subject {
 		int shapeIndex = viewModel.getIndexOfShape(selectedShape);
 		
 		if (shapeIndex <= 0) {
-			showMessageDialog("Izabrani oblik se već nalazi na najnizoj poziciji!");
+			showMessageDialog("Izabrani oblik se vec nalazi na najnizoj poziciji!");
 			return;
 		}
 		
