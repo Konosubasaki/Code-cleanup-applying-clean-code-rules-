@@ -9,7 +9,6 @@ public class Circle extends Shape {
 	private int radius = 0;
 	
 	public Circle() {
-
 	}
 
 	public Circle(Point center, int radius) {

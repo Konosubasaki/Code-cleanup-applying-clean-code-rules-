@@ -10,7 +10,6 @@ public abstract class Shape implements Moveable, Comparable, Cloneable, Serializ
 	private Color edgeColor, innerColor;
 
 	public Shape() {
-		
 	}
 	
 	public Shape(boolean selected) {

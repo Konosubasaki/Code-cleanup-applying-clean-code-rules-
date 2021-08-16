@@ -5,26 +5,14 @@ import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdateCircle extends Command {
 
-	private Circle oldCircle;
-	private Circle newCircle;
+	private Circle oldStateOfCircle;
+	private Circle newStateOfCircle;
 	private Circle currentCircle;
 
 	public CmdUpdateCircle(Circle currentCircle, Circle newCircle) {
 		this.currentCircle = currentCircle;
-		this.newCircle = newCircle;
-		oldCircle = (Circle) currentCircle.clone();
-	}
-
-	@Override
-	public void execute() {
-		updatingCurrentCircle(newCircle);
-		super.setLog("CMD_UPDATE_CIRCLE_EXECUTE#" + oldCircle + "->" + currentCircle);
-	}
-
-	@Override
-	public void unExecute() {
-		updatingCurrentCircle(oldCircle);
-		super.setLog("CMD_UPDATE_CIRCLE_UNEXECUTE#" + currentCircle + "->" + oldCircle);
+		this.newStateOfCircle = newCircle;
+		oldStateOfCircle = (Circle) currentCircle.clone();
 	}
 	
 	public void updatingCurrentCircle(Circle circle) {
@@ -33,5 +21,17 @@ public class CmdUpdateCircle extends Command {
 		currentCircle.setEdgeColor(circle.getEdgeColor());
 		currentCircle.setInnerColor(circle.getInnerColor());
 		currentCircle.setSelected(circle.isSelected());
+	}
+
+	@Override
+	public void execute() {
+		updatingCurrentCircle(newStateOfCircle);
+		super.setLog("CMD_UPDATE_CIRCLE_EXECUTE#" + oldStateOfCircle + "->" + currentCircle);
+	}
+
+	@Override
+	public void unExecute() {
+		updatingCurrentCircle(oldStateOfCircle);
+		super.setLog("CMD_UPDATE_CIRCLE_UNEXECUTE#" + currentCircle + "->" + oldStateOfCircle);
 	}
 }
