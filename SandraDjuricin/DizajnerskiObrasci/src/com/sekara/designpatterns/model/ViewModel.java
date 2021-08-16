@@ -7,26 +7,26 @@ import com.sekara.designpatterns.model.geometry.Shape;
 
 public class ViewModel {
 	
-	private List<Shape> listOfShapes = new ArrayList<Shape>();
+	private List<Shape> shapes = new ArrayList<Shape>();
 	
 	public List<Shape> getAllShapes() {
-		return listOfShapes;
+		return shapes;
 	}
 	
 	public Shape getShape(int index) {
-		return listOfShapes.get(index);
+		return shapes.get(index);
 	}
 	
 	public int getIndexOfShape(Shape shape) {
-		return listOfShapes.indexOf(shape);
+		return shapes.indexOf(shape);
 	}
 	
 	public int getSizeOfShapeList() {
-		return listOfShapes.size();
+		return shapes.size();
 	}
 	
 	public List<Shape> getSelectedShapes() {
-		return listOfShapes.stream().filter(shape -> shape.isSelected()).collect(Collectors.toList());
+		return shapes.stream().filter(shape -> shape.isSelected()).collect(Collectors.toList());
 	}
 	
 	public int getSizeSelectedShapes() {
@@ -34,27 +34,27 @@ public class ViewModel {
 	}
 	
 	public void addShape(Shape shape) {
-		listOfShapes.add(shape);
+		shapes.add(shape);
 	}
 	
 	public void addAtIndex(Shape shape, int index) {
-		listOfShapes.add(index, shape);
+		shapes.add(index, shape);
 	}
 	
 	public void addAll(List<Shape> shapes) {
-		listOfShapes.addAll(shapes);
+		shapes.addAll(shapes);
 	}
 	
 	public void updateShape(Shape oldShape, Shape newShape) {
-		int index = listOfShapes.indexOf(oldShape);
-		listOfShapes.set(index, newShape);
+		int index = shapes.indexOf(oldShape);
+		shapes.set(index, newShape);
 	}
 	
 	public void remove(Shape shape) {
-		listOfShapes.remove(shape);
+		shapes.remove(shape);
 	}
 	
 	public void removeAll(List<Shape> shapes) {
-		listOfShapes.removeAll(shapes);
+		shapes.removeAll(shapes);
 	}
 }

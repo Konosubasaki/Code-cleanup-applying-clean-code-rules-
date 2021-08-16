@@ -7,16 +7,16 @@ public class CmdBringToBack extends Command {
 
 	private Shape shape;
 	private ViewModel viewModel;
-	private int index;
+	private int indexOfShape;
 
 	public CmdBringToBack(Shape shape, ViewModel viewModel) {
 		this.shape = shape;
 		this.viewModel = viewModel;
+		indexOfShape = viewModel.getIndexOfShape(shape);
 	}
 
 	@Override
 	public void execute() {
-		index = viewModel.getIndexOfShape(shape);
 		viewModel.remove(shape);
 		viewModel.addAtIndex(shape, 0);
 		super.setLog("CMD_BRING_TO_BACK_EXECUTE#" + shape);
@@ -25,7 +25,7 @@ public class CmdBringToBack extends Command {
 	@Override
 	public void unExecute() {
 		viewModel.remove(shape);
-		viewModel.addAtIndex(shape, index);
+		viewModel.addAtIndex(shape, indexOfShape);
 		super.setLog("CMD_BRING_TO_BACK_UNEXECUTE#" + shape);
 	}
 }
