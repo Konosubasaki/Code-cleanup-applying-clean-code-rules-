@@ -15,8 +15,8 @@ public class CmdUpdatePoint extends Command {
 	}
 
 	public void updatingCurrentPoint(Point point) {
-		currentPoint.setX(point.getX());
-		currentPoint.setY(point.getY());
+		currentPoint.setXCoordinate(point.getXCoordinate());
+		currentPoint.setYCoordinate(point.getYCoordinate());
 		currentPoint.setEdgeColor(point.getEdgeColor());
 		currentPoint.setSelected(point.isSelected());
 	}

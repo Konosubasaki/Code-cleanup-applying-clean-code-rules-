@@ -158,7 +158,7 @@ public class MainController implements Subject {
 	
 	private void mouseClickedSelect(MouseEvent event) {
 		viewModel.getAllShapes().forEach(shape -> {
-			if (shape.contains(event.getX(), event.getY())) {
+			if (shape.containsXYpoint(event.getX(), event.getY())) {
 				if (shape.isSelected()) {
 					shape.setSelected(false);
 					addLog("DESELECT#" + shape + "#MouseEvent(X:" + event.getX() + "|Y:" + event.getY() + ")");

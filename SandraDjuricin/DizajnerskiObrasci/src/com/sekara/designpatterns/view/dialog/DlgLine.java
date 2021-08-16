@@ -131,10 +131,10 @@ public class DlgLine extends JDialog {
 	}
 
 	public void setLine(Line line) {
-		txtFirstX.setText("" + line.getStartPoint().getX());
-		txtFirstY.setText("" + line.getStartPoint().getY());
-		txtSecondX.setText("" + line.getEndPoint().getX());
-		txtSecondY.setText("" + line.getEndPoint().getY());
+		txtFirstX.setText("" + line.getStartPoint().getXCoordinate());
+		txtFirstY.setText("" + line.getStartPoint().getYCoordinate());
+		txtSecondX.setText("" + line.getEndPoint().getXCoordinate());
+		txtSecondY.setText("" + line.getEndPoint().getYCoordinate());
 		edgeColor = line.getEdgeColor();
 		isSelected = line.isSelected();
 		btnEdgeColor.setBackground(line.getEdgeColor());

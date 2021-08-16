@@ -151,8 +151,8 @@ public class DlgDonut extends JDialog {
 	}
 	
 	public void setPoint(Point point) {
-		txtX.setText("" + point.getX());
-		txtY.setText("" + point.getY());
+		txtX.setText("" + point.getXCoordinate());
+		txtY.setText("" + point.getYCoordinate());
 	}
 	
 	public void setColors(Color edgeColor, Color innerColor) {
@@ -164,8 +164,8 @@ public class DlgDonut extends JDialog {
 	}
 	
 	public void setDonut(Donut donut) {
-		txtX.setText("" + donut.getCenter().getX());
-		txtY.setText("" + donut.getCenter().getY());
+		txtX.setText("" + donut.getCenter().getXCoordinate());
+		txtY.setText("" + donut.getCenter().getYCoordinate());
 		txtRadius.setText("" + donut.getRadius());
 		txtInnerRadius.setText("" + donut.getInnerRadius());
 		edgeColor = donut.getEdgeColor();

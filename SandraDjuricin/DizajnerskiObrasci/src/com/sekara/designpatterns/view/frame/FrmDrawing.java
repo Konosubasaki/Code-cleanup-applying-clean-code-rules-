@@ -144,9 +144,7 @@ public class FrmDrawing extends JFrame implements Observer {
 				saveToFileChooser.setEnabled(true);
 				saveToFileChooser.setDialogTitle("Sacuvaj");
 				saveToFileChooser.setAcceptAllFileFilterUsed(false);
-//				saveToFileChooser.setFileFilter(drwFileFilter);
-//				saveToFileChooser.setFileFilter(logFileFilter);
-				
+ 
 				for (FileNameExtensionFilter fileFilter : listOfAvailableFileFilters) {
 					saveToFileChooser.setFileFilter(fileFilter);
 				}
@@ -184,8 +182,7 @@ public class FrmDrawing extends JFrame implements Observer {
 		btnOperationEditOrDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.setCurrentMode(ModeType.Selecting);
-				//setOperationEditDelete();
-			}
+ 			}
 		});
 		btnOperationEditOrDelete.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnsOperation.add(btnOperationEditOrDelete);

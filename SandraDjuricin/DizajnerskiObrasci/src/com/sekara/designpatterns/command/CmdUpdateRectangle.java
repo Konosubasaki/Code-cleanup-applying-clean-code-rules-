@@ -15,8 +15,8 @@ public class CmdUpdateRectangle extends Command {
 	}
 
 	public void updatingCurrentRectangle(Rectangle rectangle) {
-		currentRectangle.getUpperLeftPoint().setX(rectangle.getUpperLeftPoint().getX());
-		currentRectangle.getUpperLeftPoint().setY(rectangle.getUpperLeftPoint().getY());
+		currentRectangle.getUpperLeftPoint().setXCoordinate(rectangle.getUpperLeftPoint().getXCoordinate());
+		currentRectangle.getUpperLeftPoint().setYCoordinate(rectangle.getUpperLeftPoint().getYCoordinate());
 		currentRectangle.setWidth(rectangle.getWidth());
 		currentRectangle.setHeight(rectangle.getHeight());
 		currentRectangle.setEdgeColor(rectangle.getEdgeColor());

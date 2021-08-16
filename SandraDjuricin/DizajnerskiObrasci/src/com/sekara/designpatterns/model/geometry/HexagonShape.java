@@ -9,7 +9,7 @@ public class HexagonShape extends Shape {
 	private Hexagon hexagon;
 	
 	public HexagonShape(Point center, int radius) {
-		this.hexagon = new Hexagon(center.getX(), center.getY(), radius);
+		this.hexagon = new Hexagon(center.getXCoordinate(), center.getYCoordinate(), radius);
 	}
 	
 	public HexagonShape(Point center, int radius, Color edgeColor, Color innerColor) {
@@ -32,7 +32,7 @@ public class HexagonShape extends Shape {
 	}
 
 	@Override
-	public boolean contains(int x, int y) {
+	public boolean containsXYpoint(int x, int y) {
 		return this.hexagon.doesContain(x, y);
 	}
 

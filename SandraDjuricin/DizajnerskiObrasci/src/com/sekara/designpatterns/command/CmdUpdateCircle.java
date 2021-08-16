@@ -16,7 +16,7 @@ public class CmdUpdateCircle extends Command {
 	}
 	
 	public void updatingCurrentCircle(Circle circle) {
-		currentCircle.setCenter(new Point(circle.getCenter().getX(), circle.getCenter().getY()));
+		currentCircle.setCenter(new Point(circle.getCenter().getXCoordinate(), circle.getCenter().getYCoordinate()));
 		currentCircle.setRadius(circle.getRadius());
 		currentCircle.setEdgeColor(circle.getEdgeColor());
 		currentCircle.setInnerColor(circle.getInnerColor());

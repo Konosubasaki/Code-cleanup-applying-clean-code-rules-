@@ -16,7 +16,7 @@ public class CmdUpdateDonut extends Command {
 	}
 
 	public void updatingCurrentDonut(Donut donut) {
-		currentDonut.setCenter(new Point(donut.getCenter().getX(), donut.getCenter().getY()));
+		currentDonut.setCenter(new Point(donut.getCenter().getXCoordinate(), donut.getCenter().getYCoordinate()));
 		currentDonut.setRadius(donut.getRadius());
 		currentDonut.setInnerRadius(donut.getInnerRadius());
 		currentDonut.setEdgeColor(donut.getEdgeColor());

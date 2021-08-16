@@ -15,10 +15,10 @@ public class CmdUpdateLine extends Command {
 	}
 	
 	public void updatingCurrentLine(Line line) {
-		currentLine.getStartPoint().setX(line.getStartPoint().getX());
-		currentLine.getStartPoint().setY(line.getStartPoint().getY());
-		currentLine.getEndPoint().setX(line.getEndPoint().getX());
-		currentLine.getEndPoint().setY(line.getEndPoint().getY());
+		currentLine.getStartPoint().setXCoordinate(line.getStartPoint().getXCoordinate());
+		currentLine.getStartPoint().setYCoordinate(line.getStartPoint().getYCoordinate());
+		currentLine.getEndPoint().setXCoordinate(line.getEndPoint().getXCoordinate());
+		currentLine.getEndPoint().setYCoordinate(line.getEndPoint().getYCoordinate());
 		currentLine.setEdgeColor(line.getEdgeColor());
 		currentLine.setSelected(line.isSelected());
 	}

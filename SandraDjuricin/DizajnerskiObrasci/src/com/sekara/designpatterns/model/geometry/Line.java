@@ -31,13 +31,13 @@ public class Line extends Shape {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(getEdgeColor());
-		g.drawLine(this.getStartPoint().getX(), this.getStartPoint().getY(), this.endPoint.getX(), this.getEndPoint().getY());
+		g.drawLine(this.getStartPoint().getXCoordinate(), this.getStartPoint().getYCoordinate(), this.endPoint.getXCoordinate(), this.getEndPoint().getYCoordinate());
 		
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
-			g.drawRect(this.getStartPoint().getX() - 3, this.getStartPoint().getY() - 3, 6, 6);
-			g.drawRect(this.getEndPoint().getX() - 3, this.getEndPoint().getY() - 3, 6, 6);
-			g.drawRect(this.middleOfLine().getX() - 3, this.middleOfLine().getY() - 3, 6, 6);
+			g.drawRect(this.getStartPoint().getXCoordinate() - 3, this.getStartPoint().getYCoordinate() - 3, 6, 6);
+			g.drawRect(this.getEndPoint().getXCoordinate() - 3, this.getEndPoint().getYCoordinate() - 3, 6, 6);
+			g.drawRect(this.middleOfLine().getXCoordinate() - 3, this.middleOfLine().getYCoordinate() - 3, 6, 6);
 		}
 	}
 
@@ -56,13 +56,13 @@ public class Line extends Shape {
 	}
 	
 	public Point middleOfLine() {
-		int middleByX = (this.getStartPoint().getX() + this.getEndPoint().getX()) / 2;
-		int middleByY = (this.getStartPoint().getY() + this.getEndPoint().getY()) / 2;
+		int middleByX = (this.getStartPoint().getXCoordinate() + this.getEndPoint().getXCoordinate()) / 2;
+		int middleByY = (this.getStartPoint().getYCoordinate() + this.getEndPoint().getYCoordinate()) / 2;
 		Point p = new Point(middleByX, middleByY);
 		return p;
 	}
 	
-	public boolean contains(int x, int y) {
+	public boolean containsXYpoint(int x, int y) {
 		if ((startPoint.distance(x, y) + endPoint.distance(x, y)) - length() <= 0.05) {
 			return true;
 		} else {
@@ -85,7 +85,7 @@ public class Line extends Shape {
 	}
 	
 	public double length() {
-		return startPoint.distance(endPoint.getX(), endPoint.getY());
+		return startPoint.distance(endPoint.getXCoordinate(), endPoint.getYCoordinate());
 	}
 	
 	public Point getStartPoint() {
@@ -102,14 +102,14 @@ public class Line extends Shape {
 	}
 	
 	public String toString() {
-		return "Line(X1:" + startPoint.getX() + "|Y1:" + startPoint.getY() + "|X2:" + endPoint.getX() + "|Y2:" + endPoint.getY() + "|EdgeColor:" + getEdgeColor().getRGB() + ")";
+		return "Line(X1:" + startPoint.getXCoordinate() + "|Y1:" + startPoint.getYCoordinate() + "|X2:" + endPoint.getXCoordinate() + "|Y2:" + endPoint.getYCoordinate() + "|EdgeColor:" + getEdgeColor().getRGB() + ")";
 	}
 
 	@Override
 	public Shape clone() {
 		Line line = new Line();
-		line.setStartPoint(new Point(getStartPoint().getX(), getStartPoint().getY()));
-		line.setEndPoint(new Point(getEndPoint().getX(), getEndPoint().getY()));
+		line.setStartPoint(new Point(getStartPoint().getXCoordinate(), getStartPoint().getYCoordinate()));
+		line.setEndPoint(new Point(getEndPoint().getXCoordinate(), getEndPoint().getYCoordinate()));
 		line.setEdgeColor(getEdgeColor());
 		line.setInnerColor(getInnerColor());
 		line.setSelected(isSelected());

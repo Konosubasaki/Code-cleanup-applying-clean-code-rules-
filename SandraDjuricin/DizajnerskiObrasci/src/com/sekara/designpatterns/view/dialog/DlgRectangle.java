@@ -149,8 +149,8 @@ public class DlgRectangle extends JDialog {
 	}
 	
 	public void setPoint(Point point) {
-		txtX.setText("" + point.getX());
-		txtY.setText("" + point.getY());
+		txtX.setText("" + point.getXCoordinate());
+		txtY.setText("" + point.getYCoordinate());
 	}
 	
 	public void setColors(Color edgeColor, Color innerColor) {
@@ -161,8 +161,8 @@ public class DlgRectangle extends JDialog {
 	}
 	
 	public void setRectangle(Rectangle rect) {
-		txtX.setText("" + rect.getUpperLeftPoint().getX());
-		txtY.setText("" + rect.getUpperLeftPoint().getY());
+		txtX.setText("" + rect.getUpperLeftPoint().getXCoordinate());
+		txtY.setText("" + rect.getUpperLeftPoint().getYCoordinate());
 		txtHeight.setText("" + rect.getHeight());
 		txtWidth.setText("" + rect.getWidth());
 		edgeColor = rect.getEdgeColor();

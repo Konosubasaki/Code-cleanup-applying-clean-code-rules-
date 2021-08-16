@@ -139,8 +139,8 @@ public class DlgCircle extends JDialog {
 	}
 	
 	public void setPoint(Point point) {
-		txtX.setText("" + point.getX());
-		txtY.setText("" + point.getY());
+		txtX.setText("" + point.getXCoordinate());
+		txtY.setText("" + point.getYCoordinate());
 	}
 	
 	public void setColors(Color edgeColor, Color innerColor) {
@@ -152,8 +152,8 @@ public class DlgCircle extends JDialog {
 	}
 	
 	public void setCircle(Circle circle) {
-		txtX.setText("" + circle.getCenter().getX());
-		txtY.setText("" + circle.getCenter().getY());
+		txtX.setText("" + circle.getCenter().getXCoordinate());
+		txtY.setText("" + circle.getCenter().getYCoordinate());
 		txtRadius.setText("" + circle.getRadius());
 		edgeColor = circle.getEdgeColor();
 		innerColor = circle.getInnerColor();

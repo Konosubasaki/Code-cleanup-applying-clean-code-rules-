@@ -31,17 +31,17 @@ public class Circle extends Shape {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(getInnerColor());
-		g.fillOval(this.getCenter().getX()-this.getRadius(), this.getCenter().getY()-this.getRadius(), this.getRadius()*2, this.getRadius()*2);
+		g.fillOval(this.getCenter().getXCoordinate()-this.getRadius(), this.getCenter().getYCoordinate()-this.getRadius(), this.getRadius()*2, this.getRadius()*2);
 		g.setColor(getEdgeColor());
-		g.drawOval(this.getCenter().getX() - getRadius(), this.getCenter().getY() - this.getRadius(), getRadius()*2, this.getRadius()*2);
+		g.drawOval(this.getCenter().getXCoordinate() - getRadius(), this.getCenter().getYCoordinate() - this.getRadius(), getRadius()*2, this.getRadius()*2);
 	
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
-			g.drawRect(getCenter().getX() - 3, getCenter().getY() - 3, 6, 6);
-			g.drawRect(getCenter().getX() - 3 - getRadius(), getCenter().getY() - 3, 6, 6);
-			g.drawRect(getCenter().getX() - 3 + getRadius(), getCenter().getY() - 3, 6, 6);
-			g.drawRect(getCenter().getX() - 3, getCenter().getY() - 3 + getRadius() , 6, 6);
-			g.drawRect(getCenter().getX() - 3, getCenter().getY() - 3 - getRadius(), 6, 6);
+			g.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3, 6, 6);
+			g.drawRect(getCenter().getXCoordinate() - 3 - getRadius(), getCenter().getYCoordinate() - 3, 6, 6);
+			g.drawRect(getCenter().getXCoordinate() - 3 + getRadius(), getCenter().getYCoordinate() - 3, 6, 6);
+			g.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3 + getRadius() , 6, 6);
+			g.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3 - getRadius(), 6, 6);
 		}
 	}
 	
@@ -59,12 +59,12 @@ public class Circle extends Shape {
 		return 0;
 	}
 	
-	public boolean contains(int x, int y) {
+	public boolean containsXYpoint(int x, int y) {
 		return this.getCenter().distance(x, y) <= radius;
 	}
 	
 	public boolean contains(Point p) {
-		return p.distance(getCenter().getX(), getCenter().getY()) <= radius;
+		return p.distance(getCenter().getXCoordinate(), getCenter().getYCoordinate()) <= radius;
 	}
 	
 	public boolean equals(Object obj) {
@@ -102,13 +102,13 @@ public class Circle extends Shape {
 	}
 	
 	public String toString() {
-		return "Circle(X:" + center.getX() + "|Y:" + center.getY() + "|R:" + radius  + "|EdgeColor:" + getEdgeColor().getRGB() + "|InnerColor:" + getInnerColor().getRGB() + ")";
+		return "Circle(X:" + center.getXCoordinate() + "|Y:" + center.getYCoordinate() + "|R:" + radius  + "|EdgeColor:" + getEdgeColor().getRGB() + "|InnerColor:" + getInnerColor().getRGB() + ")";
 	}
 
 	@Override
 	public Shape clone() {
 		Circle circle = new Circle();
-		circle.setCenter(new Point(center.getX(), center.getY()));
+		circle.setCenter(new Point(center.getXCoordinate(), center.getYCoordinate()));
 		circle.setRadius(getRadius());
 		circle.setEdgeColor(getEdgeColor());
 		circle.setInnerColor(getInnerColor());

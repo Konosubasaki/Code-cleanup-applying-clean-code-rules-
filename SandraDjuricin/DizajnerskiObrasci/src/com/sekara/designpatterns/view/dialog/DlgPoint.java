@@ -109,8 +109,8 @@ public class DlgPoint extends JDialog {
 	}
 	
 	public void setPoint(Point point) {
-		txtX.setText("" + point.getX());
-		txtY.setText("" + point.getY());
+		txtX.setText("" + point.getXCoordinate());
+		txtY.setText("" + point.getYCoordinate());
 		edgeColor = point.getEdgeColor();
 		isSelected = point.isSelected();
 		

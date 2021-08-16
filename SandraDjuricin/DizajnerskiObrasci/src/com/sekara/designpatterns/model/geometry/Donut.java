@@ -33,23 +33,23 @@ public class Donut extends Circle {
 		Graphics2D g2d = (Graphics2D) g;
 		Path2D path = new Path2D.Double(Path2D.WIND_EVEN_ODD);
 		
-		path.append(new Ellipse2D.Double(getCenter().getX() - getRadius(), this.getCenter().getY() - getRadius(), getRadius()*2, getRadius()*2), false);
-		path.append(new Ellipse2D.Double(getCenter().getX() - getInnerRadius(), this.getCenter().getY() - getInnerRadius(), getInnerRadius()*2, getInnerRadius()*2), false);
+		path.append(new Ellipse2D.Double(getCenter().getXCoordinate() - getRadius(), this.getCenter().getYCoordinate() - getRadius(), getRadius()*2, getRadius()*2), false);
+		path.append(new Ellipse2D.Double(getCenter().getXCoordinate() - getInnerRadius(), this.getCenter().getYCoordinate() - getInnerRadius(), getInnerRadius()*2, getInnerRadius()*2), false);
 		
 		g2d.setColor(getInnerColor());
 		g2d.fill(path);
 		
 		g2d.setColor(getEdgeColor());
-		g2d.drawOval(getCenter().getX() - getRadius(), this.getCenter().getY() - getRadius(), getRadius()*2, getRadius()*2);
-		g2d.drawOval(getCenter().getX() - getInnerRadius(), this.getCenter().getY() - getInnerRadius(), getInnerRadius()*2, getInnerRadius()*2);
+		g2d.drawOval(getCenter().getXCoordinate() - getRadius(), this.getCenter().getYCoordinate() - getRadius(), getRadius()*2, getRadius()*2);
+		g2d.drawOval(getCenter().getXCoordinate() - getInnerRadius(), this.getCenter().getYCoordinate() - getInnerRadius(), getInnerRadius()*2, getInnerRadius()*2);
 		
 		if (isSelected()) {
 			g2d.setColor(Color.BLUE);
-			g2d.drawRect(getCenter().getX() - 3, getCenter().getY() - 3, 6, 6);
-			g2d.drawRect(getCenter().getX() - 3 - getRadius(), getCenter().getY() - 3, 6, 6);
-			g2d.drawRect(getCenter().getX() - 3 + getRadius(), getCenter().getY() - 3, 6, 6);
-			g2d.drawRect(getCenter().getX() - 3, getCenter().getY() - 3 + getRadius() , 6, 6);
-			g2d.drawRect(getCenter().getX() - 3, getCenter().getY() - 3 - getRadius(), 6, 6);
+			g2d.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3, 6, 6);
+			g2d.drawRect(getCenter().getXCoordinate() - 3 - getRadius(), getCenter().getYCoordinate() - 3, 6, 6);
+			g2d.drawRect(getCenter().getXCoordinate() - 3 + getRadius(), getCenter().getYCoordinate() - 3, 6, 6);
+			g2d.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3 + getRadius() , 6, 6);
+			g2d.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3 - getRadius(), 6, 6);
 		}
 	}
 	
@@ -60,14 +60,14 @@ public class Donut extends Circle {
 		return 0;
 	}
 	
-	public boolean contains(int x, int y) {
+	public boolean containsXYpoint(int x, int y) {
 		double dFromCenter = this.getCenter().distance(x, y);
-		return super.contains(x, y) && dFromCenter > innerRadius;
+		return super.containsXYpoint(x, y) && dFromCenter > innerRadius;
 	}
 	
 	public boolean contains(Point p) {
-		double dFromCenter = this.getCenter().distance(p.getX(), p.getY());
-		return super.contains(p.getX(), p.getY()) && dFromCenter > innerRadius;
+		double dFromCenter = this.getCenter().distance(p.getXCoordinate(), p.getYCoordinate());
+		return super.containsXYpoint(p.getXCoordinate(), p.getYCoordinate()) && dFromCenter > innerRadius;
 	}
 	
 	public double area() {
@@ -97,11 +97,11 @@ public class Donut extends Circle {
 	}
 	
 	public String toString() {
-		return "Donut(X:" + getCenter().getX() + "|Y:" + getCenter().getY() + "|R1:" + getRadius() + "|R2:" + innerRadius + "|EdgeColor:" + getEdgeColor().getRGB() + "|InnerColor:" + getInnerColor().getRGB() + ")";
+		return "Donut(X:" + getCenter().getXCoordinate() + "|Y:" + getCenter().getYCoordinate() + "|R1:" + getRadius() + "|R2:" + innerRadius + "|EdgeColor:" + getEdgeColor().getRGB() + "|InnerColor:" + getInnerColor().getRGB() + ")";
 	}
 	
 	public Shape clone() {
-		Donut donut = new Donut(new Point(getCenter().getX(), getCenter().getY()), getRadius(), getInnerRadius());
+		Donut donut = new Donut(new Point(getCenter().getXCoordinate(), getCenter().getYCoordinate()), getRadius(), getInnerRadius());
 		donut.setEdgeColor(getEdgeColor());
 		donut.setInnerColor(getInnerColor());
 		donut.setSelected(isSelected());
