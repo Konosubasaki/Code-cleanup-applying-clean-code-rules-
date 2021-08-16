@@ -63,10 +63,6 @@ public class Circle extends Shape {
 		return this.getCenter().distance(x, y) <= radius;
 	}
 	
-	public boolean contains(Point p) {
-		return p.distance(getCenter().getXCoordinate(), getCenter().getYCoordinate()) <= radius;
-	}
-	
 	public boolean equals(Object obj) {
 		if (obj instanceof Circle) {
 			Circle c = (Circle) obj;

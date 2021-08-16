@@ -71,17 +71,6 @@ public class Rectangle extends Shape {
 			return false;
 		}
 	}
-	
-	public boolean contains(Point p) {
-		if (this.getUpperLeftPoint().getXCoordinate() <= p.getXCoordinate() 
-				&& p.getXCoordinate() <= this.getUpperLeftPoint().getXCoordinate() + width
-				&& this.getUpperLeftPoint().getYCoordinate() <= p.getYCoordinate()
-				&& p.getYCoordinate() <= this.getUpperLeftPoint().getYCoordinate() + height) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	public boolean equals(Object obj) {
 		if (obj instanceof Rectangle) {

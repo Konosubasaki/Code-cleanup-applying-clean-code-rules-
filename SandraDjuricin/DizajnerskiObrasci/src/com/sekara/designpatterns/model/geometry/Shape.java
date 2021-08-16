@@ -17,6 +17,7 @@ public abstract class Shape implements Moveable, Comparable, Cloneable, Serializ
 	}
 	
 	public abstract boolean containsXYpoint(int xCoordinate, int yCoordinate);
+	
 	public abstract void draw(Graphics g);
 	
 	public boolean isSelected() {

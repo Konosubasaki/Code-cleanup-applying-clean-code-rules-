@@ -65,11 +65,6 @@ public class Donut extends Circle {
 		return super.containsXYpoint(x, y) && dFromCenter > innerRadius;
 	}
 	
-	public boolean contains(Point p) {
-		double dFromCenter = this.getCenter().distance(p.getXCoordinate(), p.getYCoordinate());
-		return super.containsXYpoint(p.getXCoordinate(), p.getYCoordinate()) && dFromCenter > innerRadius;
-	}
-	
 	public double area() {
 		return super.area() - innerRadius * innerRadius * Math.PI;
 	}
