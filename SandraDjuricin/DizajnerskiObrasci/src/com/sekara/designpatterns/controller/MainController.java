@@ -50,7 +50,7 @@ public class MainController implements Subject {
 		//+++++++++++
 		 
 		
-		this.logger = frameDrawing.getDefaultListLogModel();
+		this.logger = frameDrawing.getDrawToolbar().getDefaultListLogModel();
 		//+++++++++++++++
 		this.ioContext = new Context();
 		
@@ -320,7 +320,7 @@ public class MainController implements Subject {
 	}
 	
 	public void saveToFile() {
-		JFileChooser saveToFileChooser = frameDrawing.getSaveToFileChooser();
+		JFileChooser saveToFileChooser = frameDrawing.getDrawToolbar().getSaveToFileChooser();
 		
 		if (saveToFileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 			switch (saveToFileChooser.getFileFilter().getDescription()) {
@@ -343,7 +343,7 @@ public class MainController implements Subject {
 	}
 	
 	public void readFromFile() {
-		JFileChooser readFromFileChooser = frameDrawing.getReadFromFileChooser();
+		JFileChooser readFromFileChooser = frameDrawing.getDrawToolbar().getReadFromFileChooser();
 		
 		if (readFromFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			switch (readFromFileChooser.getFileFilter().getDescription()) {
@@ -416,7 +416,7 @@ public class MainController implements Subject {
 	}
 	
 	public void setEnabledBtnReadNextCommand(boolean enabled) {
-		frameDrawing.getBtnReadNextCommand().setEnabled(enabled);
+		frameDrawing.getDrawToolbar().getBtnReadNextCommand().setEnabled(enabled);
 	}
 	
 	public void selectDeselectShape(int x, int y) {

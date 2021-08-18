@@ -12,13 +12,13 @@ import javax.swing.DefaultListModel;
 
 public class LogFile implements Strategy {
 	
-	private FrameDrawing view;
+	private FrameDrawing frameDrawing;
 	private MainController controller;
 	private ModelDrawing viewModel;
 	private BufferedReader reader;
 	private BufferedWriter writer;
 	public LogFile(FrameDrawing view, MainController controller, ModelDrawing viewModel) {
-		this.view = view;
+		this.frameDrawing = view;
 		this.controller = controller;
 		this.viewModel = viewModel;
 	}
@@ -27,7 +27,7 @@ public class LogFile implements Strategy {
 	public void saveToFile(File file) {
 		try {
 			writer = new BufferedWriter(new FileWriter(file + ".log"));
-			DefaultListModel<String> logList = view.getDefaultListLogModel();
+			DefaultListModel<String> logList = frameDrawing.getDrawToolbar().getDefaultListLogModel();
 			for(int i = 0; i < logList.size(); i++) {
 				writer.write(logList.getElementAt(i));
 				writer.newLine();
