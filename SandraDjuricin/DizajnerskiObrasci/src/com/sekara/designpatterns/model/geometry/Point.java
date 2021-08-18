@@ -22,7 +22,7 @@ public class Point extends Shape {
 	
 	public Point(int xCoordinate, int yCoordinate, Color edgeColor) {
 		this.xCoordinate = xCoordinate;
-		setYCoordinate(yCoordinate);
+		this.yCoordinate = yCoordinate;
 		setEdgeColor(edgeColor);
 	}
 	

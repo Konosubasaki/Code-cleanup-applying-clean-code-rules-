@@ -7,7 +7,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class DlgLine extends JDialog {
+public class DialogLine extends JDialog {
 	private JTextField txtFirstX;
 	private JTextField txtFirstY;
 	private JTextField txtSecondX;
@@ -17,7 +17,7 @@ public class DlgLine extends JDialog {
 	private boolean isSelected = false;
 	private JButton btnEdgeColor = new JButton(" ");
 	
-	public DlgLine() {
+	public DialogLine() {
 		setResizable(false);
 		setTitle("IT 48-2017 Šekara Danilo");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

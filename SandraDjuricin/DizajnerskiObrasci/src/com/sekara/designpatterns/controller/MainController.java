@@ -104,7 +104,7 @@ public class MainController implements Subject {
 				break;
 				
 			case Rectangle:
-				DlgRectangle dlgRectangle = new DlgRectangle();
+				DialogRectangle dlgRectangle = new DialogRectangle();
 				dlgRectangle.setPoint(mouseClick);
 				dlgRectangle.setColors(edgeColor, innerColor);
 				dlgRectangle.setVisible(true);
@@ -116,7 +116,7 @@ public class MainController implements Subject {
 				break;
 				
 			case Circle:
-				DlgCircle dlgCircle = new DlgCircle();
+				DialogCircle dlgCircle = new DialogCircle();
 				dlgCircle.setPoint(mouseClick);
 				dlgCircle.setColors(edgeColor, innerColor);
 				dlgCircle.setVisible(true);
@@ -128,7 +128,7 @@ public class MainController implements Subject {
 				break;
 				
 			case Donut:
-				DlgDonut dlgDonut = new DlgDonut();
+				DialogDonut dlgDonut = new DialogDonut();
 				dlgDonut.setPoint(mouseClick);
 				dlgDonut.setColors(edgeColor, innerColor);
 				dlgDonut.setVisible(true);
@@ -140,7 +140,7 @@ public class MainController implements Subject {
 				break;
 				
 			case Hexagon:
-				DlgHexagon dlgHexagon = new DlgHexagon();
+				DialogHexagon dlgHexagon = new DialogHexagon();
 				dlgHexagon.setPoint(mouseClick);
 				dlgHexagon.setColors(edgeColor, innerColor);
 				dlgHexagon.setVisible(true);
@@ -173,64 +173,78 @@ public class MainController implements Subject {
 		notifyObservers();
 	}
 	
-
-	//++++++++
+	public void executeCommand(Command command) {
+		command.execute();
+		addLog(command.getLog());
+		executedCommands.push(command);
+		frameDrawing.getViewDrawing().repaint();
+		notifyObservers();
+	}
+	
+	public void unexecuteCommand(Command command) {
+		command.unExecute();
+		addLog(command.getLog());
+		unexecutedCommands.push(command);
+		frameDrawing.getViewDrawing().repaint();
+		notifyObservers();
+	}
+	
 	public void editShape() {
 		Shape selectedShape = modelDrawing.getSelectedShapes().get(0);
 		
 		if (selectedShape instanceof Point) {
-			DlgPoint dlgPoint = new DlgPoint();
-			dlgPoint.setPoint((Point)selectedShape);
-			dlgPoint.setVisible(true);
+			DialogPoint dialogPoint = new DialogPoint();
+			dialogPoint.setPoint((Point)selectedShape);
+			dialogPoint.setVisible(true);
 			
-			if(dlgPoint.getPoint() != null) {
-				CmdUpdatePoint cmdUpdatePoint = new CmdUpdatePoint((Point)selectedShape, dlgPoint.getPoint());
+			if(dialogPoint.getPoint() != null) {
+				CmdUpdatePoint cmdUpdatePoint = new CmdUpdatePoint((Point)selectedShape, dialogPoint.getPoint());
 				executeCommand(cmdUpdatePoint);
 			}
 		} else if (selectedShape instanceof Line) {
-			DlgLine dlgLine = new DlgLine();
-			dlgLine.setLine((Line)selectedShape);
-			dlgLine.setVisible(true);
+			DialogLine dialogLine = new DialogLine();
+			dialogLine.setLine((Line)selectedShape);
+			dialogLine.setVisible(true);
 			
-			if(dlgLine.getLine() != null) {
-				CmdUpdateLine cmdUpdateLine = new CmdUpdateLine((Line)selectedShape, dlgLine.getLine());
+			if(dialogLine.getLine() != null) {
+				CmdUpdateLine cmdUpdateLine = new CmdUpdateLine((Line)selectedShape, dialogLine.getLine());
 				executeCommand(cmdUpdateLine);
 			}
 		} else if (selectedShape instanceof Rectangle) {
-			DlgRectangle dlgRectangle = new DlgRectangle();
-			dlgRectangle.setRectangle((Rectangle)selectedShape);
-			dlgRectangle.setVisible(true);
+			DialogRectangle dialogRectangle = new DialogRectangle();
+			dialogRectangle.setRectangle((Rectangle)selectedShape);
+			dialogRectangle.setVisible(true);
 			
-			if(dlgRectangle.getRectangle() != null) {
+			if(dialogRectangle.getRectangle() != null) {
 				CmdUpdateRectangle cmdUpdateRectangle = new CmdUpdateRectangle((Rectangle)selectedShape, 
-						dlgRectangle.getRectangle());
+						dialogRectangle.getRectangle());
 				executeCommand(cmdUpdateRectangle);
 			}
 		} else if (selectedShape instanceof Donut) {
-			DlgDonut dlgDonut = new DlgDonut();
-			dlgDonut.setDonut((Donut)selectedShape);
-			dlgDonut.setVisible(true);
+			DialogDonut dialogDonut = new DialogDonut();
+			dialogDonut.setDonut((Donut)selectedShape);
+			dialogDonut.setVisible(true);
 			
-			if(dlgDonut.getDonut() != null) {
-				CmdUpdateDonut cmdUpdateDonut = new CmdUpdateDonut((Donut)selectedShape, dlgDonut.getDonut());
+			if(dialogDonut.getDonut() != null) {
+				CmdUpdateDonut cmdUpdateDonut = new CmdUpdateDonut((Donut)selectedShape, dialogDonut.getDonut());
 				executeCommand(cmdUpdateDonut);
 			}
 		} else if (selectedShape instanceof Circle) {
-			DlgCircle dlgCircle = new DlgCircle();
-			dlgCircle.setCircle((Circle)selectedShape);
-			dlgCircle.setVisible(true);
+			DialogCircle dialogCircle = new DialogCircle();
+			dialogCircle.setCircle((Circle)selectedShape);
+			dialogCircle.setVisible(true);
 			
-			if(dlgCircle.getCircle() != null) {
-				CmdUpdateCircle cmdUpdateCircle = new CmdUpdateCircle((Circle)selectedShape, dlgCircle.getCircle());
+			if(dialogCircle.getCircle() != null) {
+				CmdUpdateCircle cmdUpdateCircle = new CmdUpdateCircle((Circle)selectedShape, dialogCircle.getCircle());
 				executeCommand(cmdUpdateCircle);
 			}
 		} else if (selectedShape instanceof HexagonShape) {
-			DlgHexagon dlgHexagon = new DlgHexagon();
-			dlgHexagon.setHexagon((HexagonShape)selectedShape);
-			dlgHexagon.setVisible(true);
+			DialogHexagon dialogHexagon = new DialogHexagon();
+			dialogHexagon.setHexagon((HexagonShape)selectedShape);
+			dialogHexagon.setVisible(true);
 			
-			if(dlgHexagon.getHexagon() != null) {
-				CmdUpdateHexagon cmdUpdateHexagon = new CmdUpdateHexagon((HexagonShape)selectedShape, dlgHexagon.getHexagon());
+			if(dialogHexagon.getHexagon() != null) {
+				CmdUpdateHexagon cmdUpdateHexagon = new CmdUpdateHexagon((HexagonShape)selectedShape, dialogHexagon.getHexagon());
 				executeCommand(cmdUpdateHexagon);
 			}
 		}
@@ -249,32 +263,6 @@ public class MainController implements Subject {
 			CmdDeleteShapes cmdDeleteShapes = new CmdDeleteShapes(modelDrawing.getAllShapes(), modelDrawing);
 			executeCommand(cmdDeleteShapes);
 		}
-	}
-	
-	public void executeCommand(Command command) {
-		command.execute();
-		addLog(command.getLog());
-		executedCommands.push(command);
-		frameDrawing.getViewDrawing().repaint();
-		notifyObservers();
-	}
-	
-	public void unexecuteCommand(Command command) {
-		command.unExecute();
-		addLog(command.getLog());
-		unexecutedCommands.push(command);
-		frameDrawing.getViewDrawing().repaint();
-		notifyObservers();
-	}
-	
-	public void undoCommand() {
-		Command command = executedCommands.pop();
-		unexecuteCommand(command);
-	}
-	
-	public void redoCommand() {
-		Command command = unexecutedCommands.pop();
-		executeCommand(command);
 	}
 	
 	public void positionToFront() {
@@ -377,6 +365,16 @@ public class MainController implements Subject {
 		
 		readFromFileChooser.setVisible(false);
 		notifyObservers();
+	}
+	
+	public void undoCommand() {
+		Command command = executedCommands.pop();
+		unexecuteCommand(command);
+	}
+	
+	public void redoCommand() {
+		Command command = unexecutedCommands.pop();
+		executeCommand(command);
 	}
 	
 	public void readNextCommand() {

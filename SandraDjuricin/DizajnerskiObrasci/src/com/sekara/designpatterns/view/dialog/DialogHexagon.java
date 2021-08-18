@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class DlgHexagon extends JDialog {
+public class DialogHexagon extends JDialog {
 	private JTextField txtX;
 	private JTextField txtY;
 	private JTextField txtRadius;
@@ -16,7 +16,7 @@ public class DlgHexagon extends JDialog {
 	private JButton btnEdgeColor = new JButton(" ");
 	private JButton btnInnerColor = new JButton(" ");
 	
-	public DlgHexagon() {
+	public DialogHexagon() {
 		setResizable(false);
 		setTitle("IT 48-2017 Šekara Danilo");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

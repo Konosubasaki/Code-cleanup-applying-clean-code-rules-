@@ -1,26 +1,24 @@
 package com.sekara.designpatterns.view.dialog;
 
-import com.sekara.designpatterns.model.geometry.Donut;
 import com.sekara.designpatterns.model.geometry.Point;
+import com.sekara.designpatterns.model.geometry.Rectangle;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class DlgDonut extends JDialog {
+public class DialogRectangle extends JDialog {
 	private JTextField txtX;
 	private JTextField txtY;
-	private JTextField txtRadius;
-	private JTextField txtInnerRadius;
-	
-	private Donut donut = null;
+	private JTextField txtHeight;
+	private JTextField txtWidth;
+	private Rectangle rectangle = null;
 	private Color edgeColor = null, innerColor = null;
-	
 	private boolean isSelected = false;
-	
 	private JButton btnEdgeColor = new JButton(" ");
 	private JButton btnInnerColor = new JButton(" ");
 
-	public DlgDonut() {
+	public DialogRectangle() {
 		setResizable(false);
 		setTitle("IT 48-2017 Šekara Danilo");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -52,24 +50,24 @@ public class DlgDonut extends JDialog {
 				txtY.setColumns(10);
 			}
 			{
-				JLabel lblNewLabel_2 = new JLabel("Radijus");
+				JLabel lblNewLabel_2 = new JLabel("Visina");
 				lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 				panel.add(lblNewLabel_2);
 			}
 			{
-				txtRadius = new JTextField();
-				panel.add(txtRadius);
-				txtRadius.setColumns(10);
+				txtHeight = new JTextField();
+				panel.add(txtHeight);
+				txtHeight.setColumns(10);
 			}
 			{
-				JLabel lblNewLabel_2 = new JLabel("Unutrašnji radijus");
-				lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-				panel.add(lblNewLabel_2);
+				JLabel lblNewLabel_3 = new JLabel("širina");
+				lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+				panel.add(lblNewLabel_3);
 			}
 			{
-				txtInnerRadius = new JTextField();
-				panel.add(txtInnerRadius);
-				txtInnerRadius.setColumns(10);
+				txtWidth = new JTextField();
+				panel.add(txtWidth);
+				txtWidth.setColumns(10);
 			}
 			{
 				JLabel lblEdgeColor = new JLabel("Boja ivice");
@@ -117,15 +115,15 @@ public class DlgDonut extends JDialog {
 						try {
 							int newX = Integer.parseInt(txtX.getText());
 							int newY = Integer.parseInt(txtY.getText());
-							int newRadius = Integer.parseInt(txtRadius.getText());
-							int newInnerRadius = Integer.parseInt(txtInnerRadius.getText());
+							int newHeight = Integer.parseInt(txtHeight.getText());
+							int newWIdth = Integer.parseInt(txtWidth.getText());
 
-							if(newX < 0 || newY < 0 || newRadius < 1 || newInnerRadius < 1 || newInnerRadius >= newRadius) {
+							if(newX < 0 || newY < 0 || newHeight < 1 || newWIdth < 1) {
 								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							donut = new Donut(new Point(newX, newY), newRadius, newInnerRadius, edgeColor, innerColor);
-							donut.setSelected(isSelected);
+							rectangle = new Rectangle(new Point(newX, newY), newHeight, newWIdth, edgeColor, innerColor);
+							rectangle.setSelected(isSelected);
 							dispose();
 						} catch (Exception ex) {
 							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
@@ -146,8 +144,8 @@ public class DlgDonut extends JDialog {
 		}
 	}
 
-	public Donut getDonut() {
-		return donut;
+	public Rectangle getRectangle() {
+		return rectangle;
 	}
 	
 	public void setPoint(Point point) {
@@ -158,19 +156,18 @@ public class DlgDonut extends JDialog {
 	public void setColors(Color edgeColor, Color innerColor) {
 		this.edgeColor = edgeColor;
 		this.innerColor = innerColor;
-		
 		btnEdgeColor.setBackground(edgeColor);
 		btnInnerColor.setBackground(innerColor);
 	}
 	
-	public void setDonut(Donut donut) {
-		txtX.setText("" + donut.getCenter().getXCoordinate());
-		txtY.setText("" + donut.getCenter().getYCoordinate());
-		txtRadius.setText("" + donut.getRadius());
-		txtInnerRadius.setText("" + donut.getInnerRadius());
-		edgeColor = donut.getEdgeColor();
-		innerColor = donut.getInnerColor();
-		isSelected = donut.isSelected();
-		setColors(donut.getEdgeColor(), donut.getInnerColor());
+	public void setRectangle(Rectangle rect) {
+		txtX.setText("" + rect.getUpperLeftPoint().getXCoordinate());
+		txtY.setText("" + rect.getUpperLeftPoint().getYCoordinate());
+		txtHeight.setText("" + rect.getHeight());
+		txtWidth.setText("" + rect.getWidth());
+		edgeColor = rect.getEdgeColor();
+		innerColor = rect.getInnerColor();
+		isSelected = rect.isSelected();
+		setColors(rect.getEdgeColor(), rect.getInnerColor());
 	}
 }
