@@ -45,7 +45,7 @@ public class MainController implements Subject {
 		this.edgeColor = Color.BLACK;
 		this.innerColor = Color.WHITE;
 		
-		this.currentMode = ModeType.Drawing;
+		this.currentMode = ModeType.Drawing; 
 		this.selectedShape = ShapeType.Point;
 		//+++++++++++
 		 
@@ -63,6 +63,21 @@ public class MainController implements Subject {
 	}
 	
 	
+	public Context getIoContext() {
+		return ioContext;
+	}
+
+
+	public ModelDrawing getModelDrawing() {
+		return modelDrawing;
+	}
+
+
+	public FrameDrawing getFrameDrawing() {
+		return frameDrawing;
+	}
+
+
 	public void mouseClicked(MouseEvent event) {
 		switch (currentMode) {
 			case Drawing:
@@ -319,54 +334,6 @@ public class MainController implements Subject {
 		executeCommand(cmdBringToBack);
 	}
 	
-	public void saveToFile() {
-		JFileChooser saveToFileChooser = frameDrawing.getDrawToolbar().getSaveToFileChooser();
-		
-		if (saveToFileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-			switch (saveToFileChooser.getFileFilter().getDescription()) {
-				case "Crtez":
-					ioContext.setStrategy(drawingSerializationStrategy);
-					break;
-					
-				case "Log":
-					ioContext.setStrategy(logToFileStrategy);
-					break;
-					
-				default:
-					break;
-			}
-			
-			ioContext.saveToFile(saveToFileChooser.getSelectedFile());
-		}
-		
-		saveToFileChooser.setVisible(false);
-	}
-	
-	public void readFromFile() {
-		JFileChooser readFromFileChooser = frameDrawing.getDrawToolbar().getReadFromFileChooser();
-		
-		if (readFromFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-			switch (readFromFileChooser.getFileFilter().getDescription()) {
-				case "Crtez":
-					ioContext.setStrategy(drawingSerializationStrategy);
-					break;
-					
-				case "Log":
-					ioContext.setStrategy(logToFileStrategy);
-					break;
-					
-				default:
-					break;
-			}
-			
-			ioContext.readFromFile(readFromFileChooser.getSelectedFile());
-			frameDrawing.getViewDrawing().repaint();
-		}
-		
-		readFromFileChooser.setVisible(false);
-		notifyObservers();
-	}
-	
 	public void undoCommand() {
 		Command command = executedCommands.pop();
 		unexecuteCommand(command);
@@ -377,10 +344,6 @@ public class MainController implements Subject {
 		executeCommand(command);
 	}
 	
-	public void readNextCommand() {
-		logToFileStrategy.readNextCommand();
-	}
-
 	public void setSelectedShape(ShapeType selectedShape) {
 		this.selectedShape = selectedShape;
 	}

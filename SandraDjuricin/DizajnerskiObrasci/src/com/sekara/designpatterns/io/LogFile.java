@@ -19,7 +19,7 @@ public class LogFile implements Strategy {
 	private BufferedWriter writer;
 	public LogFile(FrameDrawing view, MainController controller, ModelDrawing viewModel) {
 		this.frameDrawing = view;
-		this.controller = controller;
+		this.controller = controller; 
 		this.viewModel = viewModel;
 	}
 
@@ -33,10 +33,10 @@ public class LogFile implements Strategy {
 				writer.newLine();
 			}
 			writer.close();
-			controller.showMessageDialog("Log uspesno sacuvan!");
+			//controller.showMessageDialog("Log uspesno sacuvan!");
 		} catch (IOException e) {
 			e.printStackTrace();
-			controller.showMessageDialog("Greska! " + e.getMessage());
+			//controller.showMessageDialog("Greska! " + e.getMessage());
 		}
 	}
 

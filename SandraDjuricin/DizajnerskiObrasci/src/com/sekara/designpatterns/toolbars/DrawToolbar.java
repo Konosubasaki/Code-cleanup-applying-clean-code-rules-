@@ -1,6 +1,6 @@
 package com.sekara.designpatterns.toolbars;
 
-import com.sekara.designpatterns.controller.MainController;
+import com.sekara.designpatterns.controller.*;
 import com.sekara.designpatterns.enumerator.*;
 import com.sekara.designpatterns.view.panel.ViewDrawing;
 import java.awt.*;
@@ -13,7 +13,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class DrawToolbar {
 
-	private MainController controller;
+	private MainController mainController;
+	private FileController fileController;
+
 	private ViewDrawing viewDrawing = new ViewDrawing();
 
 	private ButtonGroup btnsOperation = new ButtonGroup();
@@ -33,13 +35,7 @@ public class DrawToolbar {
 	private JButton btnActionDeleteAll;
 	private JButton btnColorEdge;
 
-	public JButton getBtnColorEdge() {
-		return btnColorEdge;
-	}
-
-	public JButton getBtnColorInner() {
-		return btnColorInner;
-	}
+ 
 
 	private JButton btnColorInner;
 
@@ -85,7 +81,7 @@ public class DrawToolbar {
 
 		viewDrawing.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				controller.mouseClicked(arg0);
+				mainController.mouseClicked(arg0);
 			}
 		});
 
@@ -313,7 +309,7 @@ public class DrawToolbar {
 				readFromFileChooser.setFileFilter(drwFileFilter);
 				readFromFileChooser.setFileFilter(logFileFilter);
 
-				controller.readFromFile();
+				fileController.readFromFile();
 			}
 		});
 
@@ -333,116 +329,116 @@ public class DrawToolbar {
 					saveToFileChooser.setFileFilter(fileFilter);
 				}
 
-				controller.saveToFile();
+				fileController.saveToFile();
 			}
 		});
 
 		btnPositionBringToBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.positionBringToBack();
+				mainController.positionBringToBack();
 			}
 		});
 
 		btnPositionToBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.positionToBack();
+				mainController.positionToBack();
 			}
 		});
 
 		btnPositionBringToFront.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.positionBringToFront();
+				mainController.positionBringToFront();
 			}
 		});
 
 		btnPositionToFront.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.positionToFront();
+				mainController.positionToFront();
 			}
 		});
 
 		btnActionDeleteAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.deleteAllShapes();
+				mainController.deleteAllShapes();
 			}
 		});
 
 		btnActionDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.deleteSelectedShapes();
+				mainController.deleteSelectedShapes();
 			}
 		});
 
 		btnActionEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.editShape();
+				mainController.editShape();
 			}
 		});
 
 		btnOperationEditOrDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.setCurrentMode(ModeType.Selecting);
+				mainController.setCurrentMode(ModeType.Selecting);
 			}
 		});
 
 		btnOperationDrawing.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.setCurrentMode(ModeType.Drawing);
+				mainController.setCurrentMode(ModeType.Drawing);
 				// setOperationDrawing();
 			}
 		});
 
 		btnReadNextCommand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.readNextCommand();
+				fileController.readNextCommand();
 			}
 		});
 
 		btnShapeDonut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.setSelectedShape(ShapeType.Donut);
+				mainController.setSelectedShape(ShapeType.Donut);
 			}
 		});
 
 		btnShapeHexagon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.setSelectedShape(ShapeType.Hexagon);
+				mainController.setSelectedShape(ShapeType.Hexagon);
 			}
 		});
 
 		btnShapeCircle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.setSelectedShape(ShapeType.Circle);
+				mainController.setSelectedShape(ShapeType.Circle);
 			}
 		});
 
 		btnShapeRectangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.setSelectedShape(ShapeType.Rectangle);
+				mainController.setSelectedShape(ShapeType.Rectangle);
 			}
 		});
 
 		btnShapeLine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.setSelectedShape(ShapeType.Line);
+				mainController.setSelectedShape(ShapeType.Line);
 			}
 		});
 
 		btnShapePoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.setSelectedShape(ShapeType.Point);
+				mainController.setSelectedShape(ShapeType.Point);
 			}
 		});
 
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.undoCommand();
+				mainController.undoCommand();
 			}
 		});
 
 		btnRedo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.redoCommand();
+				mainController.redoCommand();
 			}
 		});
 
@@ -455,9 +451,9 @@ public class DrawToolbar {
 	private ActionListener btnColorEdgeClickListener() {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Color edgeColor = JColorChooser.showDialog(null, "Izaberite boju ivice", controller.getEdgeColor());
+				Color edgeColor = JColorChooser.showDialog(null, "Izaberite boju ivice", mainController.getEdgeColor());
 				if (edgeColor != null) {
-					controller.setEdgeColor(edgeColor);
+					mainController.setEdgeColor(edgeColor);
 					btnColorEdge.setBackground(edgeColor);
 				}
 			}
@@ -468,9 +464,9 @@ public class DrawToolbar {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Color innerColor = JColorChooser.showDialog(null, "Izaberite boju unutrasnjosti",
-						controller.getInnerColor());
+						mainController.getInnerColor());
 				if (innerColor != null) {
-					controller.setInnerColor(innerColor);
+					mainController.setInnerColor(innerColor);
 					btnColorInner.setBackground(innerColor);
 				}
 			}
@@ -485,8 +481,9 @@ public class DrawToolbar {
 		return this.defaultListModel;
 	}
 
-	public void setController(MainController controller) {
-		this.controller = controller;
+	public void setControllers(MainController controller, FileController fileController) {
+		this.mainController = controller;
+		this.fileController=fileController;
 
 		btnColorEdge.setBackground(controller.getEdgeColor());
 		btnColorInner.setBackground(controller.getInnerColor());
@@ -597,6 +594,15 @@ public class DrawToolbar {
 				btnPositionBringToBack.setEnabled(false);
 			}
 		}
+	}
+	
+	
+	public JButton getBtnColorEdge() {
+		return btnColorEdge;
+	}
+
+	public JButton getBtnColorInner() {
+		return btnColorInner;
 	}
 
 }
