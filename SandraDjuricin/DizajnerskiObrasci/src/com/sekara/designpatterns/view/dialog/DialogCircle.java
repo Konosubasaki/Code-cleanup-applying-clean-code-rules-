@@ -12,7 +12,7 @@ public class DialogCircle extends JDialog {
 	private JTextField txtRadius;
 	
 	private Circle circle = null;
-	private Color edgeColor = null, innerColor = null;
+	private Color edgeColor = null, innerColor = null; 
 	
 	private boolean isSelected = false;
 	

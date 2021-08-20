@@ -10,71 +10,59 @@ public class FileController {
 	private ModelDrawing model;
 	private FrameDrawing frame;
 	private MainController mainController;
-
 	private Context ioContext;
 	private DrawingSerialization drawingSerializationStrategy;
 	private LogFile logToFileStrategy;
 
 	public FileController(MainController mainController) {
-		this.mainController = mainController;
 		model = mainController.getModelDrawing();
 		frame = mainController.getFrameDrawing();
-
+		this.mainController = mainController;
 		this.ioContext = new Context();
-		this.logToFileStrategy = new LogFile(frame, mainController, model);
+		this.logToFileStrategy = new LogFile(frame, this.mainController, model);
 		this.drawingSerializationStrategy = new DrawingSerialization(model);
 	}
 
+	public void SetFileStrategy(JFileChooser fileChooser) {
+		switch (fileChooser.getFileFilter().getDescription()) {
+		case "Crtez":
+			ioContext.setStrategy(drawingSerializationStrategy);
+			break;
+
+		case "Log":
+			ioContext.setStrategy(logToFileStrategy);
+			break;
+
+		default:
+			break;
+		}
+	}
+
 	public void saveToFile() {
-		JFileChooser saveToFileChooser = frame.getDrawToolbar().getSaveToFileChooser();
+		JFileChooser fileChooser = frame.getDrawToolbar().getSaveToFileChooser();
 
-		if (saveToFileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-			switch (saveToFileChooser.getFileFilter().getDescription()) {
-			case "Crtez":
-				ioContext.setStrategy(drawingSerializationStrategy);
-				break;
-
-			case "Log":
-				ioContext.setStrategy(logToFileStrategy);
-				break;
-
-			default:
-				break;
-			}
-
-			ioContext.saveToFile(saveToFileChooser.getSelectedFile());
+		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+			SetFileStrategy(fileChooser);
+			ioContext.saveToFile(fileChooser.getSelectedFile());
 		}
 
-		saveToFileChooser.setVisible(false);
+		fileChooser.setVisible(false);
 	}
 
 	public void readFromFile() {
-		JFileChooser readFromFileChooser = frame.getDrawToolbar().getReadFromFileChooser();
+		JFileChooser fileChooser = frame.getDrawToolbar().getReadFromFileChooser();
 
-		if (readFromFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-			switch (readFromFileChooser.getFileFilter().getDescription()) {
-			case "Crtez":
-				ioContext.setStrategy(drawingSerializationStrategy);
-				break;
-
-			case "Log":
-				ioContext.setStrategy(logToFileStrategy);
-				break;
-
-			default:
-				break;
-			}
-
-			ioContext.readFromFile(readFromFileChooser.getSelectedFile());
+		if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			SetFileStrategy(fileChooser);
+			ioContext.readFromFile(fileChooser.getSelectedFile());
 			frame.getViewDrawing().repaint();
 		}
 
-		readFromFileChooser.setVisible(false);
+		fileChooser.setVisible(false);
 		mainController.notifyObservers();
 	}
 
 	public void readNextCommand() {
 		logToFileStrategy.readNextCommand();
 	}
-
 }
