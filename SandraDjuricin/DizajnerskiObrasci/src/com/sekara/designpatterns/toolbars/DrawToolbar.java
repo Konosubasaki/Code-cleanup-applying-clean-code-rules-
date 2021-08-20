@@ -2,6 +2,7 @@ package com.sekara.designpatterns.toolbars;
 
 import com.sekara.designpatterns.controller.*;
 import com.sekara.designpatterns.enumerator.*;
+import com.sekara.designpatterns.observable.Observer;
 import com.sekara.designpatterns.view.panel.ViewDrawing;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,7 +12,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class DrawToolbar {
+public class DrawToolbar implements Observer {
 
 	private MainController mainController;
 	private FileController fileController;
@@ -34,8 +35,6 @@ public class DrawToolbar {
 	private JButton btnActionDelete;
 	private JButton btnActionDeleteAll;
 	private JButton btnColorEdge;
-
- 
 
 	private JButton btnColorInner;
 
@@ -78,7 +77,7 @@ public class DrawToolbar {
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
 
 	public DrawToolbar() {
- 
+
 		view.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				mainController.mouseClicked(arg0);
@@ -483,7 +482,7 @@ public class DrawToolbar {
 
 	public void setControllers(MainController controller, FileController fileController) {
 		this.mainController = controller;
-		this.fileController=fileController;
+		this.fileController = fileController;
 
 		btnColorEdge.setBackground(controller.getEdgeColor());
 		btnColorInner.setBackground(controller.getInnerColor());
@@ -503,8 +502,33 @@ public class DrawToolbar {
 		return btnReadNextCommand;
 	}
 
-	public void update(ModeType currentMode, int numOfShapes, int numOfUndoCommands, int numOfRedoCommands,
-			int numOfSelectedShapes, boolean logHasLines) {
+	public JButton getBtnColorEdge() {
+		return btnColorEdge;
+	}
+
+	public JButton getBtnColorInner() {
+		return btnColorInner;
+	}
+
+	@Override
+	public void updateUndoRedoButtonsState(int numOfUndoCommands, int numOfRedoCommands) {
+
+		if (numOfUndoCommands > 0) {
+			btnUndo.setEnabled(true);
+		} else {
+			btnUndo.setEnabled(false);
+		}
+
+		if (numOfRedoCommands > 0) {
+			btnRedo.setEnabled(true);
+		} else {
+			btnRedo.setEnabled(false);
+		}
+	}
+
+	@Override
+	public void updateFileButtonState(int numOfShapes, boolean logHasLines) {
+
 		if (numOfShapes != 0 && logHasLines) {
 			btnFileSave.setEnabled(true);
 			listOfAvailableFileFilters.clear();
@@ -522,18 +546,10 @@ public class DrawToolbar {
 			btnFileSave.setEnabled(false);
 			listOfAvailableFileFilters.clear();
 		}
+	}
 
-		if (numOfUndoCommands > 0) {
-			btnUndo.setEnabled(true);
-		} else {
-			btnUndo.setEnabled(false);
-		}
-
-		if (numOfRedoCommands > 0) {
-			btnRedo.setEnabled(true);
-		} else {
-			btnRedo.setEnabled(false);
-		}
+	@Override
+	public void updateShapeManipulationButtonsState(int numOfSelectedShapes, ModeType currentMode, int numOfShapes) {
 
 		if (currentMode == ModeType.Drawing) {
 			btnActionEdit.setEnabled(false);
@@ -555,10 +571,19 @@ public class DrawToolbar {
 			btnPositionToBack.setEnabled(false);
 			btnPositionBringToBack.setEnabled(false);
 		} else {
+
 			if (numOfSelectedShapes == 1) {
 				btnActionEdit.setEnabled(true);
+				btnPositionToFront.setEnabled(true);
+				btnPositionBringToFront.setEnabled(true);
+				btnPositionToBack.setEnabled(true);
+				btnPositionBringToBack.setEnabled(true);
 			} else {
 				btnActionEdit.setEnabled(false);
+				btnPositionToFront.setEnabled(false);
+				btnPositionBringToFront.setEnabled(false);
+				btnPositionToBack.setEnabled(false);
+				btnPositionBringToBack.setEnabled(false);
 			}
 
 			if (numOfSelectedShapes != 0) {
@@ -581,28 +606,6 @@ public class DrawToolbar {
 			btnShapeHexagon.setEnabled(false);
 			btnColorEdge.setEnabled(false);
 			btnColorInner.setEnabled(false);
-
-			if (numOfSelectedShapes == 1) {
-				btnPositionToFront.setEnabled(true);
-				btnPositionBringToFront.setEnabled(true);
-				btnPositionToBack.setEnabled(true);
-				btnPositionBringToBack.setEnabled(true);
-			} else {
-				btnPositionToFront.setEnabled(false);
-				btnPositionBringToFront.setEnabled(false);
-				btnPositionToBack.setEnabled(false);
-				btnPositionBringToBack.setEnabled(false);
-			}
 		}
 	}
-	
-	
-	public JButton getBtnColorEdge() {
-		return btnColorEdge;
-	}
-
-	public JButton getBtnColorInner() {
-		return btnColorInner;
-	}
-
 }

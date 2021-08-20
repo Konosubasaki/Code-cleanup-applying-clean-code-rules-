@@ -9,10 +9,10 @@ public class CmdBringToBack extends Command {
 	private ModelDrawing model;
 	private int indexOfShape;
 
-	public CmdBringToBack(Shape shape, ModelDrawing viewModel) {
+	public CmdBringToBack(Shape shape, ModelDrawing model) {
 		this.shape = shape;
-		this.model = viewModel;
-		indexOfShape = viewModel.getIndexOfShape(shape);
+		this.model = model;
+		indexOfShape = model.getIndexOfShape(shape);
 	}
 
 	@Override

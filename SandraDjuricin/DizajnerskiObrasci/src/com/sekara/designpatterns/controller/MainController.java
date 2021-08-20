@@ -336,8 +336,9 @@ public class MainController implements Subject {
 	@Override
 	public void notifyObservers() {
 		for (Observer observer : listOfObservers) {
-			observer.update(currentMode, model.getSizeOfShapeList(), executedCommands.size(), unexecutedCommands.size(),
-					model.getSizeSelectedShapes(), !loggingController.isLogEmpty());
+			observer.updateUndoRedoButtonsState(executedCommands.size(), unexecutedCommands.size());
+			observer.updateFileButtonState(model.getSizeOfShapeList(),!loggingController.isLogEmpty());
+			observer.updateShapeManipulationButtonsState(model.getSizeSelectedShapes(),currentMode,model.getSizeOfShapeList());
 		}
 	}
 

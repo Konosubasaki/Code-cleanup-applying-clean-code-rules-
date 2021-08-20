@@ -11,7 +11,7 @@ public class Main {
 		FrameDrawing frame = new FrameDrawing();
 		frame.getViewDrawing().setModel(model);
 		MainController mainController = new MainController(model, frame);
- 		mainController.addObserver(frame);
+ 		mainController.addObserver(frame.getDrawToolbar());
 		frame.setController(mainController);
 		FileController fileController = new FileController(mainController);
 		frame.getDrawToolbar().setControllers(mainController, fileController);

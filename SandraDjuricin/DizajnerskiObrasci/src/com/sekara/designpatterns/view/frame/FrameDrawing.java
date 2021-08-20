@@ -11,7 +11,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class FrameDrawing extends JFrame implements Observer {
+public class FrameDrawing extends JFrame {
 
 	private MainController mainController;
 	private ViewDrawing view = new ViewDrawing();
@@ -65,12 +65,5 @@ public class FrameDrawing extends JFrame implements Observer {
 
 	public ViewDrawing getViewDrawing() {
 		return this.view;
-	}
-
-	@Override
-	public void update(ModeType currentMode, int numOfShapes, int numOfUndoCommands, int numOfRedoCommands,
-			int numOfSelectedShapes, boolean logHasLines) {
-		drawToolbar.update(currentMode, numOfShapes, numOfUndoCommands, numOfRedoCommands, numOfSelectedShapes,
-				logHasLines);
 	}
 }

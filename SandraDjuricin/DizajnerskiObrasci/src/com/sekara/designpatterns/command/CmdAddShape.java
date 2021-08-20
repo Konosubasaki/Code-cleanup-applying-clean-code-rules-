@@ -8,9 +8,9 @@ public class CmdAddShape extends Command {
 	private Shape shape;
 	private ModelDrawing model;
 
-	public CmdAddShape(Shape shape, ModelDrawing viewModel) {
+	public CmdAddShape(Shape shape, ModelDrawing model) {
 		this.shape = shape;
-		this.model = viewModel;
+		this.model = model;
 	}
 
 	@Override
