@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 import java.util.*;
 import javax.swing.*;
 
-public class MainController implements Subject {
+public class LoggingController implements Subject {
 
 	private ModelDrawing model;
 	private FrameDrawing frame;
@@ -30,23 +30,23 @@ public class MainController implements Subject {
 	private List<Observer> listOfObservers;
 	private boolean isLogEmpty = true;
 
-	public MainController(ModelDrawing model, FrameDrawing frame) {
-		this.model = model;
-		this.frame = frame;
+	public LoggingController(ModelDrawing modelDrawing, FrameDrawing frameDrawing) {
+		this.model = modelDrawing;
+		this.frame = frameDrawing;
 		this.executedCommands = new Stack<Command>();
 		this.unexecutedCommands = new Stack<Command>();
 		this.edgeColor = Color.BLACK;
 		this.innerColor = Color.WHITE;
 		this.currentMode = ModeType.Drawing;
 		this.selectedShape = ShapeType.Point;
-		this.logger = frame.getDrawToolbar().getDefaultListLogModel();
+		this.logger = frameDrawing.getDrawToolbar().getDefaultListLogModel();
 		this.listOfObservers = new ArrayList<Observer>();
 		setEnabledBtnReadNextCommand(false);
 	}
 	
 	public void executeCommand(Command command) {
 		command.execute();
-		addLog(command.getLog());
+		//addLog(command.getLog());
 		executedCommands.push(command);
 		frame.getViewDrawing().repaint();
 		notifyObservers();
@@ -54,7 +54,7 @@ public class MainController implements Subject {
 
 	public void unexecuteCommand(Command command) {
 		command.unExecute();
-		addLog(command.getLog());
+		//addLog(command.getLog());
 		unexecutedCommands.push(command);
 		frame.getViewDrawing().repaint();
 		notifyObservers();

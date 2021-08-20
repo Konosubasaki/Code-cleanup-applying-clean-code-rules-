@@ -9,14 +9,14 @@ public class CmdDeleteShapes extends Command {
 	private List<Shape> shapes;
 	private ModelDrawing model;
 
-	public CmdDeleteShapes(List<Shape> shapes, ModelDrawing viewModel) {
+	public CmdDeleteShapes(List<Shape> shapes, ModelDrawing model) {
 		this.shapes = new ArrayList<Shape>(shapes);
-		this.model = viewModel;
+		this.model = model;
 	}
 
 	@Override
 	public void execute() {
-		model.removeAllShapes(shapes);
+		model.removeShapes(shapes);
 		super.setLog("CMD_DELETE_EXECUTE#" + shapes);
 	}
 

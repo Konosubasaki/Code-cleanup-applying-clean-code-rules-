@@ -54,7 +54,7 @@ public class ModelDrawing {
 		shapes.remove(shape);
 	}
 	
-	public void removeAllShapes(List<Shape> shapes) {
+	public void removeShapes(List<Shape> shapes) {
 		this.shapes.removeAll(shapes);
 	}
 }
