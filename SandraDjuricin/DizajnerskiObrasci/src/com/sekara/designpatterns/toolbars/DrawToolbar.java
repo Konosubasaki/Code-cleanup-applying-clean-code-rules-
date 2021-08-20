@@ -16,12 +16,9 @@ public class DrawToolbar implements Observer {
 
 	private MainController mainController;
 	private FileController fileController;
-
 	private ViewDrawing view = new ViewDrawing();
-
 	private ButtonGroup btnsOperation = new ButtonGroup();
 	private ButtonGroup btnsShapes = new ButtonGroup();
-
 	private JButton btnFileOpen;
 	private JButton btnFileSave;
 	private JButton btnReadNextCommand;
@@ -35,9 +32,7 @@ public class DrawToolbar implements Observer {
 	private JButton btnActionDelete;
 	private JButton btnActionDeleteAll;
 	private JButton btnColorEdge;
-
 	private JButton btnColorInner;
-
 	private JToggleButton btnOperationDrawing;
 	private JToggleButton btnOperationEditOrDelete;
 	private JToggleButton btnShapePoint;
@@ -46,34 +41,24 @@ public class DrawToolbar implements Observer {
 	private JToggleButton btnShapeCircle;
 	private JToggleButton btnShapeDonut;
 	private JToggleButton btnShapeHexagon;
-
-	JPanel pnlLeftOperations;
-	JPanel pnlRightOperations;
-	JPanel pnlChooseFile;
-	JPanel pnlChooseMode;
-	JPanel pnlChooseAction;
-	JPanel pnlChoosePosition;
-	JPanel pnlUndoRedo;
-	JPanel pnlChooseShape;
-	JPanel pnlChooseColor;
-	JPanel pnlLog;
-
-	public JPanel getPnlLog() {
-		return pnlLog;
-	}
-
+	private JPanel pnlLeftOperations;
+	private JPanel pnlRightOperations;
+	private JPanel pnlChooseFile;
+	private JPanel pnlChooseMode;
+	private JPanel pnlChooseAction;
+	private JPanel pnlChoosePosition;
+	private JPanel pnlUndoRedo;
+	private JPanel pnlChooseShape;
+	private JPanel pnlChooseColor;
+	private JPanel pnlLog;
 	private JLabel lblColorEdge = new JLabel("Boja ivice");
 	private JLabel lblColorInner = new JLabel("Boja unutrasnjosti");
-
 	private JFileChooser readFromFileChooser;
 	private JFileChooser saveToFileChooser;
-
 	private JList listLog = new JList();
 	private DefaultListModel<String> defaultListModel = new DefaultListModel<String>();
-
 	private FileNameExtensionFilter drwFileFilter = new FileNameExtensionFilter("Crtez", "drw");
 	private FileNameExtensionFilter logFileFilter = new FileNameExtensionFilter("Log", "log");
-
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
 
 	public DrawToolbar() {
@@ -83,96 +68,18 @@ public class DrawToolbar implements Observer {
 				mainController.mouseClicked(arg0);
 			}
 		});
+		view.setBorder(new LineBorder(SystemColor.textHighlight, 500));
 
 		initializeButtons();
-		buttonsActionListeners();
+		initializePanels();
+		setPanelsLayouts();
+		setPanelsBorders();
+		addingButtonsToPanelsAndGroups();
 		disableButtons();
 		enableButtons();
-		CenterAlignButtons();
-
-		//
-		view.setBorder(new LineBorder(SystemColor.textHighlight, 5));
-
-		pnlLeftOperations = new JPanel();
-		pnlRightOperations = new JPanel();
-		pnlChooseFile = new JPanel();
-		pnlChooseMode = new JPanel();
-		pnlChooseAction = new JPanel();
-		pnlChoosePosition = new JPanel();
-		pnlUndoRedo = new JPanel();
-		pnlChooseShape = new JPanel();
-		pnlChooseColor = new JPanel();
-
-		pnlLeftOperations.setLayout(new GridLayout(4, 0, 0, 0));
-		pnlRightOperations.setLayout(new GridLayout(3, 0, 0, 0));
-		pnlChooseFile.setLayout(new BoxLayout(pnlChooseFile, BoxLayout.Y_AXIS));
-		pnlChooseMode.setLayout(new BoxLayout(pnlChooseMode, BoxLayout.Y_AXIS));
-		pnlChooseAction.setLayout(new BoxLayout(pnlChooseAction, BoxLayout.Y_AXIS));
-		pnlChoosePosition.setLayout(new BoxLayout(pnlChoosePosition, BoxLayout.Y_AXIS));
-		pnlUndoRedo.setLayout(new BoxLayout(pnlUndoRedo, BoxLayout.Y_AXIS));
-		pnlChooseShape.setLayout(new BoxLayout(pnlChooseShape, BoxLayout.Y_AXIS));
-		pnlChooseColor.setLayout(new BoxLayout(pnlChooseColor, BoxLayout.Y_AXIS));
-
-		pnlChooseFile.setBorder(new TitledBorder(null, "Fajl", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlChooseMode
-				.setBorder(new TitledBorder(null, "Operacija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlChooseAction.setBorder(new TitledBorder(null, "Akcija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlChoosePosition
-				.setBorder(new TitledBorder(null, "Pozicija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlUndoRedo.setBorder(
-				new TitledBorder(null, "Ponisti/ponovi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlChooseShape.setBorder(new TitledBorder(null, "Oblici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlChooseColor.setBorder(new TitledBorder(null, "Boje", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-
-		pnlChooseFile.add(btnFileOpen);
-		pnlChooseFile.add(btnFileSave);
-		pnlChooseFile.add(btnReadNextCommand);
-
-		pnlChooseMode.add(btnOperationDrawing);
-		pnlChooseMode.add(btnOperationEditOrDelete);
-
-		pnlChooseAction.add(btnActionEdit);
-		pnlChooseAction.add(btnActionDelete);
-		pnlChooseAction.add(btnActionDeleteAll);
-
-		pnlChoosePosition.add(btnPositionToFront);
-		pnlChoosePosition.add(btnPositionBringToFront);
-		pnlChoosePosition.add(btnPositionToBack);
-		pnlChoosePosition.add(btnPositionBringToBack);
-
-		pnlUndoRedo.add(btnUndo);
-		pnlUndoRedo.add(btnRedo);
-
-		pnlChooseShape.add(btnShapePoint);
-		pnlChooseShape.add(btnShapeLine);
-		pnlChooseShape.add(btnShapeRectangle);
-		pnlChooseShape.add(btnShapeCircle);
-		pnlChooseShape.add(btnShapeDonut);
-		pnlChooseShape.add(btnShapeHexagon);
-
-		pnlChooseColor.add(lblColorEdge);
-		pnlChooseColor.add(btnColorEdge);
-		pnlChooseColor.add(lblColorInner);
-		pnlChooseColor.add(btnColorInner);
-
-		pnlLeftOperations.add(pnlChooseFile);
-		pnlLeftOperations.add(pnlChooseMode);
-		pnlLeftOperations.add(pnlChooseAction);
-		pnlLeftOperations.add(pnlChoosePosition);
-
-		pnlRightOperations.add(pnlUndoRedo);
-		pnlRightOperations.add(pnlChooseShape);
-		pnlRightOperations.add(pnlChooseColor);
-
-		btnsOperation.add(btnOperationDrawing);
-		btnsOperation.add(btnOperationEditOrDelete);
-		btnsShapes.add(btnShapePoint);
-		btnsShapes.add(btnShapeLine);
-		btnsShapes.add(btnShapeRectangle);
-		btnsShapes.add(btnShapeCircle);
-		btnsShapes.add(btnShapeDonut);
-		btnsShapes.add(btnShapeHexagon);
-
+		centerAlignButtons();
+		buttonsActionListeners();
+ 
 		listLog.setModel(defaultListModel);
 		listLog.setVisibleRowCount(10);
 		listLog.setFixedCellWidth(1080);
@@ -185,46 +92,7 @@ public class DrawToolbar implements Observer {
 				e.getAdjustable().setValue(e.getAdjustable().getMaximum());
 			}
 		});
-
-		pnlLog = new JPanel();
 		pnlLog.add(scrollPane);
-
-	}
-
-	public JPanel getPnlLeftOperations() {
-		return pnlLeftOperations;
-	}
-
-	public JPanel getPnlRightOperations() {
-		return pnlRightOperations;
-	}
-
-	public JPanel getPnlChooseFile() {
-		return pnlChooseFile;
-	}
-
-	public JPanel getPnlChooseMode() {
-		return pnlChooseMode;
-	}
-
-	public JPanel getPnlChooseAction() {
-		return pnlChooseAction;
-	}
-
-	public JPanel getPnlChoosePosition() {
-		return pnlChoosePosition;
-	}
-
-	public JPanel getPnlUndoRedo() {
-		return pnlUndoRedo;
-	}
-
-	public JPanel getPnlChooseShape() {
-		return pnlChooseShape;
-	}
-
-	public JPanel getPnlChooseColor() {
-		return pnlChooseColor;
 	}
 
 	public void initializeButtons() {
@@ -252,7 +120,89 @@ public class DrawToolbar implements Observer {
 		btnShapeDonut = new JToggleButton("Krofna");
 		btnShapeHexagon = new JToggleButton("Sestougao");
 	}
+	
+	public void initializePanels() {
+		
+		pnlLeftOperations = new JPanel();
+		pnlRightOperations = new JPanel();
+		pnlChooseFile = new JPanel();
+		pnlChooseMode = new JPanel();
+		pnlChooseAction = new JPanel();
+		pnlChoosePosition = new JPanel();
+		pnlUndoRedo = new JPanel();
+		pnlChooseShape = new JPanel();
+		pnlChooseColor = new JPanel();
+		pnlLog = new JPanel();
+	}
+	
+	public void setPanelsLayouts() {
+		
+		pnlLeftOperations.setLayout(new GridLayout(4, 0, 0, 0));
+		pnlRightOperations.setLayout(new GridLayout(3, 0, 0, 0));
+		pnlChooseFile.setLayout(new BoxLayout(pnlChooseFile, BoxLayout.Y_AXIS));
+		pnlChooseMode.setLayout(new BoxLayout(pnlChooseMode, BoxLayout.Y_AXIS));
+		pnlChooseAction.setLayout(new BoxLayout(pnlChooseAction, BoxLayout.Y_AXIS));
+		pnlChoosePosition.setLayout(new BoxLayout(pnlChoosePosition, BoxLayout.Y_AXIS));
+		pnlUndoRedo.setLayout(new BoxLayout(pnlUndoRedo, BoxLayout.Y_AXIS));
+		pnlChooseShape.setLayout(new BoxLayout(pnlChooseShape, BoxLayout.Y_AXIS));
+		pnlChooseColor.setLayout(new BoxLayout(pnlChooseColor, BoxLayout.Y_AXIS));
+	}
+	
+	public void setPanelsBorders() {
+		
+		pnlChooseFile.setBorder(new TitledBorder(null, "Fajl", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlChooseMode.setBorder(new TitledBorder(null, "Operacija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlChooseAction.setBorder(new TitledBorder(null, "Akcija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlChoosePosition.setBorder(new TitledBorder(null, "Pozicija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlUndoRedo.setBorder(new TitledBorder(null, "Ponisti/ponovi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlChooseShape.setBorder(new TitledBorder(null, "Oblici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlChooseColor.setBorder(new TitledBorder(null, "Boje", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
+	}
+
+	public void addingButtonsToPanelsAndGroups() {
+		
+		pnlChooseFile.add(btnFileOpen);
+		pnlChooseFile.add(btnFileSave);
+		pnlChooseFile.add(btnReadNextCommand);
+		pnlChooseMode.add(btnOperationDrawing);
+		pnlChooseMode.add(btnOperationEditOrDelete);
+		pnlChooseAction.add(btnActionEdit);
+		pnlChooseAction.add(btnActionDelete);
+		pnlChooseAction.add(btnActionDeleteAll);
+		pnlChoosePosition.add(btnPositionToFront);
+		pnlChoosePosition.add(btnPositionBringToFront);
+		pnlChoosePosition.add(btnPositionToBack);
+		pnlChoosePosition.add(btnPositionBringToBack);
+		pnlUndoRedo.add(btnUndo);
+		pnlUndoRedo.add(btnRedo);
+		pnlChooseShape.add(btnShapePoint);
+		pnlChooseShape.add(btnShapeLine);
+		pnlChooseShape.add(btnShapeRectangle);
+		pnlChooseShape.add(btnShapeCircle);
+		pnlChooseShape.add(btnShapeDonut);
+		pnlChooseShape.add(btnShapeHexagon);
+		pnlChooseColor.add(lblColorEdge);
+		pnlChooseColor.add(btnColorEdge);
+		pnlChooseColor.add(lblColorInner);
+		pnlChooseColor.add(btnColorInner);
+		pnlLeftOperations.add(pnlChooseFile);
+		pnlLeftOperations.add(pnlChooseMode);
+		pnlLeftOperations.add(pnlChooseAction);
+		pnlLeftOperations.add(pnlChoosePosition);
+		pnlRightOperations.add(pnlUndoRedo);
+		pnlRightOperations.add(pnlChooseShape);
+		pnlRightOperations.add(pnlChooseColor);
+		btnsOperation.add(btnOperationDrawing);
+		btnsOperation.add(btnOperationEditOrDelete);
+		btnsShapes.add(btnShapePoint);
+		btnsShapes.add(btnShapeLine);
+		btnsShapes.add(btnShapeRectangle);
+		btnsShapes.add(btnShapeCircle);
+		btnsShapes.add(btnShapeDonut);
+		btnsShapes.add(btnShapeHexagon);
+	}
+	
 	public void disableButtons() {
 		btnFileSave.setEnabled(false);
 		btnUndo.setEnabled(false);
@@ -265,7 +215,7 @@ public class DrawToolbar implements Observer {
 		btnShapePoint.setSelected(true);
 	}
 
-	public void CenterAlignButtons() {
+	public void centerAlignButtons() {
 		btnFileOpen.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnFileSave.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnReadNextCommand.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -307,7 +257,6 @@ public class DrawToolbar implements Observer {
 				readFromFileChooser.setAcceptAllFileFilterUsed(false);
 				readFromFileChooser.setFileFilter(drwFileFilter);
 				readFromFileChooser.setFileFilter(logFileFilter);
-
 				fileController.readFromFile();
 			}
 		});
@@ -323,11 +272,9 @@ public class DrawToolbar implements Observer {
 				saveToFileChooser.setEnabled(true);
 				saveToFileChooser.setDialogTitle("Sacuvaj");
 				saveToFileChooser.setAcceptAllFileFilterUsed(false);
-
 				for (FileNameExtensionFilter fileFilter : listOfAvailableFileFilters) {
 					saveToFileChooser.setFileFilter(fileFilter);
 				}
-
 				fileController.saveToFile();
 			}
 		});
@@ -471,23 +418,33 @@ public class DrawToolbar implements Observer {
 			}
 		};
 	}
+	
+	public void setControllers(MainController controller, FileController fileController) {
+		this.mainController = controller;
+		this.fileController = fileController;
+		btnColorEdge.setBackground(controller.getEdgeColor());
+		btnColorInner.setBackground(controller.getInnerColor());
+		controller.setCurrentMode(ModeType.Drawing);
+	}
+	
+	public JPanel getPnlLeftOperations() {
+		return pnlLeftOperations;
+	}
 
-	public ViewDrawing getViewDrawing() {
+	public JPanel getPnlRightOperations() {
+		return pnlRightOperations;
+	}
+	
+	public ViewDrawing getViewDrawging() {
 		return this.view;
 	}
 
 	public DefaultListModel<String> getDefaultListLogModel() {
 		return this.defaultListModel;
 	}
-
-	public void setControllers(MainController controller, FileController fileController) {
-		this.mainController = controller;
-		this.fileController = fileController;
-
-		btnColorEdge.setBackground(controller.getEdgeColor());
-		btnColorInner.setBackground(controller.getInnerColor());
-
-		controller.setCurrentMode(ModeType.Drawing);
+	
+	public JPanel getPnlLog() {
+		return pnlLog;
 	}
 
 	public JFileChooser getReadFromFileChooser() {
