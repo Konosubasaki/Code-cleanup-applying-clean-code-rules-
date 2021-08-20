@@ -62,14 +62,7 @@ public class DrawToolbar implements Observer {
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
 
 	public DrawToolbar() {
-
-		view.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				mainController.mouseClicked(arg0);
-			}
-		});
-		view.setBorder(new LineBorder(SystemColor.textHighlight, 500));
-
+		
 		initializeButtons();
 		initializePanels();
 		setPanelsLayouts();
