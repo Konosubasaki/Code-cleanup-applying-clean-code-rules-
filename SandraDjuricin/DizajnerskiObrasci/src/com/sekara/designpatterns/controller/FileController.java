@@ -45,7 +45,6 @@ public class FileController {
 			SetFileStrategy(fileChooser);
 			ioContext.saveToFile(fileChooser.getSelectedFile());
 		}
-
 		fileChooser.setVisible(false);
 	}
 
@@ -57,7 +56,6 @@ public class FileController {
 			ioContext.readFromFile(fileChooser.getSelectedFile());
 			frame.getViewDrawing().repaint();
 		}
-
 		fileChooser.setVisible(false);
 		mainController.notifyObservers();
 	}

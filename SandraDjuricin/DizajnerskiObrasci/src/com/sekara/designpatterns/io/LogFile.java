@@ -34,10 +34,8 @@ public class LogFile implements Strategy {
 				writer.newLine();
 			}
 			writer.close();
-			// controller.showMessageDialog("Log uspesno sacuvan!");
 		} catch (IOException e) {
 			e.printStackTrace();
-			// controller.showMessageDialog("Greska! " + e.getMessage());
 		}
 	}
 
@@ -63,7 +61,6 @@ public class LogFile implements Strategy {
 				mainController.showMessageDialog("Nema vise dostupnih komandi iz loga!");
 				return;
 			}
-
 			String[] parts = line.split("#");
 
 			switch (parts[0]) {
@@ -80,7 +77,6 @@ public class LogFile implements Strategy {
 				for (String shape : shapes) {
 					shapesToDelete.add(detectShape(shape.trim()));
 				}
-
 				command = new CmdDeleteShapes(shapesToDelete, model);
 				mainController.executeCommand(command);
 				break;

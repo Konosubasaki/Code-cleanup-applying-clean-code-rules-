@@ -62,7 +62,6 @@ public class DrawToolbar implements Observer {
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
 
 	public DrawToolbar() {
-
 		initializeButtons();
 		initializePanels();
 		setPanelsLayouts();
@@ -89,7 +88,6 @@ public class DrawToolbar implements Observer {
 	}
 
 	public void initializeButtons() {
-
 		btnFileOpen = new JButton("Otvori");
 		btnFileSave = new JButton("Sacuvaj");
 		btnReadNextCommand = new JButton("Ucitaj sledecu komandu");
@@ -115,7 +113,6 @@ public class DrawToolbar implements Observer {
 	}
 
 	public void initializePanels() {
-
 		pnlLeftOperations = new JPanel();
 		pnlRightOperations = new JPanel();
 		pnlChooseFile = new JPanel();
@@ -129,7 +126,6 @@ public class DrawToolbar implements Observer {
 	}
 
 	public void setPanelsLayouts() {
-
 		pnlLeftOperations.setLayout(new GridLayout(4, 0, 0, 0));
 		pnlRightOperations.setLayout(new GridLayout(3, 0, 0, 0));
 		pnlChooseFile.setLayout(new BoxLayout(pnlChooseFile, BoxLayout.Y_AXIS));
@@ -142,7 +138,6 @@ public class DrawToolbar implements Observer {
 	}
 
 	public void setPanelsBorders() {
-
 		pnlChooseFile.setBorder(new TitledBorder(null, "Fajl", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlChooseMode
 				.setBorder(new TitledBorder(null, "Operacija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -157,7 +152,6 @@ public class DrawToolbar implements Observer {
 	}
 
 	public void addingButtonsToPanelsAndGroups() {
-
 		pnlChooseFile.add(btnFileOpen);
 		pnlChooseFile.add(btnFileSave);
 		pnlChooseFile.add(btnReadNextCommand);
@@ -239,7 +233,6 @@ public class DrawToolbar implements Observer {
 	}
 
 	public void buttonsActionListeners() {
-
 		btnFileOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				readFromFileChooser = new JFileChooser();
@@ -326,7 +319,6 @@ public class DrawToolbar implements Observer {
 		btnOperationDrawing.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainController.setCurrentMode(ModeType.Drawing);
-				// setOperationDrawing();
 			}
 		});
 
@@ -465,7 +457,6 @@ public class DrawToolbar implements Observer {
 
 	@Override
 	public void updateUndoRedoButtonsState(int numOfUndoCommands, int numOfRedoCommands) {
-
 		if (numOfUndoCommands > 0) {
 			btnUndo.setEnabled(true);
 		} else {
@@ -481,7 +472,6 @@ public class DrawToolbar implements Observer {
 
 	@Override
 	public void updateFileButtonState(int numOfShapes, boolean logHasLines) {
-
 		if (numOfShapes != 0 && logHasLines) {
 			btnFileSave.setEnabled(true);
 			listOfAvailableFileFilters.clear();
@@ -503,7 +493,6 @@ public class DrawToolbar implements Observer {
 
 	@Override
 	public void updateShapeManipulationButtonsState(int numOfSelectedShapes, ModeType currentMode, int numOfShapes) {
-
 		if (currentMode == ModeType.Drawing) {
 			btnActionEdit.setEnabled(false);
 			btnActionDelete.setEnabled(false);

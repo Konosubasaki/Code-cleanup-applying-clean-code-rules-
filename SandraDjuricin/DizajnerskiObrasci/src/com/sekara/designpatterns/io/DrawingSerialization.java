@@ -2,18 +2,17 @@ package com.sekara.designpatterns.io;
 
 import java.io.*;
 import java.util.*;
-
 import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.model.geometry.Shape;
 
 public class DrawingSerialization implements Strategy {
-	
+
 	private ModelDrawing model;
 	private FileOutputStream outputStream;
 	private FileInputStream inputStream;
-	
-	public DrawingSerialization(ModelDrawing viewModel) {
-		this.model = viewModel;
+
+	public DrawingSerialization(ModelDrawing model) {
+		this.model = model;
 	}
 
 	@Override
@@ -37,7 +36,7 @@ public class DrawingSerialization implements Strategy {
 			List<Shape> listOfShapes = (ArrayList<Shape>) objectInputStream.readObject();
 			model.addAllShapes(listOfShapes);
 			objectInputStream.close();
-	        inputStream.close();
+			inputStream.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
