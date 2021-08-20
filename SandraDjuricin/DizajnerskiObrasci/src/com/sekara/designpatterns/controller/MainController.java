@@ -30,9 +30,7 @@ public class MainController implements Subject {
 	private Point lineFirstPoint;
 	private DefaultListModel<String> logger;
 	private Context ioContext;
-	private DrawingSerialization drawingSerializationStrategy;
-	private LogFile logToFileStrategy;
-	private List<Observer> listOfObservers;
+  	private List<Observer> listOfObservers;
 	private boolean isLogEmpty = true;
 	
 	public MainController(ModelDrawing modelDrawing, FrameDrawing frameDrawing) {
@@ -54,9 +52,7 @@ public class MainController implements Subject {
 		//+++++++++++++++
 		this.ioContext = new Context();
 		
-		this.drawingSerializationStrategy = new DrawingSerialization(modelDrawing);
-		this.logToFileStrategy = new LogFile(frameDrawing, this, modelDrawing);
-		
+  		
 		setEnabledBtnReadNextCommand(false);
 		
 		this.listOfObservers = new ArrayList<Observer>();
