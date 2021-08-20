@@ -26,9 +26,8 @@ public class MainController implements Subject {
 	private Color innerColor;
 	private boolean lineIsWaitingForSecondPoint;
 	private Point lineFirstPoint;
-	private DefaultListModel<String> logger;
 	private List<Observer> listOfObservers;
-	private boolean isLogEmpty = true;
+	private LoggingController loggingController;
 
 	public MainController(ModelDrawing model, FrameDrawing frame) {
 		this.model = model;
@@ -39,14 +38,14 @@ public class MainController implements Subject {
 		this.innerColor = Color.WHITE;
 		this.currentMode = ModeType.Drawing;
 		this.selectedShape = ShapeType.Point;
-		this.logger = frame.getDrawToolbar().getDefaultListLogModel();
 		this.listOfObservers = new ArrayList<Observer>();
+		loggingController = new LoggingController(this.frame);
 		setEnabledBtnReadNextCommand(false);
 	}
-	
+
 	public void executeCommand(Command command) {
 		command.execute();
-		addLog(command.getLog());
+		loggingController.addLog(command.getLog());
 		executedCommands.push(command);
 		frame.getViewDrawing().repaint();
 		notifyObservers();
@@ -54,12 +53,12 @@ public class MainController implements Subject {
 
 	public void unexecuteCommand(Command command) {
 		command.unExecute();
-		addLog(command.getLog());
+		loggingController.addLog(command.getLog());
 		unexecutedCommands.push(command);
 		frame.getViewDrawing().repaint();
 		notifyObservers();
 	}
-	
+
 	public void mouseClicked(MouseEvent event) {
 		switch (currentMode) {
 		case Drawing:
@@ -158,10 +157,12 @@ public class MainController implements Subject {
 			if (shape.containsXYpoint(event.getX(), event.getY())) {
 				if (shape.isSelected()) {
 					shape.setSelected(false);
-					addLog("DESELECT#" + shape + "#MouseEvent(X:" + event.getX() + "|Y:" + event.getY() + ")");
+					loggingController
+							.addLog("DESELECT#" + shape + "#MouseEvent(X:" + event.getX() + "|Y:" + event.getY() + ")");
 				} else {
 					shape.setSelected(true);
-					addLog("SELECT#" + shape + "#MouseEvent(X:" + event.getX() + "|Y:" + event.getY() + ")");
+					loggingController
+							.addLog("SELECT#" + shape + "#MouseEvent(X:" + event.getX() + "|Y:" + event.getY() + ")");
 				}
 			}
 		});
@@ -312,11 +313,6 @@ public class MainController implements Subject {
 		executeCommand(command);
 	}
 
-	public void addLog(String log) {
-		logger.addElement(log);
-		isLogEmpty = false;
-	}
-
 	public void showMessageDialog(String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
@@ -341,7 +337,7 @@ public class MainController implements Subject {
 	public void notifyObservers() {
 		for (Observer observer : listOfObservers) {
 			observer.update(currentMode, model.getSizeOfShapeList(), executedCommands.size(), unexecutedCommands.size(),
-					model.getSizeSelectedShapes(), !isLogEmpty);
+					model.getSizeSelectedShapes(), !loggingController.isLogEmpty());
 		}
 	}
 
