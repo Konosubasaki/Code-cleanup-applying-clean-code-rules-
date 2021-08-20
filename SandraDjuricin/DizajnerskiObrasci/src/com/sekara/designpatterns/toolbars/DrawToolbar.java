@@ -62,7 +62,7 @@ public class DrawToolbar implements Observer {
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
 
 	public DrawToolbar() {
-		
+
 		initializeButtons();
 		initializePanels();
 		setPanelsLayouts();
@@ -72,7 +72,7 @@ public class DrawToolbar implements Observer {
 		enableButtons();
 		centerAlignButtons();
 		buttonsActionListeners();
- 
+
 		listLog.setModel(defaultListModel);
 		listLog.setVisibleRowCount(10);
 		listLog.setFixedCellWidth(1080);
@@ -113,9 +113,9 @@ public class DrawToolbar implements Observer {
 		btnShapeDonut = new JToggleButton("Krofna");
 		btnShapeHexagon = new JToggleButton("Sestougao");
 	}
-	
+
 	public void initializePanels() {
-		
+
 		pnlLeftOperations = new JPanel();
 		pnlRightOperations = new JPanel();
 		pnlChooseFile = new JPanel();
@@ -127,9 +127,9 @@ public class DrawToolbar implements Observer {
 		pnlChooseColor = new JPanel();
 		pnlLog = new JPanel();
 	}
-	
+
 	public void setPanelsLayouts() {
-		
+
 		pnlLeftOperations.setLayout(new GridLayout(4, 0, 0, 0));
 		pnlRightOperations.setLayout(new GridLayout(3, 0, 0, 0));
 		pnlChooseFile.setLayout(new BoxLayout(pnlChooseFile, BoxLayout.Y_AXIS));
@@ -140,21 +140,24 @@ public class DrawToolbar implements Observer {
 		pnlChooseShape.setLayout(new BoxLayout(pnlChooseShape, BoxLayout.Y_AXIS));
 		pnlChooseColor.setLayout(new BoxLayout(pnlChooseColor, BoxLayout.Y_AXIS));
 	}
-	
+
 	public void setPanelsBorders() {
-		
+
 		pnlChooseFile.setBorder(new TitledBorder(null, "Fajl", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlChooseMode.setBorder(new TitledBorder(null, "Operacija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlChooseMode
+				.setBorder(new TitledBorder(null, "Operacija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlChooseAction.setBorder(new TitledBorder(null, "Akcija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlChoosePosition.setBorder(new TitledBorder(null, "Pozicija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlUndoRedo.setBorder(new TitledBorder(null, "Ponisti/ponovi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlChoosePosition
+				.setBorder(new TitledBorder(null, "Pozicija", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlUndoRedo.setBorder(
+				new TitledBorder(null, "Ponisti/ponovi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlChooseShape.setBorder(new TitledBorder(null, "Oblici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlChooseColor.setBorder(new TitledBorder(null, "Boje", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 	}
 
 	public void addingButtonsToPanelsAndGroups() {
-		
+
 		pnlChooseFile.add(btnFileOpen);
 		pnlChooseFile.add(btnFileSave);
 		pnlChooseFile.add(btnReadNextCommand);
@@ -195,7 +198,7 @@ public class DrawToolbar implements Observer {
 		btnsShapes.add(btnShapeDonut);
 		btnsShapes.add(btnShapeHexagon);
 	}
-	
+
 	public void disableButtons() {
 		btnFileSave.setEnabled(false);
 		btnUndo.setEnabled(false);
@@ -411,7 +414,7 @@ public class DrawToolbar implements Observer {
 			}
 		};
 	}
-	
+
 	public void setControllers(MainController controller, FileController fileController) {
 		this.mainController = controller;
 		this.fileController = fileController;
@@ -419,7 +422,7 @@ public class DrawToolbar implements Observer {
 		btnColorInner.setBackground(controller.getInnerColor());
 		controller.setCurrentMode(ModeType.Drawing);
 	}
-	
+
 	public JPanel getPnlLeftOperations() {
 		return pnlLeftOperations;
 	}
@@ -427,7 +430,7 @@ public class DrawToolbar implements Observer {
 	public JPanel getPnlRightOperations() {
 		return pnlRightOperations;
 	}
-	
+
 	public ViewDrawing getViewDrawging() {
 		return this.view;
 	}
@@ -435,7 +438,7 @@ public class DrawToolbar implements Observer {
 	public DefaultListModel<String> getDefaultListLogModel() {
 		return this.defaultListModel;
 	}
-	
+
 	public JPanel getPnlLog() {
 		return pnlLog;
 	}
