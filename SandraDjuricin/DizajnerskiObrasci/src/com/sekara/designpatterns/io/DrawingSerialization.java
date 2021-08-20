@@ -8,12 +8,12 @@ import com.sekara.designpatterns.model.geometry.Shape;
 
 public class DrawingSerialization implements Strategy {
 	
-	private ModelDrawing viewModel;
+	private ModelDrawing model;
 	private FileOutputStream outputStream;
 	private FileInputStream inputStream;
 	
 	public DrawingSerialization(ModelDrawing viewModel) {
-		this.viewModel = viewModel;
+		this.model = viewModel;
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class DrawingSerialization implements Strategy {
 		try {
 			outputStream = new FileOutputStream(file + ".drw");
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-			objectOutputStream.writeObject(viewModel.getAllShapes());
+			objectOutputStream.writeObject(model.getAllShapes());
 			objectOutputStream.close();
 			outputStream.close();
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class DrawingSerialization implements Strategy {
 			inputStream = new FileInputStream(file);
 			ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 			List<Shape> listOfShapes = (ArrayList<Shape>) objectInputStream.readObject();
-			viewModel.addAllShapes(listOfShapes);
+			model.addAllShapes(listOfShapes);
 			objectInputStream.close();
 	        inputStream.close();
 		} catch (Exception e) {

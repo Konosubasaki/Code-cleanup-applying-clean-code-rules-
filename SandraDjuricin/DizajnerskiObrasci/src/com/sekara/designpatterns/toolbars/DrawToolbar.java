@@ -16,7 +16,7 @@ public class DrawToolbar {
 	private MainController mainController;
 	private FileController fileController;
 
-	private ViewDrawing viewDrawing = new ViewDrawing();
+	private ViewDrawing view = new ViewDrawing();
 
 	private ButtonGroup btnsOperation = new ButtonGroup();
 	private ButtonGroup btnsShapes = new ButtonGroup();
@@ -78,8 +78,8 @@ public class DrawToolbar {
 	private List<FileNameExtensionFilter> listOfAvailableFileFilters = new ArrayList<FileNameExtensionFilter>();
 
 	public DrawToolbar() {
-
-		viewDrawing.addMouseListener(new MouseAdapter() {
+ 
+		view.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				mainController.mouseClicked(arg0);
 			}
@@ -92,7 +92,7 @@ public class DrawToolbar {
 		CenterAlignButtons();
 
 		//
-		viewDrawing.setBorder(new LineBorder(SystemColor.textHighlight, 5));
+		view.setBorder(new LineBorder(SystemColor.textHighlight, 5));
 
 		pnlLeftOperations = new JPanel();
 		pnlRightOperations = new JPanel();
@@ -474,7 +474,7 @@ public class DrawToolbar {
 	}
 
 	public ViewDrawing getViewDrawing() {
-		return this.viewDrawing;
+		return this.view;
 	}
 
 	public DefaultListModel<String> getDefaultListLogModel() {

@@ -13,8 +13,8 @@ import javax.swing.border.*;
 
 public class FrameDrawing extends JFrame implements Observer {
 
-	private MainController controller;
-	private ViewDrawing viewDrawing = new ViewDrawing();
+	private MainController mainController;
+	private ViewDrawing view = new ViewDrawing();
 
 	//
 	DrawToolbar drawToolbar;
@@ -36,13 +36,13 @@ public class FrameDrawing extends JFrame implements Observer {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPanel);
 
-		viewDrawing.addMouseListener(new MouseAdapter() {
+		view.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				controller.mouseClicked(arg0);
+				mainController.mouseClicked(arg0);
 			}
 		});
-		viewDrawing.setBorder(new LineBorder(SystemColor.textHighlight, 5));
-		contentPanel.add(viewDrawing, BorderLayout.CENTER);
+		view.setBorder(new LineBorder(SystemColor.textHighlight, 5));
+		contentPanel.add(view, BorderLayout.CENTER);
 
 		contentPanel.add(drawToolbar.getPnlLog(), BorderLayout.SOUTH);
 
@@ -51,7 +51,7 @@ public class FrameDrawing extends JFrame implements Observer {
 	}
 
 	public void setController(MainController controller) {
-		this.controller = controller;
+		this.mainController = controller;
 
 		drawToolbar.getBtnColorEdge().setBackground(controller.getEdgeColor());
 		drawToolbar.getBtnColorInner().setBackground(controller.getInnerColor());
@@ -64,7 +64,7 @@ public class FrameDrawing extends JFrame implements Observer {
 	}
 
 	public ViewDrawing getViewDrawing() {
-		return this.viewDrawing;
+		return this.view;
 	}
 
 	@Override

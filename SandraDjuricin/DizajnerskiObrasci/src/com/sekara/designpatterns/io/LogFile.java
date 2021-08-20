@@ -12,22 +12,22 @@ import javax.swing.DefaultListModel;
 
 public class LogFile implements Strategy {
 	
-	private FrameDrawing frameDrawing;
-	private MainController controller;
-	private ModelDrawing viewModel;
+	private FrameDrawing frame;
+	private MainController mainController;
+	private ModelDrawing model;
 	private BufferedReader reader;
 	private BufferedWriter writer;
 	public LogFile(FrameDrawing view, MainController controller, ModelDrawing viewModel) {
-		this.frameDrawing = view;
-		this.controller = controller; 
-		this.viewModel = viewModel;
+		this.frame = view;
+		this.mainController = controller; 
+		this.model = viewModel;
 	}
 
 	@Override
 	public void saveToFile(File file) {
 		try {
 			writer = new BufferedWriter(new FileWriter(file + ".log"));
-			DefaultListModel<String> logList = frameDrawing.getDrawToolbar().getDefaultListLogModel();
+			DefaultListModel<String> logList = frame.getDrawToolbar().getDefaultListLogModel();
 			for(int i = 0; i < logList.size(); i++) {
 				writer.write(logList.getElementAt(i));
 				writer.newLine();
@@ -44,8 +44,8 @@ public class LogFile implements Strategy {
 	public void readFromFile(File file) {
 		try {
 			reader = new BufferedReader(new FileReader(file));
-			controller.setEnabledBtnReadNextCommand(true);
-			controller.showMessageDialog("Log uspesno ucitan! Kliknite dugme za ucitavanje naredne komande iz loga.");
+			mainController.setEnabledBtnReadNextCommand(true);
+			mainController.showMessageDialog("Log uspesno ucitan! Kliknite dugme za ucitavanje naredne komande iz loga.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,8 +57,8 @@ public class LogFile implements Strategy {
 			String line;
 			
 			if ((line = reader.readLine()) == null) {
-				controller.setEnabledBtnReadNextCommand(false);
-				controller.showMessageDialog("Nema vise dostupnih komandi iz loga!");
+				mainController.setEnabledBtnReadNextCommand(false);
+				mainController.showMessageDialog("Nema vise dostupnih komandi iz loga!");
 				return;
 			}
 			
@@ -66,8 +66,8 @@ public class LogFile implements Strategy {
 			
 			switch (parts[0]) {
 				case "CMD_ADD_EXECUTE":
-					command = new CmdAddShape(detectShape(parts[1]), viewModel);
-					controller.executeCommand(command);
+					command = new CmdAddShape(detectShape(parts[1]), model);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_DELETE_EXECUTE":
@@ -79,8 +79,8 @@ public class LogFile implements Strategy {
 						shapesToDelete.add(detectShape(shape.trim()));
 					}
 					
-					command = new CmdDeleteShapes(shapesToDelete, viewModel);
-					controller.executeCommand(command);
+					command = new CmdDeleteShapes(shapesToDelete, model);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_UPDATE_POINT_EXECUTE":
@@ -88,10 +88,10 @@ public class LogFile implements Strategy {
 					Point currentPoint = Point.parse(points[0]);
 					Point newPoint = Point.parse(points[1]);
 					
-					currentPoint = (Point) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentPoint));
+					currentPoint = (Point) model.getShapeByIndex(model.getIndexOfShape(currentPoint));
 					
 					command = new CmdUpdatePoint(currentPoint, newPoint);
-					controller.executeCommand(command);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_UPDATE_LINE_EXECUTE":
@@ -99,10 +99,10 @@ public class LogFile implements Strategy {
 					Line currentLine = Line.parse(lines[0]);
 					Line newLine = Line.parse(lines[1]);
 					
-					currentLine = (Line) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentLine));
+					currentLine = (Line) model.getShapeByIndex(model.getIndexOfShape(currentLine));
 					
 					command = new CmdUpdateLine(currentLine, newLine);
-					controller.executeCommand(command);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_UPDATE_RECTANGLE_EXECUTE":
@@ -110,10 +110,10 @@ public class LogFile implements Strategy {
 					Rectangle currentRectangle = Rectangle.parse(rectangles[0]);
 					Rectangle newRectangle = Rectangle.parse(rectangles[1]);
 					
-					currentRectangle = (Rectangle) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentRectangle));
+					currentRectangle = (Rectangle) model.getShapeByIndex(model.getIndexOfShape(currentRectangle));
 					
 					command = new CmdUpdateRectangle(currentRectangle, newRectangle);
-					controller.executeCommand(command);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_UPDATE_CIRCLE_EXECUTE":
@@ -121,10 +121,10 @@ public class LogFile implements Strategy {
 					Circle currentCircle = Circle.parse(circles[0]);
 					Circle newCircle = Circle.parse(circles[1]);
 					
-					currentCircle = (Circle) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentCircle));
+					currentCircle = (Circle) model.getShapeByIndex(model.getIndexOfShape(currentCircle));
 					
 					command = new CmdUpdateCircle(currentCircle, newCircle);
-					controller.executeCommand(command);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_UPDATE_DONUT_EXECUTE":
@@ -132,10 +132,10 @@ public class LogFile implements Strategy {
 					Donut currentDonut = Donut.parse(donuts[0]);
 					Donut newDonut = Donut.parse(donuts[1]);
 					
-					currentDonut = (Donut) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentDonut));
+					currentDonut = (Donut) model.getShapeByIndex(model.getIndexOfShape(currentDonut));
 					
 					command = new CmdUpdateDonut(currentDonut, newDonut);
-					controller.executeCommand(command);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_UPDATE_HEXAGON_EXECUTE":
@@ -143,30 +143,30 @@ public class LogFile implements Strategy {
 					HexagonShape currentHexagon = HexagonShape.parse(hexagons[0]);
 					HexagonShape newHexagon = HexagonShape.parse(hexagons[1]);
 					
-					currentHexagon = (HexagonShape) viewModel.getShapeByIndex(viewModel.getIndexOfShape(currentHexagon));
+					currentHexagon = (HexagonShape) model.getShapeByIndex(model.getIndexOfShape(currentHexagon));
 					
 					command = new CmdUpdateHexagon(currentHexagon, newHexagon);
-					controller.executeCommand(command);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_TO_BACK_EXECUTE":
-					command = new CmdToBack(detectShape(parts[1]), viewModel);
-					controller.executeCommand(command);
+					command = new CmdToBack(detectShape(parts[1]), model);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_TO_FRONT_EXECUTE":
-					command = new CmdToFront(detectShape(parts[1]), viewModel);
-					controller.executeCommand(command);
+					command = new CmdToFront(detectShape(parts[1]), model);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_BRING_TO_BACK_EXECUTE":
-					command = new CmdBringToBack(detectShape(parts[1]), viewModel);
-					controller.executeCommand(command);
+					command = new CmdBringToBack(detectShape(parts[1]), model);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_BRING_TO_FRONT_EXECUTE":
-					command = new CmdBringToFront(detectShape(parts[1]), viewModel);
-					controller.executeCommand(command);
+					command = new CmdBringToFront(detectShape(parts[1]), model);
+					mainController.executeCommand(command);
 					break;
 					
 				case "CMD_ADD_UNEXECUTE":
@@ -181,13 +181,13 @@ public class LogFile implements Strategy {
 				case "CMD_TO_FRONT_UNEXECUTE":
 				case "CMD_BRING_TO_BACK_UNEXECUTE":
 				case "CMD_BRING_TO_FRONT_UNEXECUTE":
-					controller.undoCommand();
+					mainController.undoCommand();
 					break;
 					
 				case "SELECT":
 				case "DESELECT":
 					Integer[] coordinates = getMouseEventCoordinates(parts[2]);
-					controller.selectDeselectShape(coordinates[0], coordinates[1]);
+					mainController.selectDeselectShape(coordinates[0], coordinates[1]);
 					break;
 					
 				default:

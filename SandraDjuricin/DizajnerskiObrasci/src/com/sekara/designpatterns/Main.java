@@ -7,15 +7,15 @@ import com.sekara.designpatterns.view.frame.FrameDrawing;
 public class Main {
 
 	public static void main(String[] args) {
-		ModelDrawing modelDrawing = new ModelDrawing();
-		FrameDrawing frameDrawing = new FrameDrawing();
-		frameDrawing.getViewDrawing().setModel(modelDrawing);
-		MainController controller = new MainController(modelDrawing, frameDrawing);
- 		controller.addObserver(frameDrawing);
-		frameDrawing.setController(controller);
-		FileController fileController = new FileController(controller);
-		frameDrawing.getDrawToolbar().setControllers(controller, fileController);
-		frameDrawing.setVisible(true);
+		ModelDrawing model = new ModelDrawing();
+		FrameDrawing frame = new FrameDrawing();
+		frame.getViewDrawing().setModel(model);
+		MainController mainController = new MainController(model, frame);
+ 		mainController.addObserver(frame);
+		frame.setController(mainController);
+		FileController fileController = new FileController(mainController);
+		frame.getDrawToolbar().setControllers(mainController, fileController);
+		frame.setVisible(true);
 	
 	}
 }

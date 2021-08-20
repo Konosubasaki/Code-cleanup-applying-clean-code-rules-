@@ -7,8 +7,8 @@ import javax.swing.*;
 
 public class FileController {
 
-	private ModelDrawing modelDrawing;
-	private FrameDrawing frameDrawing;
+	private ModelDrawing model;
+	private FrameDrawing frame;
 	private MainController mainController;
 
 	private Context ioContext;
@@ -17,16 +17,16 @@ public class FileController {
 
 	public FileController(MainController mainController) {
 		this.mainController = mainController;
-		modelDrawing = mainController.getModelDrawing();
-		frameDrawing = mainController.getFrameDrawing();
+		model = mainController.getModelDrawing();
+		frame = mainController.getFrameDrawing();
 
 		this.ioContext = new Context();
-		this.logToFileStrategy = new LogFile(frameDrawing, mainController, modelDrawing);
-		this.drawingSerializationStrategy = new DrawingSerialization(modelDrawing);
+		this.logToFileStrategy = new LogFile(frame, mainController, model);
+		this.drawingSerializationStrategy = new DrawingSerialization(model);
 	}
 
 	public void saveToFile() {
-		JFileChooser saveToFileChooser = frameDrawing.getDrawToolbar().getSaveToFileChooser();
+		JFileChooser saveToFileChooser = frame.getDrawToolbar().getSaveToFileChooser();
 
 		if (saveToFileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 			switch (saveToFileChooser.getFileFilter().getDescription()) {
@@ -49,7 +49,7 @@ public class FileController {
 	}
 
 	public void readFromFile() {
-		JFileChooser readFromFileChooser = frameDrawing.getDrawToolbar().getReadFromFileChooser();
+		JFileChooser readFromFileChooser = frame.getDrawToolbar().getReadFromFileChooser();
 
 		if (readFromFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			switch (readFromFileChooser.getFileFilter().getDescription()) {
@@ -66,7 +66,7 @@ public class FileController {
 			}
 
 			ioContext.readFromFile(readFromFileChooser.getSelectedFile());
-			frameDrawing.getViewDrawing().repaint();
+			frame.getViewDrawing().repaint();
 		}
 
 		readFromFileChooser.setVisible(false);

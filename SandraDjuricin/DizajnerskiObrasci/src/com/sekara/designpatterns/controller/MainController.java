@@ -16,8 +16,8 @@ import javax.swing.*;
 
 public class MainController implements Subject {
 	
-	private ModelDrawing modelDrawing;
-	private FrameDrawing frameDrawing;
+	private ModelDrawing model;
+	private FrameDrawing frame;
 	
 	private Stack<Command> executedCommands;
 	private Stack<Command> unexecutedCommands;
@@ -34,8 +34,8 @@ public class MainController implements Subject {
 	private boolean isLogEmpty = true;
 	
 	public MainController(ModelDrawing modelDrawing, FrameDrawing frameDrawing) {
-		this.modelDrawing = modelDrawing;
-		this.frameDrawing = frameDrawing;
+		this.model = modelDrawing;
+		this.frame = frameDrawing;
 		
 		this.executedCommands = new Stack<Command>();
 		this.unexecutedCommands = new Stack<Command>();
@@ -65,12 +65,12 @@ public class MainController implements Subject {
 
 
 	public ModelDrawing getModelDrawing() {
-		return modelDrawing;
+		return model;
 	}
 
 
 	public FrameDrawing getFrameDrawing() {
-		return frameDrawing;
+		return frame;
 	}
 
 
@@ -96,7 +96,7 @@ public class MainController implements Subject {
 		switch (selectedShape) {
 			case Point:
 				Point point = new Point(mouseClick, edgeColor);
-				cmdAddShape = new CmdAddShape(point, modelDrawing);
+				cmdAddShape = new CmdAddShape(point, model);
 				executeCommand(cmdAddShape);
 				break;
 				
@@ -104,7 +104,7 @@ public class MainController implements Subject {
 				if (lineIsWaitingForSecondPoint) {
 					Point lineSecondPoint = mouseClick;
 					Line line = new Line(lineFirstPoint, lineSecondPoint, edgeColor);
-					cmdAddShape = new CmdAddShape(line, modelDrawing);
+					cmdAddShape = new CmdAddShape(line, model);
 					executeCommand(cmdAddShape);
 					lineIsWaitingForSecondPoint = false;
 					break;
@@ -121,7 +121,7 @@ public class MainController implements Subject {
 				dlgRectangle.setVisible(true);
 				
 				if(dlgRectangle.getRectangle() != null) {
-					cmdAddShape = new CmdAddShape(dlgRectangle.getRectangle(), modelDrawing);
+					cmdAddShape = new CmdAddShape(dlgRectangle.getRectangle(), model);
 					executeCommand(cmdAddShape);
 				}
 				break;
@@ -133,7 +133,7 @@ public class MainController implements Subject {
 				dlgCircle.setVisible(true);
 				
 				if(dlgCircle.getCircle() != null) {
-					cmdAddShape = new CmdAddShape(dlgCircle.getCircle(), modelDrawing);
+					cmdAddShape = new CmdAddShape(dlgCircle.getCircle(), model);
 					executeCommand(cmdAddShape);
 				}
 				break;
@@ -145,7 +145,7 @@ public class MainController implements Subject {
 				dlgDonut.setVisible(true);
 				
 				if(dlgDonut.getDonut() != null) {
-					cmdAddShape = new CmdAddShape(dlgDonut.getDonut(), modelDrawing);
+					cmdAddShape = new CmdAddShape(dlgDonut.getDonut(), model);
 					executeCommand(cmdAddShape);
 				}
 				break;
@@ -157,7 +157,7 @@ public class MainController implements Subject {
 				dlgHexagon.setVisible(true);
 				
 				if(dlgHexagon.getHexagon() != null) {
-					cmdAddShape = new CmdAddShape(dlgHexagon.getHexagon(), modelDrawing);
+					cmdAddShape = new CmdAddShape(dlgHexagon.getHexagon(), model);
 					executeCommand(cmdAddShape);
 				}
 				break;
@@ -168,7 +168,7 @@ public class MainController implements Subject {
 	}
 	
 	private void mouseClickedSelect(MouseEvent event) {
-		modelDrawing.getAllShapes().forEach(shape -> {
+		model.getAllShapes().forEach(shape -> {
 			if (shape.containsXYpoint(event.getX(), event.getY())) {
 				if (shape.isSelected()) {
 					shape.setSelected(false);
@@ -180,7 +180,7 @@ public class MainController implements Subject {
 			}
 		});
 		
-		frameDrawing.getViewDrawing().repaint();
+		frame.getViewDrawing().repaint();
 		notifyObservers();
 	}
 	
@@ -188,7 +188,7 @@ public class MainController implements Subject {
 		command.execute();
 		addLog(command.getLog());
 		executedCommands.push(command);
-		frameDrawing.getViewDrawing().repaint();
+		frame.getViewDrawing().repaint();
 		notifyObservers();
 	}
 	
@@ -196,12 +196,12 @@ public class MainController implements Subject {
 		command.unExecute();
 		addLog(command.getLog());
 		unexecutedCommands.push(command);
-		frameDrawing.getViewDrawing().repaint();
+		frame.getViewDrawing().repaint();
 		notifyObservers();
 	}
 	
 	public void editShape() {
-		Shape selectedShape = modelDrawing.getSelectedShapes().get(0);
+		Shape selectedShape = model.getSelectedShapes().get(0);
 		
 		if (selectedShape instanceof Point) {
 			DialogPoint dialogPoint = new DialogPoint();
@@ -264,69 +264,69 @@ public class MainController implements Subject {
 	public void deleteSelectedShapes() {
 		if (JOptionPane.showConfirmDialog(null, "Da li zaista zelite da obrisete selektovane oblike?", "Potvrda", 
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-			CmdDeleteShapes cmdDeleteShapes = new CmdDeleteShapes(modelDrawing.getSelectedShapes(), modelDrawing);
+			CmdDeleteShapes cmdDeleteShapes = new CmdDeleteShapes(model.getSelectedShapes(), model);
 			executeCommand(cmdDeleteShapes);
 		}
 	}
 	
 	public void deleteAllShapes() {
 		if (JOptionPane.showConfirmDialog(null, "Da li zaista zelite da obrisete crtez?", "Potvrda", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-			CmdDeleteShapes cmdDeleteShapes = new CmdDeleteShapes(modelDrawing.getAllShapes(), modelDrawing);
+			CmdDeleteShapes cmdDeleteShapes = new CmdDeleteShapes(model.getAllShapes(), model);
 			executeCommand(cmdDeleteShapes);
 		}
 	}
 	
 	public void positionToFront() {
-		Shape selectedShape = modelDrawing.getSelectedShapes().get(0);
-		int shapeIndex = modelDrawing.getIndexOfShape(selectedShape);
-		int shapeCount = modelDrawing.getSizeOfShapeList();
+		Shape selectedShape = model.getSelectedShapes().get(0);
+		int shapeIndex = model.getIndexOfShape(selectedShape);
+		int shapeCount = model.getSizeOfShapeList();
 		
 		if (shapeIndex >= shapeCount - 1) {
 			showMessageDialog("Izabrani oblik se vec nalazi na najvisoj poziciji!");
 			return;
 		}
 		
-		CmdToFront cmdToFront = new CmdToFront(selectedShape, modelDrawing);
+		CmdToFront cmdToFront = new CmdToFront(selectedShape, model);
 		executeCommand(cmdToFront);
 	}
 	
 	public void positionBringToFront() {
-		Shape selectedShape = modelDrawing.getSelectedShapes().get(0);
-		int shapeIndex = modelDrawing.getIndexOfShape(selectedShape);
-		int shapeCount = modelDrawing.getSizeOfShapeList();
+		Shape selectedShape = model.getSelectedShapes().get(0);
+		int shapeIndex = model.getIndexOfShape(selectedShape);
+		int shapeCount = model.getSizeOfShapeList();
 		
 		if (shapeIndex >= shapeCount - 1) {
 			showMessageDialog("Izabrani oblik se vec nalazi na najvisoj poziciji!");
 			return;
 		}
 		
-		CmdBringToFront cmdBringToFront = new CmdBringToFront(selectedShape, modelDrawing);
+		CmdBringToFront cmdBringToFront = new CmdBringToFront(selectedShape, model);
 		executeCommand(cmdBringToFront);
 	}
 	
 	public void positionToBack() {
-		Shape selectedShape = modelDrawing.getSelectedShapes().get(0);
-		int shapeIndex = modelDrawing.getIndexOfShape(selectedShape);
+		Shape selectedShape = model.getSelectedShapes().get(0);
+		int shapeIndex = model.getIndexOfShape(selectedShape);
 		
 		if (shapeIndex <= 0) {
 			showMessageDialog("Izabrani oblik se vec nalazi na najnizoj poziciji!");
 			return;
 		}
 		
-		CmdToBack cmdToBack = new CmdToBack(selectedShape, modelDrawing);
+		CmdToBack cmdToBack = new CmdToBack(selectedShape, model);
 		executeCommand(cmdToBack);
 	}
 	
 	public void positionBringToBack() {
-		Shape selectedShape = modelDrawing.getSelectedShapes().get(0);
-		int shapeIndex = modelDrawing.getIndexOfShape(selectedShape);
+		Shape selectedShape = model.getSelectedShapes().get(0);
+		int shapeIndex = model.getIndexOfShape(selectedShape);
 		
 		if (shapeIndex <= 0) {
 			showMessageDialog("Izabrani oblik se vec nalazi na najnizoj poziciji!");
 			return;
 		}
 		
-		CmdBringToBack cmdBringToBack = new CmdBringToBack(selectedShape, modelDrawing);
+		CmdBringToBack cmdBringToBack = new CmdBringToBack(selectedShape, model);
 		executeCommand(cmdBringToBack);
 	}
 	
@@ -375,11 +375,11 @@ public class MainController implements Subject {
 	}
 	
 	public void setEnabledBtnReadNextCommand(boolean enabled) {
-		frameDrawing.getDrawToolbar().getBtnReadNextCommand().setEnabled(enabled);
+		frame.getDrawToolbar().getBtnReadNextCommand().setEnabled(enabled);
 	}
 	
 	public void selectDeselectShape(int x, int y) {
-		MouseEvent event = new MouseEvent(frameDrawing.getViewDrawing(), MouseEvent.MOUSE_CLICKED, 
+		MouseEvent event = new MouseEvent(frame.getViewDrawing(), MouseEvent.MOUSE_CLICKED, 
 				System.currentTimeMillis(), 0, x, y, 1, false);
 		mouseClickedSelect(event);
 	}
@@ -397,7 +397,7 @@ public class MainController implements Subject {
 	@Override
 	public void notifyObservers() {
 		for(Observer observer : listOfObservers) {
-			observer.update(currentMode, modelDrawing.getSizeOfShapeList(), executedCommands.size(), unexecutedCommands.size(), modelDrawing.getSizeSelectedShapes(), !isLogEmpty);
+			observer.update(currentMode, model.getSizeOfShapeList(), executedCommands.size(), unexecutedCommands.size(), model.getSizeSelectedShapes(), !isLogEmpty);
 		}
 	}
 }
