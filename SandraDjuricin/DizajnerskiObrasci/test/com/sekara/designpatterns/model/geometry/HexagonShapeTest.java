@@ -8,13 +8,19 @@ import java.awt.Graphics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.sekara.designpatterns.model.ModelDrawing;
+
+import hexagon.Hexagon;
+
 class HexagonShapeTest {
+	private ModelDrawing model;
 	private Graphics graphics;
 	private HexagonShape hexagon;
 	private Point centerOfHexagon;
 	@BeforeEach
 	public void initialization() {
 	//	graphics = mock(Graphics.class);
+		model = new ModelDrawing();
 		centerOfHexagon=new Point(1,1);
 		hexagon = new HexagonShape(centerOfHexagon,20, Color.BLACK, Color.WHITE);
   	}
@@ -30,13 +36,23 @@ class HexagonShapeTest {
 	}
 
 	@Test
-	void testIsSelected() {
-		fail("Not yet implemented");
-	}
+	void testIsSelectedTrue() {
+		hexagon.setSelected(true);
+		assertTrue(hexagon.isSelected());
+		}
+	
+	@Test
+	void testIsSelectedFalse() {
+		hexagon.setSelected(false);
+		assertFalse(hexagon.isSelected());
+		}
 
 	@Test
 	void testSetSelected() {
-		fail("Not yet implemented");
+		hexagon.setSelected(true);
+		model.addShape(hexagon);
+		assertEquals(1,model.getSizeSelectedShapes());
+
 	}
 
 	@Test
@@ -86,7 +102,11 @@ class HexagonShapeTest {
 
 	@Test
 	void testGetHexagonShape() {
-		assertTrue(hexagon.equals(hexagon.getHexagon()));
+		Hexagon hexagonWithoutAdapter = new Hexagon(centerOfHexagon.getXCoordinate(),centerOfHexagon.getYCoordinate(),20);
+		hexagonWithoutAdapter.setBorderColor(Color.BLACK);  
+		hexagonWithoutAdapter.setAreaColor(Color.WHITE);
+		//assertTrue(hexagonWithoutAdapter.equals(hexagon.getHexagon()));
+		assertEquals(hexagonWithoutAdapter,hexagon.getHexagon());
 
 	}
 

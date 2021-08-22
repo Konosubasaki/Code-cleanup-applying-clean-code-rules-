@@ -2,53 +2,23 @@ package com.sekara.designpatterns.toolbars;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Color;
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.sekara.designpatterns.command.CmdDeleteShapes;
+import com.sekara.designpatterns.model.ModelDrawing;
+import com.sekara.designpatterns.model.geometry.Point;
+import com.sekara.designpatterns.model.geometry.Shape;
+
 class DrawToolbarTest {
-
-	@Test
-	void testDrawToolbar() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testInitializeButtons() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testInitializePanels() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetPanelsLayouts() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetPanelsBorders() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAddingButtonsToPanelsAndGroups() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testDisableButtons() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEnableButtons() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testCenterAlignButtons() {
-		fail("Not yet implemented");
+	
+	DrawToolbar toolbar;
+	@BeforeEach
+	public void initialization() {
+		toolbar= new DrawToolbar();
 	}
 
 	@Test

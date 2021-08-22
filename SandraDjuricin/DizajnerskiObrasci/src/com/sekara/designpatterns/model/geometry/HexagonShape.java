@@ -13,7 +13,7 @@ public class HexagonShape extends Shape {
 	}
 	
 	public HexagonShape(Point center, int radius, Color edgeColor, Color innerColor) {
-		this(center, radius);
+		this(center, radius); 
 		this.setEdgeColor(edgeColor);
 		this.setInnerColor(innerColor); 
 	}

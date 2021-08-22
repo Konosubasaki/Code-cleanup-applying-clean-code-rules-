@@ -218,7 +218,7 @@ public class DrawToolbar implements Observer {
 		btnPositionBringToFront.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnPositionToBack.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnPositionBringToBack.setAlignmentX(Component.CENTER_ALIGNMENT);
-		btnUndo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnUndo.setAlignmentX(Component.CENTER_ALIGNMENT); 
 		btnRedo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnShapePoint.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnShapeLine.setAlignmentX(Component.CENTER_ALIGNMENT);

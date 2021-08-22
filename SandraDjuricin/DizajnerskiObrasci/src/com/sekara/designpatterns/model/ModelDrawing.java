@@ -10,7 +10,7 @@ public class ModelDrawing {
 	private List<Shape> shapes = new ArrayList<Shape>();
 
 	public List<Shape> getAllShapes() {
-		return shapes;
+		return shapes; 
 	}
 
 	public Shape getShapeByIndex(int index) {
