@@ -43,6 +43,6 @@ class CmdBringToBackTest {
 	@Test
 	void testUnExecuteAfterExecute() {
 		cmdBringToBack.unExecute();
-		assertEquals(indexOfShape,model.getIndexOfShape(firstPoint));
+		assertEquals(indexOfShape,model.getIndexOfShape(secondPoint));
 	}
 }
