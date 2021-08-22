@@ -2,13 +2,34 @@ package com.sekara.designpatterns.model.geometry;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
+	
+	private Graphics graphics;
+	private Line line;
+	private Point startPoint;
+	private Point endPoint;
+	@BeforeEach
+	public void initialization() {
+	//	graphics = mock(Graphics.class);
+		startPoint=new Point(1,1);
+		endPoint=new Point(1,10);
+		line = new Line(startPoint,endPoint, Color.BLACK);
+  	}
 
 	@Test
-	void testContainsXYpoint() {
-		fail("Not yet implemented");
+	void testContainsXYpointTrue() {
+		assertTrue(line.containsXYpoint(1,5));
+	}
+
+	@Test
+	void testContainsXYpointFalse() {
+		assertFalse(line.containsXYpoint(1,11));
 	}
 
 	@Test
@@ -18,82 +39,80 @@ class LineTest {
 
 	@Test
 	void testClone() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testLine() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testLinePointPoint() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testLinePointPointColor() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testLinePointPointBoolean() {
-		fail("Not yet implemented");
+		Line lineClone=(Line)line.clone();
+		assertEquals(line,lineClone);
 	}
 
 	@Test
 	void testCompareTo() {
-		fail("Not yet implemented");
+		Point newEndPoint=new Point(1,5);
+		Line newline = new Line(startPoint,newEndPoint, Color.BLACK);
+		assertEquals(5,line.compareTo(newline));
 	}
 
 	@Test
 	void testMoveBy() {
-		fail("Not yet implemented");
+		line.moveBy(5, 5);
+		assertEquals(1+5,line.getStartPoint().getXCoordinate());
+		assertEquals(1+5,line.getStartPoint().getYCoordinate());
+
+		assertEquals(1+5,line.getEndPoint().getXCoordinate());
+		assertEquals(10+5,line.getEndPoint().getYCoordinate());
+
 	}
 
 	@Test
 	void testMiddleOfLine() {
-		fail("Not yet implemented");
+		Point middle=new Point(1,5);
+		assertEquals(middle,line.middleOfLine());
 	}
 
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
+		Line equalLine = new Line(startPoint,endPoint, Color.BLACK);
+		assertTrue(line.equals(equalLine));
 	}
-
+	
 	@Test
 	void testLength() {
-		fail("Not yet implemented");
+		assertEquals(9,line.length());
 	}
 
 	@Test
 	void testGetStartPoint() {
-		fail("Not yet implemented");
+		assertEquals(startPoint,line.getStartPoint());
 	}
 
 	@Test
 	void testSetStartPoint() {
-		fail("Not yet implemented");
+		Point newPoint=new Point(15,15);
+		line.setStartPoint(newPoint);
+		assertEquals(newPoint,line.getStartPoint());
 	}
 
 	@Test
 	void testGetEndPoint() {
-		fail("Not yet implemented");
+		assertEquals(endPoint,line.getEndPoint());
 	}
 
 	@Test
 	void testSetEndPoint() {
-		fail("Not yet implemented");
+		Point newPoint=new Point(15,15);
+		line.setEndPoint(newPoint);
+		assertEquals(newPoint,line.getEndPoint());
 	}
 
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		String lineToString=line.toString();
+		assertEquals("Line(X1:1|Y1:1|X2:1|Y2:10|EdgeColor:-16777216)",lineToString);
 	}
 
 	@Test
 	void testParse() {
-		fail("Not yet implemented");
+		String toParse="Line(X1:1|Y1:1|X2:1|Y2:10|EdgeColor:-16777216)";
+		Line lineParse=(Line)line.parse(toParse);
+		assertEquals(line,lineParse);
 	}
 
 }

@@ -8,7 +8,7 @@ public class Rectangle extends Shape {
 	private Point upperLeftPoint;
 	private int width;
 	private int height;
-	
+	 
 	public Rectangle() {
 	}
 

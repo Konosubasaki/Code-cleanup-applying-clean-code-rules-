@@ -2,13 +2,26 @@ package com.sekara.designpatterns.model.geometry;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class HexagonShapeTest {
-
+	private Graphics graphics;
+	private HexagonShape hexagon;
+	private Point centerOfHexagon;
+	@BeforeEach
+	public void initialization() {
+	//	graphics = mock(Graphics.class);
+		centerOfHexagon=new Point(1,1);
+		hexagon = new HexagonShape(centerOfHexagon,20, Color.BLACK, Color.WHITE);
+  	}
+	
 	@Test
 	void testContainsXYpoint() {
-		fail("Not yet implemented");
+		assertTrue(hexagon.containsXYpoint(centerOfHexagon.getXCoordinate(), centerOfHexagon.getYCoordinate()));
 	}
 
 	@Test
@@ -28,67 +41,72 @@ class HexagonShapeTest {
 
 	@Test
 	void testGetEdgeColor() {
-		fail("Not yet implemented");
+		assertEquals(Color.BLACK,hexagon.getEdgeColor());
 	}
 
 	@Test
 	void testSetEdgeColor() {
-		fail("Not yet implemented");
-	}
+		hexagon.setEdgeColor(Color.WHITE);
+		assertEquals(Color.WHITE,hexagon.getEdgeColor());	}
 
 	@Test
 	void testGetInnerColor() {
-		fail("Not yet implemented");
+		assertEquals(Color.WHITE,hexagon.getInnerColor());
 	}
 
 	@Test
 	void testSetInnerColor() {
-		fail("Not yet implemented");
+		hexagon.setInnerColor(Color.BLACK);
+		assertEquals(Color.BLACK,hexagon.getInnerColor());
 	}
 
 	@Test
 	void testClone() {
-		fail("Not yet implemented");
+		HexagonShape hexagonClone=(HexagonShape)hexagon.clone();
+		assertEquals(hexagon,hexagonClone);
 	}
 
 	@Test
-	void testHexagonShapePointInt() {
-		fail("Not yet implemented");
-	}
+	void testMoveBy() { 
+		Point newCenter=centerOfHexagon;
+		newCenter.setXCoordinate(newCenter.getXCoordinate()+5);
+		newCenter.setYCoordinate(newCenter.getYCoordinate()+5);
+		HexagonShape newHexagon = new HexagonShape(newCenter,20, Color.BLACK, Color.WHITE);
+		
+		hexagon.moveBy(5, 5);
+		assertEquals(newHexagon,hexagon);
 
-	@Test
-	void testHexagonShapePointIntColorColor() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMoveBy() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	void testCompareTo() {
-		fail("Not yet implemented");
+		HexagonShape secondHexagonShape = new HexagonShape(centerOfHexagon,10, Color.BLACK, Color.WHITE);
+		assertEquals(10,hexagon.compareTo(secondHexagonShape));
 	}
 
 	@Test
-	void testGetHexagon() {
-		fail("Not yet implemented");
+	void testGetHexagonShape() {
+		assertTrue(hexagon.equals(hexagon.getHexagon()));
+
 	}
 
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		String hexagonToString=hexagon.toString();
+		assertEquals("Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)",hexagonToString);
 	}
 
 	@Test
 	void testParse() {
-		fail("Not yet implemented");
+		String toParse="Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)";
+		HexagonShape hexagonParse=(HexagonShape)hexagon.parse(toParse);
+		assertEquals(hexagon,hexagonParse);
 	}
 
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
+		HexagonShape equalHexagon = new HexagonShape(centerOfHexagon,20, Color.BLACK, Color.WHITE);
+		assertTrue(hexagon.equals(equalHexagon));
 	}
 
 }

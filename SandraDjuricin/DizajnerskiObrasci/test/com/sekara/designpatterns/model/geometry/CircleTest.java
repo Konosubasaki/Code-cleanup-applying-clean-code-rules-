@@ -70,7 +70,6 @@ class CircleTest {
 	void testArea() {
 		double Area= 20*20* Math.PI;
 		assertEquals(Area,circle.area());
-
 	}
 	
 	@Test

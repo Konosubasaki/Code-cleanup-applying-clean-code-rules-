@@ -15,13 +15,14 @@ public class HexagonShape extends Shape {
 	public HexagonShape(Point center, int radius, Color edgeColor, Color innerColor) {
 		this(center, radius);
 		this.setEdgeColor(edgeColor);
-		this.setInnerColor(innerColor);
+		this.setInnerColor(innerColor); 
 	}
 
 	@Override
 	public void moveBy(int byX, int byY) {
-		this.hexagon.setX(byX);
-		this.hexagon.setY(byY);
+		this.hexagon.setX(this.hexagon.getX()+byX);
+		this.hexagon.setY(this.hexagon.getY()+byY);
+		 
 	}
 
 	@Override

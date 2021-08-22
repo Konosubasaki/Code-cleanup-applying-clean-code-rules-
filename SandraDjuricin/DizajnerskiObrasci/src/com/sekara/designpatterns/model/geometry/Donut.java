@@ -66,7 +66,7 @@ public class Donut extends Circle {
 	}
 	
 	public double area() {
-		return super.area() - innerRadius * innerRadius * Math.PI;
+		return super.area() - innerRadius * innerRadius * Math.PI; 
 	}
 	
 	public boolean equals(Object obj) {

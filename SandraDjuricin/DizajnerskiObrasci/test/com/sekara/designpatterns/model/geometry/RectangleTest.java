@@ -2,15 +2,35 @@ package com.sekara.designpatterns.model.geometry;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class RectangleTest {
+	
+	private Graphics graphics;
+	private Rectangle rectangle;
+	private Point upperLeftPoint;
+
+	@BeforeEach
+	public void initialization() {
+	//	graphics = mock(Graphics.class);
+		upperLeftPoint=new Point(1,1);
+		rectangle = new Rectangle(upperLeftPoint,5,10, Color.BLACK, Color.WHITE);
+  	}
 
 	@Test
-	void testContainsXYpoint() {
-		fail("Not yet implemented");
+	void testContainsXYpointTrue() {
+		assertTrue(rectangle.containsXYpoint(upperLeftPoint.getXCoordinate(), upperLeftPoint.getYCoordinate()));
 	}
-
+	@Test
+	void testContainsXYpointFalse() {
+		Point newPoint=new Point(100,100);
+		assertFalse(rectangle.containsXYpoint(newPoint.getXCoordinate(), newPoint.getYCoordinate()));
+	}
+	
 	@Test
 	void testDraw() {
 		fail("Not yet implemented");
@@ -18,87 +38,84 @@ class RectangleTest {
 
 	@Test
 	void testClone() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testRectangle() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testRectanglePointIntInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testRectanglePointIntIntColorColor() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testRectanglePointIntIntBoolean() {
-		fail("Not yet implemented");
+		Rectangle rectangleClone=(Rectangle)rectangle.clone();
+		assertEquals(rectangle,rectangleClone);
 	}
 
 	@Test
 	void testMoveBy() {
-		fail("Not yet implemented");
+		Point oldUpperLeftPoint=rectangle.getUpperLeftPoint();
+		oldUpperLeftPoint.setXCoordinate(oldUpperLeftPoint.getXCoordinate()+5);
+		oldUpperLeftPoint.setYCoordinate(oldUpperLeftPoint.getYCoordinate()+5);
+		
+		rectangle.moveBy(5, 5);
+		assertEquals(oldUpperLeftPoint,rectangle.getUpperLeftPoint());
 	}
 
 	@Test
 	void testCompareTo() {
-		fail("Not yet implemented");
+		Rectangle secondRectangle = new Rectangle(upperLeftPoint,5,10, Color.BLACK, Color.WHITE);
+		assertEquals((int)(rectangle.area()-secondRectangle.area()),rectangle.compareTo(secondRectangle));
 	}
 
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
+		Rectangle equalRectangle = new Rectangle(upperLeftPoint,5,10, Color.BLACK, Color.WHITE);
+		assertTrue(rectangle.equals(equalRectangle));
 	}
 
 	@Test
 	void testArea() {
-		fail("Not yet implemented");
+		double Area= 5*10;
+		assertEquals(Area,rectangle.area());
 	}
 
 	@Test
 	void testGetUpperLeftPoint() {
-		fail("Not yet implemented");
+		assertEquals(upperLeftPoint,rectangle.getUpperLeftPoint());
 	}
 
 	@Test
 	void testSetUpperLeftPoint() {
-		fail("Not yet implemented");
+		Point newUpperLeftPoint=rectangle.getUpperLeftPoint();
+		rectangle.setUpperLeftPoint(newUpperLeftPoint);
+		assertEquals(newUpperLeftPoint,rectangle.getUpperLeftPoint());
 	}
 
 	@Test
 	void testGetWidth() {
-		fail("Not yet implemented");
+		assertEquals(10,rectangle.getWidth());
 	}
 
 	@Test
 	void testSetWidth() {
-		fail("Not yet implemented");
+		rectangle.setWidth(15);
+		assertEquals(15,rectangle.getWidth());
+
 	}
 
 	@Test
 	void testGetHeight() {
-		fail("Not yet implemented");
+		assertEquals(5,rectangle.getHeight());
 	}
 
 	@Test
 	void testSetHeight() {
-		fail("Not yet implemented");
+		rectangle.setHeight(8);
+		assertEquals(8,rectangle.getHeight());
 	}
 
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		String rectangleToString=rectangle.toString();
+		assertEquals("Rectangle(X:1|Y:1|W:10|H:5|EdgeColor:-16777216|InnerColor:-1)",rectangleToString);
 	}
 
 	@Test
 	void testParse() {
-		fail("Not yet implemented");
+		String toParse="Rectangle(X:1|Y:1|W:10|H:5|EdgeColor:-16777216|InnerColor:-1)";
+		Rectangle rectangleParse=(Rectangle)rectangle.parse(toParse);
+		assertEquals(rectangle,rectangleParse);
 	}
 
 }
