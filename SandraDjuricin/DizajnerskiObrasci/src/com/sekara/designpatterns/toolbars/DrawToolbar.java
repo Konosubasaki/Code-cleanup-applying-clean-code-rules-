@@ -409,7 +409,7 @@ public class DrawToolbar implements Observer {
 
 	public void setControllers(MainController controller, FileController fileController) {
 		this.mainController = controller;
-		this.fileController = fileController;
+		this.fileController = fileController; 
 		btnColorEdge.setBackground(controller.getEdgeColor());
 		btnColorInner.setBackground(controller.getInnerColor());
 		controller.setCurrentMode(ModeType.Drawing);

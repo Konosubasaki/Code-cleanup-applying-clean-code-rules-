@@ -32,7 +32,7 @@ class HexagonShapeTest {
 
 	@Test
 	void testDraw() {
-		fail("Not yet implemented");
+		hexagon.draw(graphics);
 	}
 
 	@Test

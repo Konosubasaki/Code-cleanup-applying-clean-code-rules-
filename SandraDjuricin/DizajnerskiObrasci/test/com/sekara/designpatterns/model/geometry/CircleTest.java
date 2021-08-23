@@ -30,7 +30,7 @@ class CircleTest {
 
 	@Test
 	void testDraw() {
-		fail("Not yet implemented");
+		circle.draw(graphics);
 	}
 	
 	@Test

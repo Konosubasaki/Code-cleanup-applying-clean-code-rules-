@@ -34,7 +34,7 @@ class LineTest {
 
 	@Test
 	void testDraw() {
-		fail("Not yet implemented");
+		line.draw(graphics);
 	}
 
 	@Test

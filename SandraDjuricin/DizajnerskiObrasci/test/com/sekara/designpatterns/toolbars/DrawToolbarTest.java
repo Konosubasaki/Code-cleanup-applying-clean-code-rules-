@@ -27,61 +27,6 @@ class DrawToolbarTest {
 	}
 
 	@Test
-	void testSetControllers() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetPnlLeftOperations() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetPnlRightOperations() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetViewDrawging() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetDefaultListLogModel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetPnlLog() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetReadFromFileChooser() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetSaveToFileChooser() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetBtnReadNextCommand() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetBtnColorEdge() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetBtnColorInner() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testUpdateUndoRedoButtonsState() {
 		fail("Not yet implemented");
 	}

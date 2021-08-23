@@ -1,5 +1,4 @@
 package com.sekara.designpatterns.io;
-
 import java.io.File;
 
 public class Context implements Strategy {

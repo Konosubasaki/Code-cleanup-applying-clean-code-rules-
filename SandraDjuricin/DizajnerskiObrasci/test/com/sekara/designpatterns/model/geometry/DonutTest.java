@@ -26,7 +26,7 @@ class DonutTest {
 
 	@Test
 	void testDraw() {
-		fail("Not yet implemented");
+		donut.draw(graphics);
 	}
 
 	@Test

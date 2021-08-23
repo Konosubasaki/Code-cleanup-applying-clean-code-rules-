@@ -29,7 +29,7 @@ class PointTest {
 
 	@Test
 	void testDraw() {
-		fail("Not yet implemented");
+		point.draw(graphics);
 	}
 
 	@Test

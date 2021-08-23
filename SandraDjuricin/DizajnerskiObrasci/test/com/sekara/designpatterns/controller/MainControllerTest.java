@@ -3,7 +3,7 @@ package com.sekara.designpatterns.controller;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +21,14 @@ import com.sekara.designpatterns.view.frame.FrameDrawing;
 class MainControllerTest {
 	private MainController mainController;
 	ModelDrawing model;
+	MouseEvent mouse;
+	
 	@BeforeEach
 	public void initialization() {
 		model = new ModelDrawing();
 		FrameDrawing frame = new FrameDrawing() ;
 		mainController=new MainController(model,frame);
+		//mouse=new MouseEvent();
   	}
 	
 	@Test
@@ -237,16 +240,6 @@ class MainControllerTest {
 
 	@Test
 	void testSelectDeselectShape() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAddObserver() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testRemoveObserver() {
 		fail("Not yet implemented");
 	}
 

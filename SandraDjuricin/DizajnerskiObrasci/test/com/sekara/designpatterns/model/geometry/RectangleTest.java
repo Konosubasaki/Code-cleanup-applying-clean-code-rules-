@@ -33,7 +33,7 @@ class RectangleTest {
 	
 	@Test
 	void testDraw() {
-		fail("Not yet implemented");
+		rectangle.draw(graphics);
 	}
 
 	@Test
