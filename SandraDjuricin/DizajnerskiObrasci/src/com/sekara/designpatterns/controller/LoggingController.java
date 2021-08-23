@@ -11,8 +11,12 @@ public class LoggingController {
 
 	public LoggingController(FrameDrawing frame) {
 		this.frame = frame;
-		this.logger = this.frame.getDrawToolbar().getDefaultListLogModel();
+		logger = this.frame.getDrawToolbar().getDefaultListLogModel();
 		isLogEmpty = true;
+	}
+
+	public DefaultListModel<String> getLogger() {
+		return logger;
 	}
 
 	public void addLog(String log) {

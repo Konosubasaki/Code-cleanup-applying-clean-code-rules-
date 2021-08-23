@@ -75,7 +75,7 @@ public class MainController implements Subject {
 
 	private void mouseClickedDraw(MouseEvent event) {
 		Point mouseClick = new Point(event.getX(), event.getY());
-		CmdAddShape cmdAddShape;
+		CmdAddShape cmdAddShape; 
 
 		switch (selectedShape) {
 		case Point:
@@ -351,7 +351,7 @@ public class MainController implements Subject {
 	}
 
 	public void setEdgeColor(Color edgeColor) {
-		this.edgeColor = edgeColor;
+		this.edgeColor = edgeColor; 
 	}
 
 	public void setInnerColor(Color innerColor) {
@@ -376,5 +376,13 @@ public class MainController implements Subject {
 
 	public Color getInnerColor() {
 		return this.innerColor;
+	}
+	
+	public Stack<Command> getUnexecutedCommands() {
+		return unexecutedCommands;
+	}
+	
+	public Stack<Command> getExecutedCommands() {
+		return executedCommands;
 	}
 }
