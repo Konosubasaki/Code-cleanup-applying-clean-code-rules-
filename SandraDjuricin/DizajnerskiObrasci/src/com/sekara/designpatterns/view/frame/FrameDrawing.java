@@ -41,7 +41,7 @@ public class FrameDrawing extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				mainController.mouseClicked(arg0);
 			}
-		}); 
+		});
 	}
 
 	public void setController(MainController mainController) {

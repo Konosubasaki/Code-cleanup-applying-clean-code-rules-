@@ -20,7 +20,7 @@ public class CmdUpdatePoint extends Command {
 		currentPoint.setEdgeColor(point.getEdgeColor());
 		currentPoint.setSelected(point.isSelected());
 	}
-	
+
 	@Override
 	public void execute() {
 		updatingCurrentPoint(newStateOfPoint);

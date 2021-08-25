@@ -16,7 +16,7 @@ class CmdAddShapeTest {
 	@BeforeEach
 	public void initialization() {
 		model = new ModelDrawing();
-		point = new Point(5,10, Color.BLACK);
+		point = new Point(5, 10, Color.BLACK);
 		cmdAddShape = new CmdAddShape(point, model);
 	}
 
@@ -38,4 +38,3 @@ class CmdAddShapeTest {
 		assertFalse(model.containsShape(point));
 	}
 }
-

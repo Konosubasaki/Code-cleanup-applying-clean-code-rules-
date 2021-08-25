@@ -10,7 +10,7 @@ public class ModelDrawing {
 	private List<Shape> shapes = new ArrayList<Shape>();
 
 	public List<Shape> getAllShapes() {
-		return shapes; 
+		return shapes;
 	}
 
 	public Shape getShapeByIndex(int index) {
@@ -57,7 +57,7 @@ public class ModelDrawing {
 	public void removeShapes(List<Shape> shapes) {
 		this.shapes.removeAll(shapes);
 	}
-	
+
 	public boolean containsShape(Shape shape) {
 		return this.shapes.contains(shape);
 	}

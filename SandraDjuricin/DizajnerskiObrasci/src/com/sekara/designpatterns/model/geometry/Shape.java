@@ -11,15 +11,15 @@ public abstract class Shape implements Moveable, Comparable, Cloneable, Serializ
 
 	public Shape() {
 	}
-	
+
 	public Shape(boolean selected) {
 		this.selected = selected;
 	}
-	
+
 	public abstract boolean containsXYpoint(int xCoordinate, int yCoordinate);
-	
+
 	public abstract void draw(Graphics g);
-	
+
 	public boolean isSelected() {
 		return selected;
 	}
@@ -43,6 +43,6 @@ public abstract class Shape implements Moveable, Comparable, Cloneable, Serializ
 	public void setInnerColor(Color innerColor) {
 		this.innerColor = innerColor;
 	}
-	
+
 	public abstract Shape clone();
 }

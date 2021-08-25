@@ -16,7 +16,7 @@ public class DialogLine extends JDialog {
 	private Color edgeColor = null;
 	private boolean isSelected = false;
 	private JButton btnEdgeColor = new JButton(" ");
-	
+
 	public DialogLine() {
 		setResizable(false);
 		setTitle("IT 48-2017 Šekara Danilo");
@@ -79,7 +79,8 @@ public class DialogLine extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						edgeColor = JColorChooser.showDialog(null, "Izaberite boju ivice", edgeColor);
-						if (edgeColor == null) edgeColor = Color.BLACK;
+						if (edgeColor == null)
+							edgeColor = Color.BLACK;
 						btnEdgeColor.setBackground(edgeColor);
 					}
 				});
@@ -100,15 +101,18 @@ public class DialogLine extends JDialog {
 							int newSecondX = Integer.parseInt(txtSecondX.getText());
 							int newSecondY = Integer.parseInt(txtSecondY.getText());
 
-							if(newFirstX < 0 || newFirstY < 0 || newSecondX < 0 || newSecondY < 0) {
-								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							if (newFirstX < 0 || newFirstY < 0 || newSecondX < 0 || newSecondY < 0) {
+								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+										JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							line = new Line(new Point(newFirstX, newFirstY), new Point(newSecondX, newSecondY), edgeColor);
+							line = new Line(new Point(newFirstX, newFirstY), new Point(newSecondX, newSecondY),
+									edgeColor);
 							line.setSelected(isSelected);
 							dispose();
 						} catch (Exception ex) {
-							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});

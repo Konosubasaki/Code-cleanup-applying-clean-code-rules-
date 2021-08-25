@@ -1,4 +1,4 @@
-  package com.sekara.designpatterns.command;
+package com.sekara.designpatterns.command;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,29 +20,29 @@ class CmdBringToBackTest {
 	@BeforeEach
 	public void initialization() {
 		model = new ModelDrawing();
-		firstPoint = new Point(15,20, Color.BLACK);
-		secondPoint = new Point(5,10, Color.BLACK);
-   		model.addShape(firstPoint);
+		firstPoint = new Point(15, 20, Color.BLACK);
+		secondPoint = new Point(5, 10, Color.BLACK);
+		model.addShape(firstPoint);
 		model.addShape(secondPoint);
 		cmdBringToBack = new CmdBringToBack(secondPoint, model);
 		indexOfShape = model.getIndexOfShape(secondPoint);
 	}
-	
+
 	@Test
 	public void testUnExecuteExecuteNotCalled() {
 		cmdBringToBack.unExecute();
-		assertEquals(indexOfShape,model.getIndexOfShape(secondPoint));
+		assertEquals(indexOfShape, model.getIndexOfShape(secondPoint));
 	}
-	
+
 	@Test
 	public void testExecute() {
 		cmdBringToBack.execute();
-		assertEquals(0,model.getIndexOfShape(secondPoint));
+		assertEquals(0, model.getIndexOfShape(secondPoint));
 	}
 
 	@Test
 	void testUnExecuteAfterExecute() {
 		cmdBringToBack.unExecute();
-		assertEquals(indexOfShape,model.getIndexOfShape(secondPoint));
+		assertEquals(indexOfShape, model.getIndexOfShape(secondPoint));
 	}
 }

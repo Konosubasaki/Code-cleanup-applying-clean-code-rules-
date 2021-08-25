@@ -15,7 +15,7 @@ public class DialogHexagon extends JDialog {
 	private boolean isSelected = false;
 	private JButton btnEdgeColor = new JButton(" ");
 	private JButton btnInnerColor = new JButton(" ");
-	
+
 	public DialogHexagon() {
 		setResizable(false);
 		setTitle("IT 48-2017 Šekara Danilo");
@@ -68,7 +68,8 @@ public class DialogHexagon extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						edgeColor = JColorChooser.showDialog(null, "Izaberite boju ivice", edgeColor);
-						if (edgeColor == null) edgeColor = Color.BLACK;
+						if (edgeColor == null)
+							edgeColor = Color.BLACK;
 						btnEdgeColor.setBackground(edgeColor);
 					}
 				});
@@ -85,7 +86,8 @@ public class DialogHexagon extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						innerColor = JColorChooser.showDialog(null, "Izaberite boju unutrašnjosti", innerColor);
-						if (innerColor == null) innerColor = Color.WHITE;
+						if (innerColor == null)
+							innerColor = Color.WHITE;
 						btnInnerColor.setBackground(innerColor);
 					}
 				});
@@ -105,15 +107,17 @@ public class DialogHexagon extends JDialog {
 							int newY = Integer.parseInt(txtY.getText());
 							int newRadius = Integer.parseInt(txtRadius.getText());
 
-							if(newX < 0 || newY < 0 || newRadius < 1) {
-								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							if (newX < 0 || newY < 0 || newRadius < 1) {
+								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+										JOptionPane.ERROR_MESSAGE);
 								return;
 							}
 							hexagon = new HexagonShape(new Point(newX, newY), newRadius, edgeColor, innerColor);
 							hexagon.setSelected(isSelected);
 							dispose();
 						} catch (Exception ex) {
-							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
@@ -134,19 +138,19 @@ public class DialogHexagon extends JDialog {
 	public HexagonShape getHexagon() {
 		return hexagon;
 	}
-	
+
 	public void setPoint(Point point) {
 		txtX.setText("" + point.getXCoordinate());
 		txtY.setText("" + point.getYCoordinate());
 	}
-	
+
 	public void setColors(Color edgeColor, Color innerColor) {
 		this.edgeColor = edgeColor;
 		this.innerColor = innerColor;
 		btnEdgeColor.setBackground(edgeColor);
 		btnInnerColor.setBackground(innerColor);
 	}
-	
+
 	public void setHexagon(HexagonShape hexagon) {
 		txtX.setText("" + hexagon.getHexagon().getX());
 		txtY.setText("" + hexagon.getHexagon().getY());

@@ -11,12 +11,12 @@ public class DialogDonut extends JDialog {
 	private JTextField txtY;
 	private JTextField txtRadius;
 	private JTextField txtInnerRadius;
-	
+
 	private Donut donut = null;
 	private Color edgeColor = null, innerColor = null;
-	
+
 	private boolean isSelected = false;
-	
+
 	private JButton btnEdgeColor = new JButton(" ");
 	private JButton btnInnerColor = new JButton(" ");
 
@@ -82,7 +82,8 @@ public class DialogDonut extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						edgeColor = JColorChooser.showDialog(null, "Izaberite boju ivice", edgeColor);
-						if (edgeColor == null) edgeColor = Color.BLACK;
+						if (edgeColor == null)
+							edgeColor = Color.BLACK;
 						btnEdgeColor.setBackground(edgeColor);
 					}
 				});
@@ -99,7 +100,8 @@ public class DialogDonut extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						innerColor = JColorChooser.showDialog(null, "Izaberite boju unutrašnjosti", innerColor);
-						if (innerColor == null) innerColor = Color.WHITE;
+						if (innerColor == null)
+							innerColor = Color.WHITE;
 						btnInnerColor.setBackground(innerColor);
 					}
 				});
@@ -120,15 +122,18 @@ public class DialogDonut extends JDialog {
 							int newRadius = Integer.parseInt(txtRadius.getText());
 							int newInnerRadius = Integer.parseInt(txtInnerRadius.getText());
 
-							if(newX < 0 || newY < 0 || newRadius < 1 || newInnerRadius < 1 || newInnerRadius >= newRadius) {
-								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							if (newX < 0 || newY < 0 || newRadius < 1 || newInnerRadius < 1
+									|| newInnerRadius >= newRadius) {
+								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+										JOptionPane.ERROR_MESSAGE);
 								return;
 							}
 							donut = new Donut(new Point(newX, newY), newRadius, newInnerRadius, edgeColor, innerColor);
 							donut.setSelected(isSelected);
 							dispose();
 						} catch (Exception ex) {
-							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
@@ -149,20 +154,20 @@ public class DialogDonut extends JDialog {
 	public Donut getDonut() {
 		return donut;
 	}
-	
+
 	public void setPoint(Point point) {
 		txtX.setText("" + point.getXCoordinate());
 		txtY.setText("" + point.getYCoordinate());
 	}
-	
+
 	public void setColors(Color edgeColor, Color innerColor) {
 		this.edgeColor = edgeColor;
 		this.innerColor = innerColor;
-		
+
 		btnEdgeColor.setBackground(edgeColor);
 		btnInnerColor.setBackground(innerColor);
 	}
-	
+
 	public void setDonut(Donut donut) {
 		txtX.setText("" + donut.getCenter().getXCoordinate());
 		txtY.setText("" + donut.getCenter().getYCoordinate());

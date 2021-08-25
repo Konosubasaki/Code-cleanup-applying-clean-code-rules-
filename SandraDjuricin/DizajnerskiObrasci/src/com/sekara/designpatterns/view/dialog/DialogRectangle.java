@@ -80,7 +80,8 @@ public class DialogRectangle extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						edgeColor = JColorChooser.showDialog(null, "Izaberite boju ivice", edgeColor);
-						if (edgeColor == null) edgeColor = Color.BLACK;
+						if (edgeColor == null)
+							edgeColor = Color.BLACK;
 						btnEdgeColor.setBackground(edgeColor);
 					}
 				});
@@ -97,7 +98,8 @@ public class DialogRectangle extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						innerColor = JColorChooser.showDialog(null, "Izaberite boju unutrašnjosti", innerColor);
-						if (innerColor == null) innerColor = Color.WHITE;
+						if (innerColor == null)
+							innerColor = Color.WHITE;
 						btnInnerColor.setBackground(innerColor);
 					}
 				});
@@ -118,15 +120,18 @@ public class DialogRectangle extends JDialog {
 							int newHeight = Integer.parseInt(txtHeight.getText());
 							int newWIdth = Integer.parseInt(txtWidth.getText());
 
-							if(newX < 0 || newY < 0 || newHeight < 1 || newWIdth < 1) {
-								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							if (newX < 0 || newY < 0 || newHeight < 1 || newWIdth < 1) {
+								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+										JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							rectangle = new Rectangle(new Point(newX, newY), newHeight, newWIdth, edgeColor, innerColor);
+							rectangle = new Rectangle(new Point(newX, newY), newHeight, newWIdth, edgeColor,
+									innerColor);
 							rectangle.setSelected(isSelected);
 							dispose();
 						} catch (Exception ex) {
-							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
@@ -147,19 +152,19 @@ public class DialogRectangle extends JDialog {
 	public Rectangle getRectangle() {
 		return rectangle;
 	}
-	
+
 	public void setPoint(Point point) {
 		txtX.setText("" + point.getXCoordinate());
 		txtY.setText("" + point.getYCoordinate());
 	}
-	
+
 	public void setColors(Color edgeColor, Color innerColor) {
 		this.edgeColor = edgeColor;
 		this.innerColor = innerColor;
 		btnEdgeColor.setBackground(edgeColor);
 		btnInnerColor.setBackground(innerColor);
 	}
-	
+
 	public void setRectangle(Rectangle rect) {
 		txtX.setText("" + rect.getUpperLeftPoint().getXCoordinate());
 		txtY.setText("" + rect.getUpperLeftPoint().getYCoordinate());

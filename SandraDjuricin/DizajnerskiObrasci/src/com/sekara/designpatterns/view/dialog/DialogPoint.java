@@ -9,14 +9,14 @@ import javax.swing.*;
 public class DialogPoint extends JDialog {
 	private JTextField txtX;
 	private JTextField txtY;
-	
+
 	private Point point = null;
-	private Color edgeColor = null; 
-	
+	private Color edgeColor = null;
+
 	private boolean isSelected = false;
-	
+
 	private JButton btnEdgeColor = new JButton(" ");
-	
+
 	public DialogPoint() {
 		setResizable(false);
 		setTitle("IT 48-2017 Šekara Danilo");
@@ -59,7 +59,8 @@ public class DialogPoint extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						edgeColor = JColorChooser.showDialog(null, "Izaberite boju ivice", edgeColor);
-						if (edgeColor == null) edgeColor = Color.BLACK;
+						if (edgeColor == null)
+							edgeColor = Color.BLACK;
 						btnEdgeColor.setBackground(edgeColor);
 					}
 				});
@@ -78,15 +79,17 @@ public class DialogPoint extends JDialog {
 							int newX = Integer.parseInt(txtX.getText());
 							int newY = Integer.parseInt(txtY.getText());
 
-							if(newX < 0 || newY < 0) {
-								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							if (newX < 0 || newY < 0) {
+								JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+										JOptionPane.ERROR_MESSAGE);
 								return;
 							}
 							point = new Point(newX, newY, edgeColor);
 							point.setSelected(isSelected);
 							dispose();
 						} catch (Exception ex) {
-							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Uneli ste pogrešne podatke!", "Greška!",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
@@ -107,13 +110,13 @@ public class DialogPoint extends JDialog {
 	public Point getPoint() {
 		return point;
 	}
-	
+
 	public void setPoint(Point point) {
 		txtX.setText("" + point.getXCoordinate());
 		txtY.setText("" + point.getYCoordinate());
 		edgeColor = point.getEdgeColor();
 		isSelected = point.isSelected();
-		
+
 		btnEdgeColor.setBackground(point.getEdgeColor());
 	}
 }

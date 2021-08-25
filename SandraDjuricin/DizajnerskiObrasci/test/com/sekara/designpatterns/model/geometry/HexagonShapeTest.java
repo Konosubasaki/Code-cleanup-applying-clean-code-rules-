@@ -14,118 +14,109 @@ import hexagon.Hexagon;
 
 class HexagonShapeTest {
 	private ModelDrawing model;
-	private Graphics graphics;
 	private HexagonShape hexagon;
 	private Point centerOfHexagon;
+
 	@BeforeEach
 	public void initialization() {
-	//	graphics = mock(Graphics.class);
+		// graphics = mock(Graphics.class);
 		model = new ModelDrawing();
-		centerOfHexagon=new Point(1,1);
-		hexagon = new HexagonShape(centerOfHexagon,20, Color.BLACK, Color.WHITE);
-  	}
-	
+		centerOfHexagon = new Point(1, 1);
+		hexagon = new HexagonShape(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
+	}
+
 	@Test
 	void testContainsXYpoint() {
 		assertTrue(hexagon.containsXYpoint(centerOfHexagon.getXCoordinate(), centerOfHexagon.getYCoordinate()));
 	}
 
 	@Test
-	void testDraw() {
-		hexagon.draw(graphics);
-	}
-
-	@Test
 	void testIsSelectedTrue() {
 		hexagon.setSelected(true);
 		assertTrue(hexagon.isSelected());
-		}
-	
+	}
+
 	@Test
 	void testIsSelectedFalse() {
 		hexagon.setSelected(false);
 		assertFalse(hexagon.isSelected());
-		}
+	}
 
 	@Test
 	void testSetSelected() {
 		hexagon.setSelected(true);
 		model.addShape(hexagon);
-		assertEquals(1,model.getSizeSelectedShapes());
+		assertEquals(1, model.getSizeSelectedShapes());
 
 	}
 
 	@Test
 	void testGetEdgeColor() {
-		assertEquals(Color.BLACK,hexagon.getEdgeColor());
+		assertEquals(Color.BLACK, hexagon.getEdgeColor());
 	}
 
 	@Test
 	void testSetEdgeColor() {
 		hexagon.setEdgeColor(Color.WHITE);
-		assertEquals(Color.WHITE,hexagon.getEdgeColor());	}
+		assertEquals(Color.WHITE, hexagon.getEdgeColor());
+	}
 
 	@Test
 	void testGetInnerColor() {
-		assertEquals(Color.WHITE,hexagon.getInnerColor());
+		assertEquals(Color.WHITE, hexagon.getInnerColor());
 	}
 
 	@Test
 	void testSetInnerColor() {
 		hexagon.setInnerColor(Color.BLACK);
-		assertEquals(Color.BLACK,hexagon.getInnerColor());
+		assertEquals(Color.BLACK, hexagon.getInnerColor());
 	}
 
 	@Test
 	void testClone() {
-		HexagonShape hexagonClone=(HexagonShape)hexagon.clone();
-		assertEquals(hexagon,hexagonClone);
+		HexagonShape hexagonClone = (HexagonShape) hexagon.clone();
+		assertEquals(hexagon, hexagonClone);
 	}
 
 	@Test
-	void testMoveBy() { 
-		Point newCenter=centerOfHexagon;
-		newCenter.setXCoordinate(newCenter.getXCoordinate()+5);
-		newCenter.setYCoordinate(newCenter.getYCoordinate()+5);
-		HexagonShape newHexagon = new HexagonShape(newCenter,20, Color.BLACK, Color.WHITE);
-		
+	void testMoveBy() {
+		Point newCenter = centerOfHexagon;
+		newCenter.setXCoordinate(newCenter.getXCoordinate() + 5);
+		newCenter.setYCoordinate(newCenter.getYCoordinate() + 5);
+		HexagonShape newHexagon = new HexagonShape(newCenter, 20, Color.BLACK, Color.WHITE);
+
 		hexagon.moveBy(5, 5);
-		assertEquals(newHexagon,hexagon);
+		assertEquals(newHexagon, hexagon);
 
 	}
 
 	@Test
 	void testCompareTo() {
-		HexagonShape secondHexagonShape = new HexagonShape(centerOfHexagon,10, Color.BLACK, Color.WHITE);
-		assertEquals(10,hexagon.compareTo(secondHexagonShape));
+		HexagonShape secondHexagonShape = new HexagonShape(centerOfHexagon, 10, Color.BLACK, Color.WHITE);
+		assertEquals(10, hexagon.compareTo(secondHexagonShape));
 	}
 
 	@Test
 	void testGetHexagonShape() {
-		Hexagon hexagonWithoutAdapter = new Hexagon(centerOfHexagon.getXCoordinate(),centerOfHexagon.getYCoordinate(),20);
-		hexagonWithoutAdapter.setBorderColor(Color.BLACK);  
-		hexagonWithoutAdapter.setAreaColor(Color.WHITE);
-		//assertTrue(hexagonWithoutAdapter.equals(hexagon.getHexagon()));
-		assertEquals(hexagonWithoutAdapter,hexagon.getHexagon());
-
+		assertTrue(hexagon.getHexagon() instanceof Hexagon);
 	}
 
 	@Test
 	void testToString() {
-		String hexagonToString=hexagon.toString();
-		assertEquals("Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)",hexagonToString);
+		String hexagonToString = hexagon.toString();
+		assertEquals("Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)", hexagonToString);
 	}
 
 	@Test
 	void testParse() {
-		String toParse="Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)";
-		HexagonShape hexagonParse=(HexagonShape)hexagon.parse(toParse);
-		assertEquals(hexagon,hexagonParse);
+		String toParse = "Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)";
+		HexagonShape hexagonParse = (HexagonShape) HexagonShape.parse(toParse);
+		assertEquals(hexagon, hexagonParse);
 	}
 
 	@Test
 	void testEqualsObject() {
-		HexagonShape equalHexagon = new HexagonShape(centerOfHexagon,20, Color.BLACK, Color.WHITE);
+		HexagonShape equalHexagon = new HexagonShape(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
 		assertTrue(hexagon.equals(equalHexagon));
 	}
 

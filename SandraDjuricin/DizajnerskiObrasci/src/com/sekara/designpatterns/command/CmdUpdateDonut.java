@@ -23,7 +23,7 @@ public class CmdUpdateDonut extends Command {
 		currentDonut.setInnerColor(donut.getInnerColor());
 		currentDonut.setSelected(donut.isSelected());
 	}
-	
+
 	@Override
 	public void execute() {
 		updatingCurrentDonut(newStateOfDonut);

@@ -13,7 +13,7 @@ public class CmdUpdateHexagon extends Command {
 		this.newStateOfHexagon = newHexagon;
 		oldStateOfHexagon = (HexagonShape) currentHexagon.clone();
 	}
-	
+
 	public void updatingCurrentHexagon(HexagonShape hexagon) {
 		currentHexagon.getHexagon().setX(hexagon.getHexagon().getX());
 		currentHexagon.getHexagon().setY(hexagon.getHexagon().getY());

@@ -16,33 +16,33 @@ class CmdBringToFrontTest {
 	private ModelDrawing model;
 	private int indexOfShape;
 	private CmdBringToFront cmdBringToFront;
-	
+
 	@BeforeEach
 	public void initialization() {
 		model = new ModelDrawing();
-		firstPoint = new Point(15,20, Color.BLACK);
-		secondPoint = new Point(5,10, Color.BLACK);
-   		model.addShape(firstPoint);
+		firstPoint = new Point(15, 20, Color.BLACK);
+		secondPoint = new Point(5, 10, Color.BLACK);
+		model.addShape(firstPoint);
 		model.addShape(secondPoint);
 		cmdBringToFront = new CmdBringToFront(firstPoint, model);
 		indexOfShape = model.getIndexOfShape(firstPoint);
 	}
-	
+
 	@Test
 	public void testUnExecuteExecuteNotCalled() {
 		cmdBringToFront.unExecute();
-		assertEquals(indexOfShape,model.getIndexOfShape(firstPoint));
+		assertEquals(indexOfShape, model.getIndexOfShape(firstPoint));
 	}
-	
+
 	@Test
 	public void testExecute() {
 		cmdBringToFront.execute();
-		assertEquals(model.getSizeOfShapeList()-1,model.getIndexOfShape(firstPoint));
+		assertEquals(model.getSizeOfShapeList() - 1, model.getIndexOfShape(firstPoint));
 	}
 
 	@Test
 	void testUnExecuteAfterExecute() {
 		cmdBringToFront.unExecute();
-		assertEquals(indexOfShape,model.getIndexOfShape(firstPoint));
+		assertEquals(indexOfShape, model.getIndexOfShape(firstPoint));
 	}
 }

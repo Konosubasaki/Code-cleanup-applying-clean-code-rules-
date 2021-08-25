@@ -14,7 +14,7 @@ public class CmdUpdateCircle extends Command {
 		this.newStateOfCircle = newCircle;
 		oldStateOfCircle = (Circle) currentCircle.clone();
 	}
-	
+
 	public void updatingCurrentCircle(Circle circle) {
 		currentCircle.setCenter(new Point(circle.getCenter().getXCoordinate(), circle.getCenter().getYCoordinate()));
 		currentCircle.setRadius(circle.getRadius());

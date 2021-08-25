@@ -14,6 +14,7 @@ class CmdUpdatePointTest {
 	private CmdUpdatePoint cmdUpdatePoint;
 	Point firstPoint;
 	Point editedPoint;
+	
 	@BeforeEach
 	public void initialization() {
 		model = new ModelDrawing();

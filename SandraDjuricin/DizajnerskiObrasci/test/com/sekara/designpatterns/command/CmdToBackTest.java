@@ -15,34 +15,34 @@ class CmdToBackTest {
 	private ModelDrawing model;
 	private int indexOfShape;
 	private CmdToBack cmdToBack;
-	
+
 	@BeforeEach
 	public void initialization() {
 		model = new ModelDrawing();
-		firstPoint = new Point(15,20, Color.BLACK);
-		secondPoint = new Point(5,10, Color.BLACK);
-   		model.addShape(firstPoint);
+		firstPoint = new Point(15, 20, Color.BLACK);
+		secondPoint = new Point(5, 10, Color.BLACK);
+		model.addShape(firstPoint);
 		model.addShape(secondPoint);
 		indexOfShape = model.getIndexOfShape(secondPoint);
 
 		cmdToBack = new CmdToBack(secondPoint, model);
- 	}
-	
+	}
+
 	@Test
 	public void testUnExecuteExecuteNotCalled() {
 		cmdToBack.unExecute();
-		assertEquals(indexOfShape,model.getIndexOfShape(secondPoint));
+		assertEquals(indexOfShape, model.getIndexOfShape(secondPoint));
 	}
-	
+
 	@Test
 	public void testExecute() {
 		cmdToBack.execute();
-		assertEquals(indexOfShape-1,model.getIndexOfShape(secondPoint));
+		assertEquals(indexOfShape - 1, model.getIndexOfShape(secondPoint));
 	}
 
 	@Test
 	void testUnExecuteAfterExecute() {
 		cmdToBack.unExecute();
-		assertEquals(indexOfShape,model.getIndexOfShape(secondPoint));
+		assertEquals(indexOfShape, model.getIndexOfShape(secondPoint));
 	}
 }
