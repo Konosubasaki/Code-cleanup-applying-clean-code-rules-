@@ -50,7 +50,7 @@ public class LogFile implements Strategy {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	public void readNextCommand() {
 		try {
 			Command command;

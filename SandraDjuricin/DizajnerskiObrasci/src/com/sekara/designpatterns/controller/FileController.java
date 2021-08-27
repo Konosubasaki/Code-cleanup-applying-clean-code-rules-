@@ -15,7 +15,7 @@ public class FileController {
 	private LogFile logToFileStrategy;
 
 	public FileController(MainController mainController) {
-		model = mainController.getModelDrawing();
+		model = mainController.getModelDrawing(); 
 		frame = mainController.getFrameDrawing();
 		this.mainController = mainController;
 		this.ioContext = new Context();

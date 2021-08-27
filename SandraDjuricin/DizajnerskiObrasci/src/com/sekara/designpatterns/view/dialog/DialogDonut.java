@@ -14,9 +14,7 @@ public class DialogDonut extends JDialog {
 
 	private Donut donut = null;
 	private Color edgeColor = null, innerColor = null;
-
 	private boolean isSelected = false;
-
 	private JButton btnEdgeColor = new JButton(" ");
 	private JButton btnInnerColor = new JButton(" ");
 

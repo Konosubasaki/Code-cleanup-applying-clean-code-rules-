@@ -24,7 +24,6 @@ public class FrameDrawing extends JFrame {
 		setBounds(100, 100, 1100, 900);
 		setLocationRelativeTo(null);
 		setMinimumSize(new Dimension(1100, 700));
-
 		view = new ViewDrawing();
 		view.setBorder(new LineBorder(SystemColor.textHighlight, 5));
 		drawToolbar = new DrawToolbar();
@@ -36,11 +35,9 @@ public class FrameDrawing extends JFrame {
 		contentPanel.add(drawToolbar.getPnlLog(), BorderLayout.SOUTH);
 		contentPanel.add(drawToolbar.getPnlLeftOperations(), BorderLayout.WEST);
 		contentPanel.add(drawToolbar.getPnlRightOperations(), BorderLayout.EAST);
-
 		view.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				mainController.mouseClicked(arg0);
-			}
+				mainController.mouseClicked(arg0); }
 		});
 	}
 

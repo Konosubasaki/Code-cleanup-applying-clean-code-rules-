@@ -185,7 +185,7 @@ public class MainController implements Subject {
 		} else if (selectedShape instanceof Line) {
 			DialogLine dialogLine = new DialogLine();
 			dialogLine.setLine((Line) selectedShape);
-			dialogLine.setVisible(true);
+			dialogLine.setVisible(true); 
 
 			if (dialogLine.getLine() != null) {
 				CmdUpdateLine cmdUpdateLine = new CmdUpdateLine((Line) selectedShape, dialogLine.getLine());
