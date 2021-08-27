@@ -2,22 +2,22 @@ package com.sekara.designpatterns.command;
 
 import java.awt.Color;
 
-import com.sekara.designpatterns.model.geometry.HexagonShape;
+import com.sekara.designpatterns.model.geometry.HexagonAdapter;
 import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdateHexagon extends Command {
 
-	private HexagonShape oldStateOfHexagon;
-	private HexagonShape newStateOfHexagon;
-	private HexagonShape currentHexagon;
+	private HexagonAdapter oldStateOfHexagon;
+	private HexagonAdapter newStateOfHexagon;
+	private HexagonAdapter currentHexagon;
 
-	public CmdUpdateHexagon(HexagonShape currentHexagon, HexagonShape newHexagon) {
+	public CmdUpdateHexagon(HexagonAdapter currentHexagon, HexagonAdapter newHexagon) {
 		this.currentHexagon = currentHexagon;
 		this.newStateOfHexagon = newHexagon;
-		oldStateOfHexagon = (HexagonShape) currentHexagon.clone();
+		oldStateOfHexagon = (HexagonAdapter) currentHexagon.clone();
 	}
 
-	public void updatingCurrentHexagon(HexagonShape hexagon) {
+	public void updatingCurrentHexagon(HexagonAdapter hexagon) {
 		Point centerToSet = hexagon.getCenter();
 		int radiusToSet = hexagon.getRadius();
 		Color edgeColorToSet = hexagon.getEdgeColor();

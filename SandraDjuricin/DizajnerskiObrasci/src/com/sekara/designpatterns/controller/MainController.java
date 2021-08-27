@@ -219,13 +219,13 @@ public class MainController implements Subject {
 				CmdUpdateCircle cmdUpdateCircle = new CmdUpdateCircle((Circle) selectedShape, dialogCircle.getCircle());
 				executeCommand(cmdUpdateCircle);
 			}
-		} else if (selectedShape instanceof HexagonShape) {
+		} else if (selectedShape instanceof HexagonAdapter) {
 			DialogHexagon dialogHexagon = new DialogHexagon();
-			dialogHexagon.setHexagon((HexagonShape) selectedShape);
+			dialogHexagon.setHexagon((HexagonAdapter) selectedShape);
 			dialogHexagon.setVisible(true);
 
 			if (dialogHexagon.getHexagon() != null) {
-				CmdUpdateHexagon cmdUpdateHexagon = new CmdUpdateHexagon((HexagonShape) selectedShape,
+				CmdUpdateHexagon cmdUpdateHexagon = new CmdUpdateHexagon((HexagonAdapter) selectedShape,
 						dialogHexagon.getHexagon());
 				executeCommand(cmdUpdateHexagon);
 			}

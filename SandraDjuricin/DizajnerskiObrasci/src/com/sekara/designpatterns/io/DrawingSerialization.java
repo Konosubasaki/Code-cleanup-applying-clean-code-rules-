@@ -20,7 +20,8 @@ public class DrawingSerialization implements Strategy {
 		try {
 			outputStream = new FileOutputStream(file + ".drw");
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-			objectOutputStream.writeObject(model.getAllShapes());
+			List<Shape> shapes = model.getAllShapes();
+			objectOutputStream.writeObject(shapes);
 			objectOutputStream.close();
 			outputStream.close();
 		} catch (Exception e) {
@@ -33,8 +34,8 @@ public class DrawingSerialization implements Strategy {
 		try {
 			inputStream = new FileInputStream(file);
 			ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-			List<Shape> listOfShapes = (ArrayList<Shape>) objectInputStream.readObject();
-			model.addAllShapes(listOfShapes);
+			List<Shape> shapes = (ArrayList<Shape>) objectInputStream.readObject();
+			model.addAllShapes(shapes);
 			objectInputStream.close();
 			inputStream.close();
 		} catch (Exception e) {

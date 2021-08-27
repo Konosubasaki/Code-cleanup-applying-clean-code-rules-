@@ -31,8 +31,8 @@ public class Point extends Shape {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(getEdgeColor());
-		g.drawLine(this.xCoordinate - 2, yCoordinate, this.xCoordinate + 2, yCoordinate);
-		g.drawLine(xCoordinate, this.yCoordinate - 2, xCoordinate, this.yCoordinate + 2);
+		g.drawLine(xCoordinate - 2, yCoordinate, xCoordinate + 2, yCoordinate);
+		g.drawLine(xCoordinate, yCoordinate - 2, xCoordinate, yCoordinate + 2);
 
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
@@ -55,17 +55,15 @@ public class Point extends Shape {
 			Point p = (Point) obj;
 			if (this.xCoordinate == p.getXCoordinate() && this.yCoordinate == p.getYCoordinate()) {
 				return true;
-			} else {
+			} else
 				return false;
-			}
-		} else {
+		} else
 			return false;
-		}
 	}
 
 	public double distance(int x2, int y2) {
-		double dx = this.xCoordinate - x2;
-		double dy = this.yCoordinate - y2;
+		double dx = xCoordinate - x2;
+		double dy = yCoordinate - y2;
 		double d = Math.sqrt(dx * dx + dy * dy);
 		return d;
 	}
@@ -87,14 +85,21 @@ public class Point extends Shape {
 	}
 
 	public String toString() {
-		return "Point(X:" + xCoordinate + "|Y:" + yCoordinate + "|EdgeColor:" + getEdgeColor().getRGB() + ")";
+		String pointTxt = "";
+		pointTxt += "Point(X:";
+		pointTxt += xCoordinate;
+		pointTxt += "|Y:";
+		pointTxt += yCoordinate;
+		pointTxt += "|EdgeColor:";
+		pointTxt += getEdgeColor().getRGB();
+		pointTxt += ")";
+		return pointTxt;
 	}
 
 	@Override
 	public Shape clone() {
 		Point point = new Point(getXCoordinate(), getYCoordinate(), getEdgeColor());
 		point.setSelected(isSelected());
-
 		return point;
 	}
 

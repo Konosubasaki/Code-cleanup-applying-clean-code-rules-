@@ -2,20 +2,22 @@ package com.sekara.designpatterns.controller;
 
 import com.sekara.designpatterns.io.*;
 import com.sekara.designpatterns.model.ModelDrawing;
+import com.sekara.designpatterns.toolbars.DrawToolbar;
 import com.sekara.designpatterns.view.frame.FrameDrawing;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 
 public class FileController {
 
 	private ModelDrawing model;
 	private FrameDrawing frame;
 	private MainController mainController;
-	private Context ioContext;
+	private Context ioContext; 
 	private DrawingSerialization drawingSerializationStrategy;
 	private LogFile logToFileStrategy;
 
 	public FileController(MainController mainController) {
-		model = mainController.getModelDrawing(); 
+		model = mainController.getModelDrawing();
 		frame = mainController.getFrameDrawing();
 		this.mainController = mainController;
 		this.ioContext = new Context();
@@ -24,22 +26,18 @@ public class FileController {
 	}
 
 	public void SetFileStrategy(JFileChooser fileChooser) {
-		switch (fileChooser.getFileFilter().getDescription()) {
-		case "Crtez":
+		FileFilter fileFilter = fileChooser.getFileFilter();
+		String descriptionOfFileFilter = fileFilter.getDescription();
+		
+		if (descriptionOfFileFilter == "Crtez")
 			ioContext.setStrategy(drawingSerializationStrategy);
-			break;
-
-		case "Log":
+		else if (descriptionOfFileFilter == "Log")
 			ioContext.setStrategy(logToFileStrategy);
-			break;
-
-		default:
-			break;
-		}
 	}
 
 	public void saveToFile() {
-		JFileChooser fileChooser = frame.getDrawToolbar().getSaveToFileChooser();
+		DrawToolbar toolbar=frame.getDrawToolbar();
+		JFileChooser fileChooser = toolbar.getSaveToFileChooser();
 
 		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 			SetFileStrategy(fileChooser);
@@ -49,7 +47,8 @@ public class FileController {
 	}
 
 	public void readFromFile() {
-		JFileChooser fileChooser = frame.getDrawToolbar().getReadFromFileChooser();
+		DrawToolbar toolbar=frame.getDrawToolbar();
+		JFileChooser fileChooser = toolbar.getReadFromFileChooser();
 
 		if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			SetFileStrategy(fileChooser);

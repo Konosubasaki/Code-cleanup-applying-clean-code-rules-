@@ -4,6 +4,7 @@ import com.sekara.designpatterns.command.*;
 import com.sekara.designpatterns.controller.MainController;
 import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.model.geometry.*;
+import com.sekara.designpatterns.toolbars.DrawToolbar;
 import com.sekara.designpatterns.view.frame.FrameDrawing;
 import java.io.*;
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ public class LogFile implements Strategy {
 	public void saveToFile(File file) {
 		try {
 			writer = new BufferedWriter(new FileWriter(file + ".log"));
-			DefaultListModel<String> logList = frame.getDrawToolbar().getDefaultListLogModel();
+			DrawToolbar toolbar=frame.getDrawToolbar();
+			DefaultListModel<String> logList = toolbar.getDefaultListLogModel();
 			for (int i = 0; i < logList.size(); i++) {
 				writer.write(logList.getElementAt(i));
 				writer.newLine();
@@ -138,10 +140,10 @@ public class LogFile implements Strategy {
 
 			case "CMD_UPDATE_HEXAGON_EXECUTE":
 				String[] hexagons = parts[1].split("->");
-				HexagonShape currentHexagon = HexagonShape.parse(hexagons[0]);
-				HexagonShape newHexagon = HexagonShape.parse(hexagons[1]);
+				HexagonAdapter currentHexagon = HexagonAdapter.parse(hexagons[0]);
+				HexagonAdapter newHexagon = HexagonAdapter.parse(hexagons[1]);
 
-				currentHexagon = (HexagonShape) model.getShapeByIndex(model.getIndexOfShape(currentHexagon));
+				currentHexagon = (HexagonAdapter) model.getShapeByIndex(model.getIndexOfShape(currentHexagon));
 
 				command = new CmdUpdateHexagon(currentHexagon, newHexagon);
 				mainController.executeCommand(command);
@@ -219,7 +221,7 @@ public class LogFile implements Strategy {
 		}
 
 		if (line.startsWith("Hexagon")) {
-			return HexagonShape.parse(line);
+			return HexagonAdapter.parse(line);
 		}
 
 		throw new IllegalArgumentException("Unrecognized shape: " + line);

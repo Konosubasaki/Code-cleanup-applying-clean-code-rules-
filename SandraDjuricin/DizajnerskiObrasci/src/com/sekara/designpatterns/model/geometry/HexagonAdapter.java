@@ -4,15 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import hexagon.Hexagon;
 
-public class HexagonShape extends Shape {
+public class HexagonAdapter extends Shape {
 
 	private Hexagon hexagon;
 
-	public HexagonShape(Point center, int radius) {
-		hexagon = new Hexagon(center.getXCoordinate(), center.getYCoordinate(), radius);
+	public HexagonAdapter(Point center, int radius) {
+		int centerXCoord = center.getXCoordinate();
+		int centerYCoord = center.getYCoordinate();
+
+		hexagon = new Hexagon(centerXCoord, centerYCoord, radius);
 	}
 
-	public HexagonShape(Point center, int radius, Color edgeColor, Color innerColor) {
+	public HexagonAdapter(Point center, int radius, Color edgeColor, Color innerColor) {
 		this(center, radius);
 		this.setEdgeColor(edgeColor);
 		this.setInnerColor(innerColor);
@@ -20,8 +23,13 @@ public class HexagonShape extends Shape {
 
 	@Override
 	public void moveBy(int byX, int byY) {
-		hexagon.setX(this.hexagon.getX() + byX);
-		hexagon.setY(this.hexagon.getY() + byY);
+		int newMovedX = hexagon.getX();
+		newMovedX += byX;
+		int newMovedY = hexagon.getY();
+		newMovedY += byY;
+
+		hexagon.setX(newMovedX);
+		hexagon.setY(newMovedY);
 	}
 
 	@Override
@@ -40,21 +48,35 @@ public class HexagonShape extends Shape {
 
 	@Override
 	public Shape clone() {
-		HexagonShape hexagon = new HexagonShape(new Point(getHexagon().getX(), getHexagon().getY()),
-				getHexagon().getR());
-		hexagon.setEdgeColor(getEdgeColor());
-		hexagon.setInnerColor(getInnerColor());
-		hexagon.setSelected(isSelected());
-
+		Point centerOfClone = new Point(getCenter().getXCoordinate(), getCenter().getYCoordinate());
+		int radiusOfClone = getRadius();
+		Color edgeColorOfClone = getEdgeColor();
+		Color innerColorOfClone = getInnerColor();
+		boolean isSelectedOfclone = isSelected();
+		HexagonAdapter hexagon = new HexagonAdapter(centerOfClone, radiusOfClone);
+		hexagon.setEdgeColor(edgeColorOfClone);
+		hexagon.setInnerColor(innerColorOfClone);
+		hexagon.setSelected(isSelectedOfclone);
 		return hexagon;
 	}
 
 	public String toString() {
-		return "Hexagon(X:" + hexagon.getX() + "|Y:" + hexagon.getY() + "|R:" + hexagon.getR() + "|EdgeColor:"
-				+ getEdgeColor().getRGB() + "|InnerColor:" + getInnerColor().getRGB() + ")";
+		String hexagonTxt = "";
+		hexagonTxt += "Hexagon(X:";
+		hexagonTxt += hexagon.getX();
+		hexagonTxt += "|Y:";
+		hexagonTxt += hexagon.getY();
+		hexagonTxt += "|R:";
+		hexagonTxt += hexagon.getR();
+		hexagonTxt += "|EdgeColor:";
+		hexagonTxt += getEdgeColor().getRGB();
+		hexagonTxt += "|InnerColor:";
+		hexagonTxt += getInnerColor().getRGB();
+		hexagonTxt += ")";
+		return hexagonTxt;
 	}
 
-	public static HexagonShape parse(String line) {
+	public static HexagonAdapter parse(String line) {
 		line = line.replace("Hexagon(", "").replace(")", "");
 		String[] parts = line.split("\\|");
 
@@ -64,23 +86,21 @@ public class HexagonShape extends Shape {
 		Color edgeColor = Color.decode(parts[3].replace("EdgeColor:", ""));
 		Color innerColor = Color.decode(parts[4].replace("InnerColor:", ""));
 
-		return new HexagonShape(new Point(x, y), r, edgeColor, innerColor);
+		return new HexagonAdapter(new Point(x, y), r, edgeColor, innerColor);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof HexagonShape) {
-			HexagonShape hex = (HexagonShape) obj;
+		if (obj instanceof HexagonAdapter) {
+			HexagonAdapter hex = (HexagonAdapter) obj;
 
 			if (hexagon.getX() == hex.hexagon.getX() && hexagon.getY() == hex.hexagon.getY()
 					&& hexagon.getR() == hex.hexagon.getR()) {
 				return true;
-			} else {
+			} else
 				return false;
-			}
-		} else {
+		} else
 			return false;
-		}
 	}
 
 	public void setSelected(boolean selected) {
@@ -124,7 +144,7 @@ public class HexagonShape extends Shape {
 	public int getRadius() {
 		return hexagon.getR();
 	}
-	
+
 	public void setRadius(int radius) {
 		hexagon.setR(radius);
 	}

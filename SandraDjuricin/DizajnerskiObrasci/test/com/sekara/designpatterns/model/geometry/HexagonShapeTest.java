@@ -14,7 +14,7 @@ import hexagon.Hexagon;
 
 class HexagonShapeTest {
 	private ModelDrawing model;
-	private HexagonShape hexagon;
+	private HexagonAdapter hexagon;
 	private Point centerOfHexagon;
 
 	@BeforeEach
@@ -22,7 +22,7 @@ class HexagonShapeTest {
 		// graphics = mock(Graphics.class);
 		model = new ModelDrawing();
 		centerOfHexagon = new Point(1, 1);
-		hexagon = new HexagonShape(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
+		hexagon = new HexagonAdapter(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
 	}
 
 	@Test
@@ -74,7 +74,7 @@ class HexagonShapeTest {
 
 	@Test
 	void testClone() {
-		HexagonShape hexagonClone = (HexagonShape) hexagon.clone();
+		HexagonAdapter hexagonClone = (HexagonAdapter) hexagon.clone();
 		assertEquals(hexagon, hexagonClone);
 	}
 
@@ -83,7 +83,7 @@ class HexagonShapeTest {
 		Point newCenter = centerOfHexagon;
 		newCenter.setXCoordinate(newCenter.getXCoordinate() + 5);
 		newCenter.setYCoordinate(newCenter.getYCoordinate() + 5);
-		HexagonShape newHexagon = new HexagonShape(newCenter, 20, Color.BLACK, Color.WHITE);
+		HexagonAdapter newHexagon = new HexagonAdapter(newCenter, 20, Color.BLACK, Color.WHITE);
 
 		hexagon.moveBy(5, 5);
 		assertEquals(newHexagon, hexagon);
@@ -104,13 +104,13 @@ class HexagonShapeTest {
 	@Test
 	void testParse() {
 		String toParse = "Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)";
-		HexagonShape hexagonParse = (HexagonShape) HexagonShape.parse(toParse);
+		HexagonAdapter hexagonParse = (HexagonAdapter) HexagonAdapter.parse(toParse);
 		assertEquals(hexagon, hexagonParse);
 	}
 
 	@Test
 	void testEqualsObject() {
-		HexagonShape equalHexagon = new HexagonShape(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
+		HexagonAdapter equalHexagon = new HexagonAdapter(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
 		assertTrue(hexagon.equals(equalHexagon));
 	}
 

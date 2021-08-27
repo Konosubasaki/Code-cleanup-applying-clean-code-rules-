@@ -11,14 +11,12 @@ public class Rectangle extends Shape {
 
 	public Rectangle(Point upperLeftPoint, int height, int width) {
 		this.upperLeftPoint = upperLeftPoint;
-		setHeight(height);
-		setWidth(width);
+		this.height = height;
+		this.width = width;
 	}
 
 	public Rectangle(Point upperLeftPoint, int height, int width, Color edgeColor, Color innerColor) {
-		this.upperLeftPoint = upperLeftPoint;
-		setHeight(height);
-		setWidth(width);
+		this(upperLeftPoint, height, width);
 		setEdgeColor(edgeColor);
 		setInnerColor(innerColor);
 	}
@@ -31,22 +29,22 @@ public class Rectangle extends Shape {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(getEdgeColor());
-		g.drawRect(this.getUpperLeftPoint().getXCoordinate(), this.getUpperLeftPoint().getYCoordinate(), this.width,
-				this.height);
+		g.drawRect(upperLeftPoint.getXCoordinate(), upperLeftPoint.getYCoordinate(), width,
+				height);
 		g.setColor(getInnerColor());
-		g.fillRect(this.getUpperLeftPoint().getXCoordinate() + 1, this.getUpperLeftPoint().getYCoordinate() + 1,
-				this.width - 1, this.height - 1);
+		g.fillRect(upperLeftPoint.getXCoordinate() + 1, upperLeftPoint.getYCoordinate() + 1,
+				width - 1, height - 1);
 
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
-			g.drawRect(this.getUpperLeftPoint().getXCoordinate() - 3, this.getUpperLeftPoint().getYCoordinate() - 3, 6,
+			g.drawRect(upperLeftPoint.getXCoordinate() - 3, upperLeftPoint.getYCoordinate() - 3, 6,
 					6);
-			g.drawRect(this.getUpperLeftPoint().getXCoordinate() - 3 + getWidth(),
-					this.getUpperLeftPoint().getYCoordinate() - 3, 6, 6);
-			g.drawRect(this.getUpperLeftPoint().getXCoordinate() - 3,
-					this.getUpperLeftPoint().getYCoordinate() - 3 + getHeight(), 6, 6);
-			g.drawRect(this.getUpperLeftPoint().getXCoordinate() + getWidth() - 3,
-					this.getUpperLeftPoint().getYCoordinate() + getHeight() - 3, 6, 6);
+			g.drawRect(upperLeftPoint.getXCoordinate() - 3 + width,
+					upperLeftPoint.getYCoordinate() - 3, 6, 6);
+			g.drawRect(upperLeftPoint.getXCoordinate() - 3,
+					upperLeftPoint.getYCoordinate() - 3 + getHeight(), 6, 6);
+			g.drawRect(upperLeftPoint.getXCoordinate() + width - 3,
+					upperLeftPoint.getYCoordinate() + getHeight() - 3, 6, 6);
 		}
 	}
 
@@ -57,9 +55,9 @@ public class Rectangle extends Shape {
 	}
 
 	public boolean containsXYpoint(int x, int y) {
-		if (this.getUpperLeftPoint().getXCoordinate() <= x && x <= this.getUpperLeftPoint().getXCoordinate() + width
-				&& this.getUpperLeftPoint().getYCoordinate() <= y
-				&& y <= this.getUpperLeftPoint().getYCoordinate() + height) {
+		if (upperLeftPoint.getXCoordinate() <= x && x <= upperLeftPoint.getXCoordinate() + width
+				&& upperLeftPoint.getYCoordinate() <= y
+				&& y <= upperLeftPoint.getYCoordinate() + height) {
 			return true;
 		} else {
 			return false;
@@ -68,9 +66,9 @@ public class Rectangle extends Shape {
 
 	public boolean equals(Object obj) {
 		if (obj instanceof Rectangle) {
-			Rectangle r = (Rectangle) obj;
-			if (this.upperLeftPoint.equals(r.getUpperLeftPoint()) && this.height == r.getHeight()
-					&& this.width == r.getWidth()) {
+			Rectangle rectangleToCompare = (Rectangle) obj;
+			if (upperLeftPoint.equals(rectangleToCompare.getUpperLeftPoint()) && height == rectangleToCompare.getHeight()
+					&& width == rectangleToCompare.getWidth()) {
 				return true;
 			} else {
 				return false;
@@ -118,7 +116,7 @@ public class Rectangle extends Shape {
 	public Shape clone() {
 		Rectangle rectangle = new Rectangle(
 				new Point(getUpperLeftPoint().getXCoordinate(), getUpperLeftPoint().getYCoordinate()), getHeight(),
-				getWidth());
+				width);
 		rectangle.setEdgeColor(getEdgeColor());
 		rectangle.setInnerColor(getInnerColor());
 		rectangle.setSelected(isSelected());

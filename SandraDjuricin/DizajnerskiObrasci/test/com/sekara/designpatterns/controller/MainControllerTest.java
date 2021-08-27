@@ -11,7 +11,7 @@ import com.sekara.designpatterns.command.CmdAddShape;
 import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.model.geometry.Circle;
 import com.sekara.designpatterns.model.geometry.Donut;
-import com.sekara.designpatterns.model.geometry.HexagonShape;
+import com.sekara.designpatterns.model.geometry.HexagonAdapter;
 import com.sekara.designpatterns.model.geometry.Line;
 import com.sekara.designpatterns.model.geometry.Point;
 import com.sekara.designpatterns.model.geometry.Rectangle;
@@ -131,7 +131,7 @@ class MainControllerTest {
 	@Test
 	void testEditShapeHexagonShape() {
 		Point centerOfHexagon = new Point(1, 1);
-		Shape hexagon = new HexagonShape(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
+		Shape hexagon = new HexagonAdapter(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
 		hexagon.setSelected(true);
 		CmdAddShape cmdAddShape = new CmdAddShape(hexagon, model);
 		mainController.executeCommand(cmdAddShape);
@@ -163,7 +163,7 @@ class MainControllerTest {
 		mainController.executeCommand(cmdAddShapeP);
 
 		Point centerOfHexagon = new Point(1, 1);
-		Shape hexagon = new HexagonShape(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
+		Shape hexagon = new HexagonAdapter(centerOfHexagon, 20, Color.BLACK, Color.WHITE);
 		CmdAddShape cmdAddShapeH = new CmdAddShape(hexagon, model);
 		mainController.executeCommand(cmdAddShapeH);
 

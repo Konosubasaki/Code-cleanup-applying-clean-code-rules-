@@ -4,22 +4,22 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 
+import com.sekara.designpatterns.model.geometry.Point;
+
 public class Donut extends Circle {
 
 	private int innerRadius;
 
 	public Donut() {
-
 	}
 
 	public Donut(Point center, int radius, int innerRadius) {
 		super(center, radius);
-		this.innerRadius = innerRadius;
+		this.innerRadius = innerRadius; 
 	}
 
 	public Donut(Point center, int radius, int innerRadius, Color edgeColor, Color innerColor) {
-		super(center, radius, edgeColor, innerColor);
-		this.innerRadius = innerRadius;
+		this(center, radius, innerRadius);
 		setEdgeColor(edgeColor);
 		setInnerColor(innerColor);
 	}
@@ -30,55 +30,56 @@ public class Donut extends Circle {
 	}
 
 	public void draw(Graphics g) {
+		Point donutCenter = getCenter();
+		int donutRadius = getRadius();
+
 		Graphics2D g2d = (Graphics2D) g;
 		Path2D path = new Path2D.Double(Path2D.WIND_EVEN_ODD);
 
-		path.append(new Ellipse2D.Double(getCenter().getXCoordinate() - getRadius(),
-				this.getCenter().getYCoordinate() - getRadius(), getRadius() * 2, getRadius() * 2), false);
-		path.append(new Ellipse2D.Double(getCenter().getXCoordinate() - getInnerRadius(),
-				this.getCenter().getYCoordinate() - getInnerRadius(), getInnerRadius() * 2, getInnerRadius() * 2),
-				false);
+		path.append(new Ellipse2D.Double(donutCenter.getXCoordinate() - donutRadius,
+				donutCenter.getYCoordinate() - donutRadius, donutRadius * 2, donutRadius * 2), false);
+		path.append(new Ellipse2D.Double(donutCenter.getXCoordinate() - innerRadius,
+				donutCenter.getYCoordinate() - innerRadius, innerRadius * 2, innerRadius * 2), false);
 
 		g2d.setColor(getInnerColor());
 		g2d.fill(path);
 
 		g2d.setColor(getEdgeColor());
-		g2d.drawOval(getCenter().getXCoordinate() - getRadius(), this.getCenter().getYCoordinate() - getRadius(),
-				getRadius() * 2, getRadius() * 2);
-		g2d.drawOval(getCenter().getXCoordinate() - getInnerRadius(),
-				this.getCenter().getYCoordinate() - getInnerRadius(), getInnerRadius() * 2, getInnerRadius() * 2);
+		g2d.drawOval(donutCenter.getXCoordinate() - donutRadius, donutCenter.getYCoordinate() - donutRadius,
+				donutRadius * 2, donutRadius * 2);
+		g2d.drawOval(donutCenter.getXCoordinate() - innerRadius, donutCenter.getYCoordinate() - innerRadius,
+				innerRadius * 2, innerRadius * 2);
 
 		if (isSelected()) {
 			g2d.setColor(Color.BLUE);
-			g2d.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3, 6, 6);
-			g2d.drawRect(getCenter().getXCoordinate() - 3 - getRadius(), getCenter().getYCoordinate() - 3, 6, 6);
-			g2d.drawRect(getCenter().getXCoordinate() - 3 + getRadius(), getCenter().getYCoordinate() - 3, 6, 6);
-			g2d.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3 + getRadius(), 6, 6);
-			g2d.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3 - getRadius(), 6, 6);
+			g2d.drawRect(donutCenter.getXCoordinate() - 3, donutCenter.getYCoordinate() - 3, 6, 6);
+			g2d.drawRect(donutCenter.getXCoordinate() - 3 - donutRadius, donutCenter.getYCoordinate() - 3, 6, 6);
+			g2d.drawRect(donutCenter.getXCoordinate() - 3 + donutRadius, donutCenter.getYCoordinate() - 3, 6, 6);
+			g2d.drawRect(donutCenter.getXCoordinate() - 3, donutCenter.getYCoordinate() - 3 + donutRadius, 6, 6);
+			g2d.drawRect(donutCenter.getXCoordinate() - 3, donutCenter.getYCoordinate() - 3 - donutRadius, 6, 6);
 		}
 	}
 
 	public boolean containsXYpoint(int x, int y) {
-		double dFromCenter = this.getCenter().distance(x, y);
-		return super.containsXYpoint(x, y) && dFromCenter > innerRadius;
-	}
+		Point donutCenter = getCenter();
+		double distanceFromCenter = donutCenter.distance(x, y);
+		return super.containsXYpoint(x, y) && distanceFromCenter > innerRadius;
+	} 
 
 	public double area() {
-		return super.area() - innerRadius * innerRadius * Math.PI;
+		return super.area() - (innerRadius * innerRadius * Math.PI);
 	}
 
 	public boolean equals(Object obj) {
 		if (obj instanceof Donut) {
-			Donut d = (Donut) obj;
-			if (this.getCenter().equals(d.getCenter()) && this.getRadius() == d.getRadius()
-					&& innerRadius == d.getInnerRadius()) {
+			Donut donutToCompare = (Donut) obj;
+			if (getCenter().equals(donutToCompare.getCenter()) && getRadius() == donutToCompare.getRadius()
+					&& innerRadius == donutToCompare.getInnerRadius()) {
 				return true;
-			} else {
+			} else
 				return false;
-			}
-		} else {
+		} else
 			return false;
-		}
 	}
 
 	public int getInnerRadius() {
@@ -90,17 +91,35 @@ public class Donut extends Circle {
 	}
 
 	public String toString() {
-		return "Donut(X:" + getCenter().getXCoordinate() + "|Y:" + getCenter().getYCoordinate() + "|R1:" + getRadius()
-				+ "|R2:" + innerRadius + "|EdgeColor:" + getEdgeColor().getRGB() + "|InnerColor:"
-				+ getInnerColor().getRGB() + ")";
+		String donutTxt = "";
+		donutTxt += "Donut(X:";
+		donutTxt += getCenter().getXCoordinate();
+		donutTxt += "|Y:";
+		donutTxt += getCenter().getYCoordinate();
+		donutTxt += "|R1:";
+		donutTxt += getRadius();
+		donutTxt += "|R2:";
+		donutTxt += innerRadius;
+		donutTxt += "|EdgeColor:";
+		donutTxt += getEdgeColor().getRGB();
+		donutTxt += "|InnerColor:";
+		donutTxt += getInnerColor().getRGB();
+		donutTxt += ")";
+		return donutTxt;
 	}
 
 	public Shape clone() {
-		Donut donut = new Donut(new Point(getCenter().getXCoordinate(), getCenter().getYCoordinate()), getRadius(),
-				getInnerRadius());
-		donut.setEdgeColor(getEdgeColor());
-		donut.setInnerColor(getInnerColor());
-		donut.setSelected(isSelected());
+		Point centerOfClone = new Point(getCenter().getXCoordinate(), getCenter().getYCoordinate());
+		int radiusOfClone = getRadius();
+		int innerRadiusOfClone = innerRadius;
+		Color edgeColorOfClone = getEdgeColor();
+		Color innerColorOfClone = getInnerColor();
+		boolean isSelectedOfclone = isSelected();
+
+		Donut donut = new Donut(centerOfClone, radiusOfClone, innerRadiusOfClone);
+		donut.setEdgeColor(edgeColorOfClone);
+		donut.setInnerColor(innerColorOfClone);
+		donut.setSelected(isSelectedOfclone);
 
 		return donut;
 	}

@@ -5,103 +5,99 @@ import java.awt.Graphics;
 
 public class Circle extends Shape {
 
-	private Point center;
-	private int radius = 0;
+	protected Point center;
+	protected int radius;
 
 	public Circle() {
 	}
 
 	public Circle(Point center, int radius) {
 		this.center = center;
-		this.radius = radius;
+		this.radius = radius; 
 	}
 
 	public Circle(Point center, int radius, Color edgeColor, Color innerColor) {
-		this.center = center;
-		this.radius = radius;
+		this(center,radius);
 		setEdgeColor(edgeColor);
 		setInnerColor(innerColor);
+	}
+	
+	public Circle(Point center, int radius, boolean selected) {
+		this(center,radius);
+		setSelected(selected);
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(getInnerColor());
-		g.fillOval(this.getCenter().getXCoordinate() - this.getRadius(),
-				this.getCenter().getYCoordinate() - this.getRadius(), this.getRadius() * 2, this.getRadius() * 2);
+		g.fillOval(center.getXCoordinate() - radius, center.getYCoordinate() - radius, radius * 2, radius * 2);
 		g.setColor(getEdgeColor());
-		g.drawOval(this.getCenter().getXCoordinate() - getRadius(),
-				this.getCenter().getYCoordinate() - this.getRadius(), getRadius() * 2, this.getRadius() * 2);
+		g.drawOval(center.getXCoordinate() - radius, center.getYCoordinate() - radius, radius * 2, radius * 2);
 
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
-			g.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3, 6, 6);
-			g.drawRect(getCenter().getXCoordinate() - 3 - getRadius(), getCenter().getYCoordinate() - 3, 6, 6);
-			g.drawRect(getCenter().getXCoordinate() - 3 + getRadius(), getCenter().getYCoordinate() - 3, 6, 6);
-			g.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3 + getRadius(), 6, 6);
-			g.drawRect(getCenter().getXCoordinate() - 3, getCenter().getYCoordinate() - 3 - getRadius(), 6, 6);
+			g.drawRect(center.getXCoordinate() - 3, center.getYCoordinate() - 3, 6, 6);
+			g.drawRect(center.getXCoordinate() - 3 - radius, center.getYCoordinate() - 3, 6, 6);
+			g.drawRect(center.getXCoordinate() - 3 + radius, center.getYCoordinate() - 3, 6, 6);
+			g.drawRect(center.getXCoordinate() - 3, center.getYCoordinate() - 3 + radius, 6, 6);
+			g.drawRect(center.getXCoordinate() - 3, center.getYCoordinate() - 3 - radius, 6, 6);
 		}
 	}
 
 	@Override
 	public void moveBy(int byX, int byY) {
 		center.moveBy(byX, byY);
-
 	}
 
 	public boolean containsXYpoint(int x, int y) {
-		return this.getCenter().distance(x, y) <= radius;
+		return center.distance(x, y) <= radius;
 	}
 
 	public boolean equals(Object obj) {
 		if (obj instanceof Circle) {
-			Circle c = (Circle) obj;
-			if (this.center.equals(c.getCenter()) && this.radius == c.getRadius()) {
+			Circle circleToCompare = (Circle) obj;
+			if (center.equals(circleToCompare.getCenter()) && radius == circleToCompare.getRadius())
 				return true;
-			} else {
+			else
 				return false;
-			}
-		} else {
+		} else
 			return false;
-		}
 	}
 
 	public double area() {
 		return radius * radius * Math.PI;
 	}
 
-	public Point getCenter() {
-		return center;
-	}
-
-	public void setCenter(Point center) {
-		this.center = center;
-	}
-
-	public int getRadius() {
-		return radius;
-	}
-
-	public void setRadius(int radius) {
-		if (radius >= 0) {
-			this.radius = radius;
-		} else {
-			throw new NumberFormatException("Radius has to be a value greater then 0!");
-		}
-	}
-
 	public String toString() {
-		return "Circle(X:" + center.getXCoordinate() + "|Y:" + center.getYCoordinate() + "|R:" + radius + "|EdgeColor:"
-				+ getEdgeColor().getRGB() + "|InnerColor:" + getInnerColor().getRGB() + ")";
+		String circleTxt = "";
+		circleTxt += "Circle(X:";
+		circleTxt += center.getXCoordinate();
+		circleTxt += "|Y:";
+		circleTxt += center.getYCoordinate();
+		circleTxt += "|R:";
+		circleTxt += radius;
+		circleTxt += "|EdgeColor:";
+		circleTxt += getEdgeColor().getRGB();
+		circleTxt += "|InnerColor:";
+		circleTxt += getInnerColor().getRGB();
+		circleTxt += ")";
+		return circleTxt;
 	}
 
 	@Override
 	public Shape clone() {
+		Point centerOfClone = new Point(center.getXCoordinate(), center.getYCoordinate());
+		int radiusOfClone = radius;
+		Color edgeColorOfClone = getEdgeColor();
+		Color innerColorOfClone = getInnerColor();
+		boolean isSelectedOfclone = isSelected();
+
 		Circle circle = new Circle();
-		circle.setCenter(new Point(center.getXCoordinate(), center.getYCoordinate()));
-		circle.setRadius(getRadius());
-		circle.setEdgeColor(getEdgeColor());
-		circle.setInnerColor(getInnerColor());
-		circle.setSelected(isSelected());
+		circle.setCenter(centerOfClone);
+		circle.setRadius(radiusOfClone);
+		circle.setEdgeColor(edgeColorOfClone);
+		circle.setInnerColor(innerColorOfClone);
+		circle.setSelected(isSelectedOfclone);
 		return circle;
 	}
 
@@ -114,5 +110,25 @@ public class Circle extends Shape {
 		Color edgeColor = Color.decode(parts[3].replace("EdgeColor:", ""));
 		Color innerColor = Color.decode(parts[4].replace("InnerColor:", ""));
 		return new Circle(new Point(x, y), r, edgeColor, innerColor);
+	}
+
+	public Point getCenter() {
+		return center;
+	}
+
+	public void setCenter(Point center) {
+		this.center = center;
+	}
+ 
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		if (radius >= 0) {
+			this.radius = radius;
+		} else {
+			throw new NumberFormatException("Radius has to be a value greater then 0!");
+		}
 	}
 }

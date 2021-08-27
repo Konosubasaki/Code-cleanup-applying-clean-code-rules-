@@ -8,7 +8,7 @@ public abstract class Shape implements Moveable, Cloneable, Serializable {
 
 	private boolean selected;
 	private Color edgeColor, innerColor;
-
+ 
 	public abstract boolean containsXYpoint(int xCoordinate, int yCoordinate);
 
 	public abstract void draw(Graphics g);

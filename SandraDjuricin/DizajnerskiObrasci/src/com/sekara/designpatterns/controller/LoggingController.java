@@ -1,17 +1,17 @@
 package com.sekara.designpatterns.controller;
 
+import com.sekara.designpatterns.toolbars.DrawToolbar;
 import com.sekara.designpatterns.view.frame.FrameDrawing;
 import javax.swing.*;
 
 public class LoggingController {
 
-	private FrameDrawing frame;
 	private DefaultListModel<String> logger;
 	private boolean isLogEmpty;
 
 	public LoggingController(FrameDrawing frame) {
-		this.frame = frame;
-		logger = this.frame.getDrawToolbar().getDefaultListLogModel();
+		DrawToolbar toolbar=frame.getDrawToolbar();
+		logger = toolbar.getDefaultListLogModel();
 		isLogEmpty = true;
 	}
 

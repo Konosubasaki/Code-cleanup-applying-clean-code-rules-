@@ -1,6 +1,6 @@
 package com.sekara.designpatterns.view.dialog;
 
-import com.sekara.designpatterns.model.geometry.HexagonShape;
+import com.sekara.designpatterns.model.geometry.HexagonAdapter;
 import com.sekara.designpatterns.model.geometry.Point;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,7 +10,7 @@ public class DialogHexagon extends JDialog {
 	private JTextField txtX;
 	private JTextField txtY;
 	private JTextField txtRadius;
-	private HexagonShape hexagon = null;
+	private HexagonAdapter hexagon = null;
 	private Color edgeColor = null, innerColor = null;
 	private boolean isSelected = false;
 	private JButton btnEdgeColor = new JButton(" ");
@@ -112,7 +112,7 @@ public class DialogHexagon extends JDialog {
 										JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							hexagon = new HexagonShape(new Point(newX, newY), newRadius, edgeColor, innerColor);
+							hexagon = new HexagonAdapter(new Point(newX, newY), newRadius, edgeColor, innerColor);
 							hexagon.setSelected(isSelected);
 							dispose();
 						} catch (Exception ex) {
@@ -135,7 +135,7 @@ public class DialogHexagon extends JDialog {
 		}
 	}
 
-	public HexagonShape getHexagon() {
+	public HexagonAdapter getHexagon() {
 		return hexagon;
 	}
 
@@ -151,7 +151,7 @@ public class DialogHexagon extends JDialog {
 		btnInnerColor.setBackground(innerColor);
 	}
 
-	public void setHexagon(HexagonShape hexagon) {
+	public void setHexagon(HexagonAdapter hexagon) {
 		txtX.setText("" + hexagon.getHexagon().getX());
 		txtY.setText("" + hexagon.getHexagon().getY());
 		txtRadius.setText("" + hexagon.getHexagon().getR());
