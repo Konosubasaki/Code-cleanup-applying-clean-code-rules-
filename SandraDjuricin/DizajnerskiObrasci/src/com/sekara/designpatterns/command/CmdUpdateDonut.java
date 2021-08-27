@@ -1,5 +1,7 @@
 package com.sekara.designpatterns.command;
 
+import java.awt.Color;
+
 import com.sekara.designpatterns.model.geometry.Donut;
 import com.sekara.designpatterns.model.geometry.Point;
 
@@ -16,12 +18,19 @@ public class CmdUpdateDonut extends Command {
 	}
 
 	public void updatingCurrentDonut(Donut donut) {
-		currentDonut.setCenter(new Point(donut.getCenter().getXCoordinate(), donut.getCenter().getYCoordinate()));
-		currentDonut.setRadius(donut.getRadius());
-		currentDonut.setInnerRadius(donut.getInnerRadius());
-		currentDonut.setEdgeColor(donut.getEdgeColor());
-		currentDonut.setInnerColor(donut.getInnerColor());
-		currentDonut.setSelected(donut.isSelected());
+		Point centerToSet = donut.getCenter();
+		int radiusToSet = donut.getRadius();
+		int innerRadiusToSet = donut.getInnerRadius();
+		Color edgeColorToSet = donut.getEdgeColor();
+		Color innerColorToSet = donut.getInnerColor();
+		boolean isSelectedToSet = donut.isSelected();
+
+		currentDonut.setCenter(centerToSet);
+		currentDonut.setRadius(radiusToSet);
+		currentDonut.setInnerRadius(innerRadiusToSet);
+		currentDonut.setEdgeColor(edgeColorToSet);
+		currentDonut.setInnerColor(innerColorToSet);
+		currentDonut.setSelected(isSelectedToSet);
 	}
 
 	@Override

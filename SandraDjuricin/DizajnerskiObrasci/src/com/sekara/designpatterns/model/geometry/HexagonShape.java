@@ -9,7 +9,7 @@ public class HexagonShape extends Shape {
 	private Hexagon hexagon;
 
 	public HexagonShape(Point center, int radius) {
-		this.hexagon = new Hexagon(center.getXCoordinate(), center.getYCoordinate(), radius);
+		hexagon = new Hexagon(center.getXCoordinate(), center.getYCoordinate(), radius);
 	}
 
 	public HexagonShape(Point center, int radius, Color edgeColor, Color innerColor) {
@@ -20,47 +20,22 @@ public class HexagonShape extends Shape {
 
 	@Override
 	public void moveBy(int byX, int byY) {
-		this.hexagon.setX(this.hexagon.getX() + byX);
-		this.hexagon.setY(this.hexagon.getY() + byY);
-
+		hexagon.setX(this.hexagon.getX() + byX);
+		hexagon.setY(this.hexagon.getY() + byY);
 	}
 
 	@Override
 	public boolean containsXYpoint(int x, int y) {
-		return this.hexagon.doesContain(x, y);
+		return hexagon.doesContain(x, y);
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		this.hexagon.paint(g);
+		hexagon.paint(g);
 	}
 
 	public boolean isSelected() {
-		return this.hexagon.isSelected();
-	}
-
-	public void setSelected(boolean selected) {
-		this.hexagon.setSelected(selected);
-	}
-
-	public Color getEdgeColor() {
-		return this.hexagon.getBorderColor();
-	}
-
-	public void setEdgeColor(Color edgeColor) {
-		this.hexagon.setBorderColor(edgeColor);
-	}
-
-	public Color getInnerColor() {
-		return this.hexagon.getAreaColor();
-	}
-
-	public void setInnerColor(Color innerColor) {
-		this.hexagon.setAreaColor(innerColor);
-	}
-
-	public Hexagon getHexagon() {
-		return this.hexagon;
+		return hexagon.isSelected();
 	}
 
 	@Override
@@ -106,5 +81,51 @@ public class HexagonShape extends Shape {
 		} else {
 			return false;
 		}
+	}
+
+	public void setSelected(boolean selected) {
+		hexagon.setSelected(selected);
+	}
+
+	public Color getEdgeColor() {
+		return hexagon.getBorderColor();
+	}
+
+	public void setEdgeColor(Color edgeColor) {
+		hexagon.setBorderColor(edgeColor);
+	}
+
+	public Color getInnerColor() {
+		return hexagon.getAreaColor();
+	}
+
+	public void setInnerColor(Color innerColor) {
+		hexagon.setAreaColor(innerColor);
+	}
+
+	public Hexagon getHexagon() {
+		return hexagon;
+	}
+
+	public Point getCenter() {
+		int xCoordOfCenter = hexagon.getX();
+		int yCoordOfCenter = hexagon.getY();
+		Point centerOfHexagon = new Point(xCoordOfCenter, yCoordOfCenter);
+		return centerOfHexagon;
+	}
+
+	public void setCenter(Point center) {
+		int x = center.getXCoordinate();
+		int y = center.getYCoordinate();
+		hexagon.setX(x);
+		hexagon.setY(y);
+	}
+
+	public int getRadius() {
+		return hexagon.getR();
+	}
+	
+	public void setRadius(int radius) {
+		hexagon.setR(radius);
 	}
 }

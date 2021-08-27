@@ -19,7 +19,7 @@ public class CmdUpdateCircle extends Command {
 
 	public void updatingCurrentCircle(Circle circle) {
 		Point centerToSet = circle.getCenter();
-		int radiusToSet = circle.getRadius();
+		int radiusToSet = circle.getRadius(); 
 		Color edgeColorToSet = circle.getEdgeColor();
 		Color innerColorToSet = circle.getInnerColor();
 		boolean isSelectedToSet = circle.isSelected();

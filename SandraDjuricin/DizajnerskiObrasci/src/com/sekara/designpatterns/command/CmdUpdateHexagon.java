@@ -1,6 +1,9 @@
 package com.sekara.designpatterns.command;
 
+import java.awt.Color;
+
 import com.sekara.designpatterns.model.geometry.HexagonShape;
+import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdateHexagon extends Command {
 
@@ -15,12 +18,17 @@ public class CmdUpdateHexagon extends Command {
 	}
 
 	public void updatingCurrentHexagon(HexagonShape hexagon) {
-		currentHexagon.getHexagon().setX(hexagon.getHexagon().getX());
-		currentHexagon.getHexagon().setY(hexagon.getHexagon().getY());
-		currentHexagon.getHexagon().setR(hexagon.getHexagon().getR());
-		currentHexagon.setEdgeColor(hexagon.getEdgeColor());
-		currentHexagon.setInnerColor(hexagon.getInnerColor());
-		currentHexagon.setSelected(hexagon.isSelected());
+		Point centerToSet = hexagon.getCenter();
+		int radiusToSet = hexagon.getRadius();
+		Color edgeColorToSet = hexagon.getEdgeColor();
+		Color innerColorToSet = hexagon.getInnerColor();
+		boolean isSelectedToSet = hexagon.isSelected();
+
+		currentHexagon.setCenter(centerToSet);
+		currentHexagon.setRadius(radiusToSet);
+		currentHexagon.setEdgeColor(edgeColorToSet);
+		currentHexagon.setInnerColor(innerColorToSet);
+		currentHexagon.setSelected(isSelectedToSet);
 	}
 
 	@Override

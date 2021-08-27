@@ -1,6 +1,9 @@
 package com.sekara.designpatterns.command;
 
+import java.awt.Color;
+
 import com.sekara.designpatterns.model.geometry.Line;
+import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdateLine extends Command {
 
@@ -13,14 +16,17 @@ public class CmdUpdateLine extends Command {
 		this.newStateOfLine = newLine;
 		oldStateOfLine = (Line) currentLine.clone();
 	}
-	
+
 	public void updatingCurrentLine(Line line) {
-		currentLine.getStartPoint().setXCoordinate(line.getStartPoint().getXCoordinate());
-		currentLine.getStartPoint().setYCoordinate(line.getStartPoint().getYCoordinate());
-		currentLine.getEndPoint().setXCoordinate(line.getEndPoint().getXCoordinate());
-		currentLine.getEndPoint().setYCoordinate(line.getEndPoint().getYCoordinate());
-		currentLine.setEdgeColor(line.getEdgeColor());
-		currentLine.setSelected(line.isSelected());
+		Point startPointToSet = line.getStartPoint();
+		Point endPointToSet = line.getEndPoint();
+		Color edgeColorToSet = line.getEdgeColor();
+		boolean isSelectedToSet = line.isSelected();
+
+		currentLine.setStartPoint(startPointToSet);
+		currentLine.setEndPoint(endPointToSet);
+		currentLine.setEdgeColor(edgeColorToSet);
+		currentLine.setSelected(isSelectedToSet);
 	}
 
 	@Override

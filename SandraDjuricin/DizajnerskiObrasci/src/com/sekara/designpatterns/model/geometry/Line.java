@@ -79,22 +79,6 @@ public class Line extends Shape {
 		return startPoint.distance(endPoint.getXCoordinate(), endPoint.getYCoordinate());
 	}
 
-	public Point getStartPoint() {
-		return startPoint;
-	}
-
-	public void setStartPoint(Point startPoint) {
-		this.startPoint = startPoint;
-	}
-
-	public Point getEndPoint() {
-		return endPoint;
-	}
-
-	public void setEndPoint(Point endPoint) {
-		this.endPoint = endPoint;
-	}
-
 	public String toString() {
 		return "Line(X1:" + startPoint.getXCoordinate() + "|Y1:" + startPoint.getYCoordinate() + "|X2:"
 				+ endPoint.getXCoordinate() + "|Y2:" + endPoint.getYCoordinate() + "|EdgeColor:"
@@ -124,5 +108,21 @@ public class Line extends Shape {
 		Color edgeColor = Color.decode(parts[4].replace("EdgeColor:", ""));
 
 		return new Line(new Point(x1, y1), new Point(x2, y2), edgeColor);
+	}
+
+	public Point getStartPoint() {
+		return startPoint;
+	}
+
+	public void setStartPoint(Point startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public Point getEndPoint() {
+		return endPoint;
+	}
+
+	public void setEndPoint(Point endPoint) {
+		this.endPoint = endPoint;
 	}
 }

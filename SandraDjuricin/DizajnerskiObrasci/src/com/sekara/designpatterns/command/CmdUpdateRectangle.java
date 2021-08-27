@@ -1,5 +1,8 @@
 package com.sekara.designpatterns.command;
 
+import java.awt.Color;
+
+import com.sekara.designpatterns.model.geometry.Point;
 import com.sekara.designpatterns.model.geometry.Rectangle;
 
 public class CmdUpdateRectangle extends Command {
@@ -15,13 +18,19 @@ public class CmdUpdateRectangle extends Command {
 	}
 
 	public void updatingCurrentRectangle(Rectangle rectangle) {
-		currentRectangle.getUpperLeftPoint().setXCoordinate(rectangle.getUpperLeftPoint().getXCoordinate());
-		currentRectangle.getUpperLeftPoint().setYCoordinate(rectangle.getUpperLeftPoint().getYCoordinate());
-		currentRectangle.setWidth(rectangle.getWidth());
-		currentRectangle.setHeight(rectangle.getHeight());
-		currentRectangle.setEdgeColor(rectangle.getEdgeColor());
-		currentRectangle.setInnerColor(rectangle.getInnerColor());
-		currentRectangle.setSelected(rectangle.isSelected());
+		Point upperLeftToSet = rectangle.getUpperLeftPoint();
+		int widthToSet = rectangle.getWidth();
+		int heightToSet = rectangle.getHeight();
+		Color edgeColorToSet = rectangle.getEdgeColor();
+		Color innerColorToSet = rectangle.getInnerColor();
+		boolean isSelectedToSet = rectangle.isSelected();
+
+		currentRectangle.setUpperLeftPoint(upperLeftToSet);
+		currentRectangle.setWidth(widthToSet);
+		currentRectangle.setHeight(heightToSet);
+		currentRectangle.setEdgeColor(edgeColorToSet);
+		currentRectangle.setInnerColor(innerColorToSet);
+		currentRectangle.setSelected(isSelectedToSet);
 	}
 
 	@Override

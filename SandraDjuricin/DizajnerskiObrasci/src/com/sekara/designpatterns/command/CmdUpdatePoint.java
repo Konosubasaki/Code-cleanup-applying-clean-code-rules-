@@ -1,5 +1,7 @@
 package com.sekara.designpatterns.command;
 
+import java.awt.Color;
+
 import com.sekara.designpatterns.model.geometry.Point;
 
 public class CmdUpdatePoint extends Command {
@@ -15,10 +17,15 @@ public class CmdUpdatePoint extends Command {
 	}
 
 	public void updatingCurrentPoint(Point point) {
-		currentPoint.setXCoordinate(point.getXCoordinate());
-		currentPoint.setYCoordinate(point.getYCoordinate());
-		currentPoint.setEdgeColor(point.getEdgeColor());
-		currentPoint.setSelected(point.isSelected());
+		int xCoordToSet = point.getXCoordinate();
+		int yCoordToSet = point.getYCoordinate();
+		Color edgeColorToSet = point.getEdgeColor();
+		boolean isSelectedToSet = point.isSelected();
+
+		currentPoint.setXCoordinate(xCoordToSet);
+		currentPoint.setYCoordinate(yCoordToSet);
+		currentPoint.setEdgeColor(edgeColorToSet);
+		currentPoint.setSelected(isSelectedToSet);
 	}
 
 	@Override
