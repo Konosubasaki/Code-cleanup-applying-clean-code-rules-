@@ -42,12 +42,6 @@ class PointTest {
 	}
 
 	@Test
-	void testCompareTo() {
-		Point newPoint = new Point(5, 5);
-		assertEquals(-5, point.compareTo(newPoint));
-	}
-
-	@Test
 	void testEqualsObject() {
 		Point equalPoint = new Point(1, 1, Color.BLACK);
 		assertTrue(point.equals(equalPoint));

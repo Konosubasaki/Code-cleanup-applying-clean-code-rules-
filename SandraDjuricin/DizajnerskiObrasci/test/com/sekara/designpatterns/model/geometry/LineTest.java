@@ -38,13 +38,6 @@ class LineTest {
 	}
 
 	@Test
-	void testCompareTo() {
-		Point newEndPoint = new Point(1, 5);
-		Line newline = new Line(startPoint, newEndPoint, Color.BLACK);
-		assertEquals(5, line.compareTo(newline));
-	}
-
-	@Test
 	void testMoveBy() {
 		line.moveBy(5, 5);
 		assertEquals(1 + 5, line.getStartPoint().getXCoordinate());

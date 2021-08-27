@@ -27,12 +27,12 @@ public class CmdUpdateDonut extends Command {
 	@Override
 	public void execute() {
 		updatingCurrentDonut(newStateOfDonut);
-		super.setLog("CMD_UPDATE_DONUT_EXECUTE#" + oldStateOfDonut + "->" + currentDonut);
+		super.setCommandLog("CMD_UPDATE_DONUT_EXECUTE#" + oldStateOfDonut + "->" + currentDonut);
 	}
 
 	@Override
 	public void unExecute() {
 		updatingCurrentDonut(oldStateOfDonut);
-		super.setLog("CMD_UPDATE_DONUT_UNEXECUTE#" + currentDonut + "->" + oldStateOfDonut);
+		super.setCommandLog("CMD_UPDATE_DONUT_UNEXECUTE#" + currentDonut + "->" + oldStateOfDonut);
 	}
 }

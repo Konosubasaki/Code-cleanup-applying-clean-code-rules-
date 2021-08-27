@@ -27,12 +27,12 @@ public class CmdUpdateRectangle extends Command {
 	@Override
 	public void execute() {
 		updatingCurrentRectangle(newStateOfRectangle);
-		super.setLog("CMD_UPDATE_RECTANGLE_EXECUTE#" + oldStateOfRectangle + "->" + currentRectangle);
+		super.setCommandLog("CMD_UPDATE_RECTANGLE_EXECUTE#" + oldStateOfRectangle + "->" + currentRectangle);
 	}
 
 	@Override
 	public void unExecute() {
 		updatingCurrentRectangle(oldStateOfRectangle);
-		super.setLog("CMD_UPDATE_RECTANGLE_UNEXECUTE#" + currentRectangle + "->" + oldStateOfRectangle);
+		super.setCommandLog("CMD_UPDATE_RECTANGLE_UNEXECUTE#" + currentRectangle + "->" + oldStateOfRectangle);
 	}
 }

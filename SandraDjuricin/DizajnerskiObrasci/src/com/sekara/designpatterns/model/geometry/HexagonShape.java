@@ -26,13 +26,6 @@ public class HexagonShape extends Shape {
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		if (o instanceof HexagonShape)
-			return this.hexagon.getR() - ((HexagonShape) o).hexagon.getR();
-		return 0;
-	}
-
-	@Override
 	public boolean containsXYpoint(int x, int y) {
 		return this.hexagon.doesContain(x, y);
 	}

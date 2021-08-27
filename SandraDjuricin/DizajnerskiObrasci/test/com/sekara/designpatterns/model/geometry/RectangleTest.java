@@ -48,18 +48,6 @@ class RectangleTest {
 	}
 
 	@Test
-	void testCompareTo() {
-		Rectangle secondRectangle = new Rectangle(upperLeftPoint, 5, 10, Color.BLACK, Color.WHITE);
-		assertEquals((int) (rectangle.area() - secondRectangle.area()), rectangle.compareTo(secondRectangle));
-	}
-
-	@Test
-	void testEqualsObject() {
-		Rectangle equalRectangle = new Rectangle(upperLeftPoint, 5, 10, Color.BLACK, Color.WHITE);
-		assertTrue(rectangle.equals(equalRectangle));
-	}
-
-	@Test
 	void testArea() {
 		double Area = 5 * 10;
 		assertEquals(Area, rectangle.area());

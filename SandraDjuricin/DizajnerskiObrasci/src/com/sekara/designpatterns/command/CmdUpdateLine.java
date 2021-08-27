@@ -26,12 +26,12 @@ public class CmdUpdateLine extends Command {
 	@Override
 	public void execute() {
 		updatingCurrentLine(newStateOfLine);
-		super.setLog("CMD_UPDATE_LINE_EXECUTE#" + oldStateOfLine + "->" + currentLine);
+		super.setCommandLog("CMD_UPDATE_LINE_EXECUTE#" + oldStateOfLine + "->" + currentLine);
 	}
 
 	@Override
 	public void unExecute() {
 		updatingCurrentLine(oldStateOfLine);
-		super.setLog("CMD_UPDATE_LINE_UNEXECUTE#" + currentLine + "->" + oldStateOfLine);
+		super.setCommandLog("CMD_UPDATE_LINE_UNEXECUTE#" + currentLine + "->" + oldStateOfLine);
 	}
 }

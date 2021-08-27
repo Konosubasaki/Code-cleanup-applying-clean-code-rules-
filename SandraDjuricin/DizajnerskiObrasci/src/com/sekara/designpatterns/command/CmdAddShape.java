@@ -16,12 +16,12 @@ public class CmdAddShape extends Command {
 	@Override
 	public void execute() {
 		model.addShape(shape);
-		super.setLog("CMD_ADD_EXECUTE#" + shape);
+		super.setCommandLog("CMD_ADD_EXECUTE#" + shape);
 	}
 
 	@Override
 	public void unExecute() {
 		model.removeShape(shape);
-		super.setLog("CMD_ADD_UNEXECUTE#" + shape);
+		super.setCommandLog("CMD_ADD_UNEXECUTE#" + shape);
 	}
 }

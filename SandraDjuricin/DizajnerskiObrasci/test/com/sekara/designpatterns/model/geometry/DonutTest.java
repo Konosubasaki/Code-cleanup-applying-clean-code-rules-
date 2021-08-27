@@ -32,13 +32,6 @@ class DonutTest {
 	}
 
 	@Test
-	void testCompareTo() {
-		Donut secondDonut = new Donut(centerOfDonut, 10, 5, Color.BLACK, Color.WHITE);
-		double area = secondDonut.area();
-		assertEquals((int) (donut.area() - area), donut.compareTo(secondDonut));
-	}
-
-	@Test
 	void testEqualsObject() {
 		Donut equalDonut = new Donut(centerOfDonut, 20, 10, Color.BLACK, Color.WHITE);
 		assertTrue(donut.equals(equalDonut));

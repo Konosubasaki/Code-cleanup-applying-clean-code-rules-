@@ -4,11 +4,11 @@ public abstract class Command {
 
 	private String log;
 
-	public String getLog() {
+	public String getCommandLog() {
 		return log;
 	}
 
-	protected void setLog(String log) {
+	protected void setCommandLog(String log) {
 		this.log = log;
 	}
 

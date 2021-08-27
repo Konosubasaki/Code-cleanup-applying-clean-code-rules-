@@ -58,13 +58,6 @@ public class Donut extends Circle {
 		}
 	}
 
-	public int compareTo(Object o) {
-		if (o instanceof Donut) {
-			return (int) (this.area() - ((Donut) o).area());
-		}
-		return 0;
-	}
-
 	public boolean containsXYpoint(int x, int y) {
 		double dFromCenter = this.getCenter().distance(x, y);
 		return super.containsXYpoint(x, y) && dFromCenter > innerRadius;

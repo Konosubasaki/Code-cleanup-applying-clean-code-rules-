@@ -9,7 +9,6 @@ public class Line extends Shape {
 	private Point endPoint;
 
 	public Line() {
-
 	}
 
 	public Line(Point startPoint, Point endPoint) {
@@ -40,14 +39,6 @@ public class Line extends Shape {
 			g.drawRect(this.getEndPoint().getXCoordinate() - 3, this.getEndPoint().getYCoordinate() - 3, 6, 6);
 			g.drawRect(this.middleOfLine().getXCoordinate() - 3, this.middleOfLine().getYCoordinate() - 3, 6, 6);
 		}
-	}
-
-	@Override
-	public int compareTo(Object o) {
-		if (o instanceof Line) {
-			return (int) (this.length() - ((Line) o).length());
-		}
-		return 0;
 	}
 
 	@Override

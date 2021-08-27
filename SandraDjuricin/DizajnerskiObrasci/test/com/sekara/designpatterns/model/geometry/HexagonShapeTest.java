@@ -91,12 +91,6 @@ class HexagonShapeTest {
 	}
 
 	@Test
-	void testCompareTo() {
-		HexagonShape secondHexagonShape = new HexagonShape(centerOfHexagon, 10, Color.BLACK, Color.WHITE);
-		assertEquals(10, hexagon.compareTo(secondHexagonShape));
-	}
-
-	@Test
 	void testGetHexagonShape() {
 		assertTrue(hexagon.getHexagon() instanceof Hexagon);
 	}

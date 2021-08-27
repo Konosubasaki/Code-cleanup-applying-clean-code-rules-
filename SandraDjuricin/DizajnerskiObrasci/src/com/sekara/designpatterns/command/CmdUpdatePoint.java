@@ -24,12 +24,12 @@ public class CmdUpdatePoint extends Command {
 	@Override
 	public void execute() {
 		updatingCurrentPoint(newStateOfPoint);
-		super.setLog("CMD_UPDATE_POINT_EXECUTE#" + oldStateOfPoint + "->" + currentPoint);
+		super.setCommandLog("CMD_UPDATE_POINT_EXECUTE#" + oldStateOfPoint + "->" + currentPoint);
 	}
 
 	@Override
 	public void unExecute() {
 		updatingCurrentPoint(oldStateOfPoint);
-		super.setLog("CMD_UPDATE_POINT_UNEXECUTE#" + currentPoint + "->" + oldStateOfPoint);
+		super.setCommandLog("CMD_UPDATE_POINT_UNEXECUTE#" + currentPoint + "->" + oldStateOfPoint);
 	}
 }

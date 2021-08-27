@@ -17,12 +17,12 @@ public class CmdDeleteShapes extends Command {
 	@Override
 	public void execute() {
 		model.removeShapes(shapes);
-		super.setLog("CMD_DELETE_EXECUTE#" + shapes);
+		super.setCommandLog("CMD_DELETE_EXECUTE#" + shapes);
 	}
 
 	@Override
 	public void unExecute() {
 		model.addAllShapes(shapes);
-		super.setLog("CMD_DELETE_UNEXECUTE#" + shapes);
+		super.setCommandLog("CMD_DELETE_UNEXECUTE#" + shapes);
 	}
 }

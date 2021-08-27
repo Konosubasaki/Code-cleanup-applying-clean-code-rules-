@@ -19,13 +19,13 @@ public class CmdBringToFront extends Command {
 	public void execute() {
 		model.removeShape(shape);
 		model.addShapeAtIndex(shape, model.getSizeOfShapeList());
-		super.setLog("CMD_BRING_TO_FRONT_EXECUTE#" + shape);
+		super.setCommandLog("CMD_BRING_TO_FRONT_EXECUTE#" + shape);
 	}
 
 	@Override
 	public void unExecute() {
 		model.removeShape(shape);
 		model.addShapeAtIndex(shape, indexOfShape);
-		super.setLog("CMD_BRING_TO_FRONT_UNEXECUTE#" + shape);
+		super.setCommandLog("CMD_BRING_TO_FRONT_UNEXECUTE#" + shape);
 	}
 }

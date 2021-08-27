@@ -19,13 +19,13 @@ public class CmdToBack extends Command {
 	public void execute() {
 		model.removeShape(shape);
 		model.addShapeAtIndex(shape, indexOfShape - 1);
-		super.setLog("CMD_TO_BACK_EXECUTE#" + shape);
+		super.setCommandLog("CMD_TO_BACK_EXECUTE#" + shape);
 	}
 
 	@Override
 	public void unExecute() {
 		model.removeShape(shape);
 		model.addShapeAtIndex(shape, indexOfShape);
-		super.setLog("CMD_TO_BACK_UNEXECUTE#" + shape);
+		super.setCommandLog("CMD_TO_BACK_UNEXECUTE#" + shape);
 	}
 }

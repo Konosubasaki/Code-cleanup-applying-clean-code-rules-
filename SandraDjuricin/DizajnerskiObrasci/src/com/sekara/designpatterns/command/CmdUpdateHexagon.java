@@ -26,12 +26,12 @@ public class CmdUpdateHexagon extends Command {
 	@Override
 	public void execute() {
 		updatingCurrentHexagon(newStateOfHexagon);
-		super.setLog("CMD_UPDATE_HEXAGON_EXECUTE#" + oldStateOfHexagon + "->" + currentHexagon);
+		super.setCommandLog("CMD_UPDATE_HEXAGON_EXECUTE#" + oldStateOfHexagon + "->" + currentHexagon);
 	}
 
 	@Override
 	public void unExecute() {
 		updatingCurrentHexagon(oldStateOfHexagon);
-		super.setLog("CMD_UPDATE_HEXAGON_UNEXECUTE#" + currentHexagon + "->" + oldStateOfHexagon);
+		super.setCommandLog("CMD_UPDATE_HEXAGON_UNEXECUTE#" + currentHexagon + "->" + oldStateOfHexagon);
 	}
 }

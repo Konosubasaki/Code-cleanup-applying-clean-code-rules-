@@ -43,13 +43,7 @@ class CircleTest {
 		circle.moveBy(5, 5);
 		assertEquals(centerbefore, circle.getCenter());
 	}
-
-	@Test
-	void testCompareTo() {
-		Circle secondCircle = new Circle(centerOfCircle, 10, Color.BLACK, Color.WHITE);
-		assertEquals(10, circle.compareTo(secondCircle));
-	}
-
+	
 	@Test
 	void testEqualsObject() {
 		Circle equalCircle = new Circle(centerOfCircle, 20, Color.BLACK, Color.WHITE);

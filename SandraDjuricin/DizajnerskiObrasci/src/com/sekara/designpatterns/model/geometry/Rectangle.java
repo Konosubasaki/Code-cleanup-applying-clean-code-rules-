@@ -9,9 +9,6 @@ public class Rectangle extends Shape {
 	private int width;
 	private int height;
 
-	public Rectangle() {
-	}
-
 	public Rectangle(Point upperLeftPoint, int height, int width) {
 		this.upperLeftPoint = upperLeftPoint;
 		setHeight(height);
@@ -57,14 +54,6 @@ public class Rectangle extends Shape {
 	public void moveBy(int byX, int byY) {
 		upperLeftPoint.moveBy(byX, byY);
 
-	}
-
-	@Override
-	public int compareTo(Object o) {
-		if (o instanceof Rectangle) {
-			return (int) (this.area() - ((Rectangle) o).area());
-		}
-		return 0;
 	}
 
 	public boolean containsXYpoint(int x, int y) {

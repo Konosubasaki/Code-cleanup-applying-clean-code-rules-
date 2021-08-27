@@ -4,7 +4,7 @@ import com.sekara.designpatterns.controller.*;
 import com.sekara.designpatterns.model.ModelDrawing;
 import com.sekara.designpatterns.view.frame.FrameDrawing;
 
-public class Main {
+public class DrawingAppMain {
 
 	public static void main(String[] args) {
 		ModelDrawing model = new ModelDrawing();

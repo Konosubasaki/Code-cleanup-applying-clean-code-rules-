@@ -21,7 +21,7 @@ public class DialogCircle extends JDialog {
 
 	public DialogCircle() {
 		setResizable(false);
-		setTitle("IT 48-2017 Šekara Danilo");
+		setTitle("I7 8 2020");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setBounds(100, 100, 300, 180);

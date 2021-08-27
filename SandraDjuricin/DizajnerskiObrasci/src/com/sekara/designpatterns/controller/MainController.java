@@ -44,7 +44,7 @@ public class MainController implements Subject {
 
 	public void executeCommand(Command command) {
 		command.execute();
-		loggingController.addLog(command.getLog());
+		loggingController.addLog(command.getCommandLog());
 		executedCommands.push(command);
 		frame.getViewDrawing().repaint();
 		notifyObservers();
@@ -52,7 +52,7 @@ public class MainController implements Subject {
 
 	public void unexecuteCommand(Command command) {
 		command.unExecute();
-		loggingController.addLog(command.getLog());
+		loggingController.addLog(command.getCommandLog());
 		unexecutedCommands.push(command);
 		frame.getViewDrawing().repaint();
 		notifyObservers();

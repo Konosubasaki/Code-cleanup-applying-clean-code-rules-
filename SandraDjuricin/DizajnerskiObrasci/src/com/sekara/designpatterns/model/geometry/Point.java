@@ -8,9 +8,6 @@ public class Point extends Shape {
 	private int xCoordinate;
 	private int yCoordinate;
 
-	public Point() {
-	}
-
 	public Point(int xCoordinate, int yCoordinate) {
 		this.xCoordinate = xCoordinate;
 		setYCoordinate(yCoordinate);
@@ -47,16 +44,6 @@ public class Point extends Shape {
 	public void moveBy(int byX, int byY) {
 		this.xCoordinate = this.xCoordinate + byX;
 		this.yCoordinate += byY;
-	}
-
-	@Override
-	public int compareTo(Object o) {
-		if (o instanceof Point) {
-			Point start = new Point(0, 0);
-			return (int) (this.distance(start.getXCoordinate(), start.getYCoordinate())
-					- ((Point) o).distance(start.getXCoordinate(), start.getYCoordinate()));
-		}
-		return 0;
 	}
 
 	public boolean containsXYpoint(int xCoordinate, int yCoordinate) {

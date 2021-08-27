@@ -1,5 +1,7 @@
 package com.sekara.designpatterns.command;
 
+import java.awt.Color;
+
 import com.sekara.designpatterns.model.geometry.Circle;
 import com.sekara.designpatterns.model.geometry.Point;
 
@@ -16,22 +18,28 @@ public class CmdUpdateCircle extends Command {
 	}
 
 	public void updatingCurrentCircle(Circle circle) {
-		currentCircle.setCenter(new Point(circle.getCenter().getXCoordinate(), circle.getCenter().getYCoordinate()));
-		currentCircle.setRadius(circle.getRadius());
-		currentCircle.setEdgeColor(circle.getEdgeColor());
-		currentCircle.setInnerColor(circle.getInnerColor());
-		currentCircle.setSelected(circle.isSelected());
+		Point centerToSet = circle.getCenter();
+		int radiusToSet = circle.getRadius();
+		Color edgeColorToSet = circle.getEdgeColor();
+		Color innerColorToSet = circle.getInnerColor();
+		boolean isSelectedToSet = circle.isSelected();
+
+		currentCircle.setCenter(centerToSet);
+		currentCircle.setRadius(radiusToSet);
+		currentCircle.setEdgeColor(edgeColorToSet);
+		currentCircle.setInnerColor(innerColorToSet);
+		currentCircle.setSelected(isSelectedToSet);
 	}
 
 	@Override
 	public void execute() {
 		updatingCurrentCircle(newStateOfCircle);
-		super.setLog("CMD_UPDATE_CIRCLE_EXECUTE#" + oldStateOfCircle + "->" + currentCircle);
+		super.setCommandLog("CMD_UPDATE_CIRCLE_EXECUTE#" + oldStateOfCircle + "->" + currentCircle);
 	}
 
 	@Override
 	public void unExecute() {
 		updatingCurrentCircle(oldStateOfCircle);
-		super.setLog("CMD_UPDATE_CIRCLE_UNEXECUTE#" + currentCircle + "->" + oldStateOfCircle);
+		super.setCommandLog("CMD_UPDATE_CIRCLE_UNEXECUTE#" + currentCircle + "->" + oldStateOfCircle);
 	}
 }

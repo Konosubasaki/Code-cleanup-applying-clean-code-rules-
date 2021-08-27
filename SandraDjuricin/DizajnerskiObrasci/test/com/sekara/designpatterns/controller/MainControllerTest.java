@@ -35,20 +35,20 @@ class MainControllerTest {
 	void testExecuteCommand() {
 		Shape point = new Point(1, 1, Color.BLACK);
 		CmdAddShape cmdAddShape = new CmdAddShape(point, model);
-		assertEquals(null, cmdAddShape.getLog());
+		assertEquals(null, cmdAddShape.getCommandLog());
 
 		mainController.executeCommand(cmdAddShape);
-		assertEquals("CMD_ADD_EXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)", cmdAddShape.getLog());
+		assertEquals("CMD_ADD_EXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)", cmdAddShape.getCommandLog());
 	}
 
 	@Test
 	void testUnexecuteCommand() {
 		Shape point = new Point(1, 1, Color.BLACK);
 		CmdAddShape cmdAddShape = new CmdAddShape(point, model);
-		assertEquals(null, cmdAddShape.getLog());
+		assertEquals(null, cmdAddShape.getCommandLog());
 
 		mainController.unexecuteCommand(cmdAddShape);
-		assertEquals("CMD_ADD_UNEXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)", cmdAddShape.getLog());
+		assertEquals("CMD_ADD_UNEXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)", cmdAddShape.getCommandLog());
 	}
 
 	@Test
@@ -64,7 +64,7 @@ class MainControllerTest {
 
 		mainController.editShape();
 		assertEquals("CMD_UPDATE_POINT_EXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)->Point(X:1|Y:1|EdgeColor:-16777216)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 	}
 
 	@Test
@@ -79,7 +79,7 @@ class MainControllerTest {
 		mainController.editShape();
 		assertEquals(
 				"CMD_UPDATE_LINE_EXECUTE#Line(X1:1|Y1:1|X2:1|Y2:10|EdgeColor:-16777216)->Line(X1:1|Y1:1|X2:1|Y2:10|EdgeColor:-16777216)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 
 	}
 
@@ -94,7 +94,7 @@ class MainControllerTest {
 		mainController.editShape();
 		assertEquals(
 				"CMD_UPDATE_RECTANGLE_EXECUTE#Rectangle(X:1|Y:1|W:10|H:5|EdgeColor:-16777216|InnerColor:-1)->Rectangle(X:1|Y:1|W:10|H:5|EdgeColor:-16777216|InnerColor:-1)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 
 	}
 
@@ -109,7 +109,7 @@ class MainControllerTest {
 		mainController.editShape();
 		assertEquals(
 				"CMD_UPDATE_DONUT_EXECUTE#Donut(X:1|Y:1|R1:20|R2:10|EdgeColor:-16777216|InnerColor:-1)->Donut(X:1|Y:1|R1:20|R2:10|EdgeColor:-16777216|InnerColor:-1)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 
 	}
 
@@ -124,7 +124,7 @@ class MainControllerTest {
 		mainController.editShape();
 		assertEquals(
 				"CMD_UPDATE_CIRCLE_EXECUTE#Circle(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)->Circle(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 
 	}
 
@@ -139,7 +139,7 @@ class MainControllerTest {
 		mainController.editShape();
 		assertEquals(
 				"CMD_UPDATE_HEXAGON_EXECUTE#Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)->Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 
 	}
 
@@ -152,7 +152,7 @@ class MainControllerTest {
 
 		mainController.deleteSelectedShapes();
 		assertEquals("CMD_DELETE_EXECUTE#[Point(X:1|Y:1|EdgeColor:-16777216)]",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 
 	}
 
@@ -170,7 +170,7 @@ class MainControllerTest {
 		mainController.deleteAllShapes();
 		assertEquals(
 				"CMD_DELETE_EXECUTE#[Point(X:1|Y:1|EdgeColor:-16777216), Hexagon(X:1|Y:1|R:20|EdgeColor:-16777216|InnerColor:-1)]",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 	}
 
 	@Test
@@ -185,7 +185,7 @@ class MainControllerTest {
 
 		mainController.positionToFront();
 		assertEquals("CMD_TO_FRONT_EXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 	}
 
 	@Test
@@ -201,7 +201,7 @@ class MainControllerTest {
 
 		mainController.positionToBack();
 		assertEquals("CMD_TO_BACK_EXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 	}
 
 	@Test
@@ -216,7 +216,7 @@ class MainControllerTest {
 
 		mainController.positionBringToFront();
 		assertEquals("CMD_BRING_TO_FRONT_EXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 	}
 
 	@Test
@@ -231,7 +231,7 @@ class MainControllerTest {
 
 		mainController.positionBringToBack();
 		assertEquals("CMD_BRING_TO_BACK_EXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 	}
 
 	@Test
@@ -242,7 +242,7 @@ class MainControllerTest {
 
 		mainController.undoCommand();
 		assertEquals("CMD_ADD_UNEXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)",
-				mainController.getUnexecutedCommands().pop().getLog());
+				mainController.getUnexecutedCommands().pop().getCommandLog());
 
 	}
 
@@ -254,7 +254,7 @@ class MainControllerTest {
 		mainController.undoCommand();
 		mainController.redoCommand();
 		assertEquals("CMD_ADD_EXECUTE#Point(X:1|Y:1|EdgeColor:-16777216)",
-				mainController.getExecutedCommands().pop().getLog());
+				mainController.getExecutedCommands().pop().getCommandLog());
 
 	}
 

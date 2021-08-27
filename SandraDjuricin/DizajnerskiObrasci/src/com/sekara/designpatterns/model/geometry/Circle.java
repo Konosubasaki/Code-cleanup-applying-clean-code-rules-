@@ -23,11 +23,6 @@ public class Circle extends Shape {
 		setInnerColor(innerColor);
 	}
 
-	public Circle(Point center, int radius, boolean selected) {
-		this(center, radius);
-		setSelected(selected);
-	}
-
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(getInnerColor());
@@ -51,14 +46,6 @@ public class Circle extends Shape {
 	public void moveBy(int byX, int byY) {
 		center.moveBy(byX, byY);
 
-	}
-
-	@Override
-	public int compareTo(Object o) {
-		if (o instanceof Circle) {
-			return (this.radius - ((Circle) o).radius);
-		}
-		return 0;
 	}
 
 	public boolean containsXYpoint(int x, int y) {
