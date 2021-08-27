@@ -10,7 +10,7 @@ public class LoggingController {
 	private boolean isLogEmpty;
 
 	public LoggingController(FrameDrawing frame) {
-		DrawToolbar toolbar=frame.getDrawToolbar();
+		DrawToolbar toolbar = frame.getDrawToolbar();
 		logger = toolbar.getDefaultListLogModel();
 		isLogEmpty = true;
 	}

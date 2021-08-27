@@ -12,7 +12,7 @@ public class FileController {
 	private ModelDrawing model;
 	private FrameDrawing frame;
 	private MainController mainController;
-	private Context ioContext; 
+	private Context ioContext;
 	private DrawingSerialization drawingSerializationStrategy;
 	private LogFile logToFileStrategy;
 
@@ -28,7 +28,7 @@ public class FileController {
 	public void SetFileStrategy(JFileChooser fileChooser) {
 		FileFilter fileFilter = fileChooser.getFileFilter();
 		String descriptionOfFileFilter = fileFilter.getDescription();
-		
+
 		if (descriptionOfFileFilter == "Crtez")
 			ioContext.setStrategy(drawingSerializationStrategy);
 		else if (descriptionOfFileFilter == "Log")
@@ -36,7 +36,7 @@ public class FileController {
 	}
 
 	public void saveToFile() {
-		DrawToolbar toolbar=frame.getDrawToolbar();
+		DrawToolbar toolbar = frame.getDrawToolbar();
 		JFileChooser fileChooser = toolbar.getSaveToFileChooser();
 
 		if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -47,7 +47,7 @@ public class FileController {
 	}
 
 	public void readFromFile() {
-		DrawToolbar toolbar=frame.getDrawToolbar();
+		DrawToolbar toolbar = frame.getDrawToolbar();
 		JFileChooser fileChooser = toolbar.getReadFromFileChooser();
 
 		if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {

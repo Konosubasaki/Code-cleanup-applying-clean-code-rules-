@@ -102,7 +102,7 @@ public class Line extends Shape {
 		Color edgeColorOfClone = getEdgeColor();
 		Color innerColorOfClone = getInnerColor();
 		boolean isSelectedOfclone = isSelected();
-		
+
 		Line line = new Line();
 		line.setStartPoint(startOfClone);
 		line.setEndPoint(endOfClone);

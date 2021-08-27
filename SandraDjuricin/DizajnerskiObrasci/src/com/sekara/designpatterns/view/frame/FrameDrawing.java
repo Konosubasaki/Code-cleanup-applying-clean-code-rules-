@@ -37,7 +37,8 @@ public class FrameDrawing extends JFrame {
 		contentPanel.add(drawToolbar.getPnlRightOperations(), BorderLayout.EAST);
 		view.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				mainController.mouseClicked(arg0); }
+				mainController.mouseClicked(arg0);
+			}
 		});
 	}
 

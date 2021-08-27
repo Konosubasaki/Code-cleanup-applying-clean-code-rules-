@@ -13,17 +13,17 @@ public class Circle extends Shape {
 
 	public Circle(Point center, int radius) {
 		this.center = center;
-		this.radius = radius; 
+		this.radius = radius;
 	}
 
 	public Circle(Point center, int radius, Color edgeColor, Color innerColor) {
-		this(center,radius);
+		this(center, radius);
 		setEdgeColor(edgeColor);
 		setInnerColor(innerColor);
 	}
-	
+
 	public Circle(Point center, int radius, boolean selected) {
-		this(center,radius);
+		this(center, radius);
 		setSelected(selected);
 	}
 
@@ -119,7 +119,7 @@ public class Circle extends Shape {
 	public void setCenter(Point center) {
 		this.center = center;
 	}
- 
+
 	public int getRadius() {
 		return radius;
 	}

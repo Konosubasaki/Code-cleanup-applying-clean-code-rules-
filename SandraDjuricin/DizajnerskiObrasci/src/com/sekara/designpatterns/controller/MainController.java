@@ -75,79 +75,90 @@ public class MainController implements Subject {
 
 	private void mouseClickedDraw(MouseEvent event) {
 		Point mouseClick = new Point(event.getX(), event.getY());
+		if (selectedShape == ShapeType.Point)
+			drawPoint(mouseClick);
+		else if (selectedShape == ShapeType.Line)
+			drawLine(mouseClick);
+		else if (selectedShape == ShapeType.Rectangle)
+			drawRectangle(mouseClick);
+		else if (selectedShape == ShapeType.Circle)
+			drawCircle(mouseClick);
+		else if (selectedShape == ShapeType.Donut)
+			drawDonut(mouseClick);
+		else if (selectedShape == ShapeType.Hexagon)
+			drawHexagon(mouseClick);
+	}
+
+	public void drawPoint(Point mouseClick) {
 		CmdAddShape cmdAddShape;
+		Point point = new Point(mouseClick, edgeColor);
+		cmdAddShape = new CmdAddShape(point, model);
+		executeCommand(cmdAddShape);
+	}
 
-		switch (selectedShape) {
-		case Point:
-			Point point = new Point(mouseClick, edgeColor);
-			cmdAddShape = new CmdAddShape(point, model);
+	public void drawLine(Point mouseClick) {
+		CmdAddShape cmdAddShape;
+		if (lineIsWaitingForSecondPoint) {
+			Point lineSecondPoint = mouseClick;
+			Line line = new Line(lineFirstPoint, lineSecondPoint, edgeColor);
+			cmdAddShape = new CmdAddShape(line, model);
 			executeCommand(cmdAddShape);
-			break;
+			lineIsWaitingForSecondPoint = false;
+			return;
+		}
+		lineFirstPoint = mouseClick;
+		lineIsWaitingForSecondPoint = true;
+	}
 
-		case Line:
-			if (lineIsWaitingForSecondPoint) {
-				Point lineSecondPoint = mouseClick;
-				Line line = new Line(lineFirstPoint, lineSecondPoint, edgeColor);
-				cmdAddShape = new CmdAddShape(line, model);
-				executeCommand(cmdAddShape);
-				lineIsWaitingForSecondPoint = false;
-				break;
-			}
+	public void drawRectangle(Point mouseClick) {
+		CmdAddShape cmdAddShape;
+		DialogRectangle dlgRectangle = new DialogRectangle();
+		dlgRectangle.setPoint(mouseClick);
+		dlgRectangle.setColors(edgeColor, innerColor);
+		dlgRectangle.setVisible(true);
 
-			lineFirstPoint = mouseClick;
-			lineIsWaitingForSecondPoint = true;
-			break;
+		if (dlgRectangle.getRectangle() != null) {
+			cmdAddShape = new CmdAddShape(dlgRectangle.getRectangle(), model);
+			executeCommand(cmdAddShape);
+		}
+	}
 
-		case Rectangle:
-			DialogRectangle dlgRectangle = new DialogRectangle();
-			dlgRectangle.setPoint(mouseClick);
-			dlgRectangle.setColors(edgeColor, innerColor);
-			dlgRectangle.setVisible(true);
+	public void drawCircle(Point mouseClick) {
+		CmdAddShape cmdAddShape;
+		DialogCircle dlgCircle = new DialogCircle();
+		dlgCircle.setPoint(mouseClick);
+		dlgCircle.setColors(edgeColor, innerColor);
+		dlgCircle.setVisible(true);
 
-			if (dlgRectangle.getRectangle() != null) {
-				cmdAddShape = new CmdAddShape(dlgRectangle.getRectangle(), model);
-				executeCommand(cmdAddShape);
-			}
-			break;
+		if (dlgCircle.getCircle() != null) {
+			cmdAddShape = new CmdAddShape(dlgCircle.getCircle(), model);
+			executeCommand(cmdAddShape);
+		}
+	}
 
-		case Circle:
-			DialogCircle dlgCircle = new DialogCircle();
-			dlgCircle.setPoint(mouseClick);
-			dlgCircle.setColors(edgeColor, innerColor);
-			dlgCircle.setVisible(true);
+	public void drawDonut(Point mouseClick) {
+		CmdAddShape cmdAddShape;
+		DialogDonut dlgDonut = new DialogDonut();
+		dlgDonut.setPoint(mouseClick);
+		dlgDonut.setColors(edgeColor, innerColor);
+		dlgDonut.setVisible(true);
 
-			if (dlgCircle.getCircle() != null) {
-				cmdAddShape = new CmdAddShape(dlgCircle.getCircle(), model);
-				executeCommand(cmdAddShape);
-			}
-			break;
+		if (dlgDonut.getDonut() != null) {
+			cmdAddShape = new CmdAddShape(dlgDonut.getDonut(), model);
+			executeCommand(cmdAddShape);
+		}
+	}
 
-		case Donut:
-			DialogDonut dlgDonut = new DialogDonut();
-			dlgDonut.setPoint(mouseClick);
-			dlgDonut.setColors(edgeColor, innerColor);
-			dlgDonut.setVisible(true);
+	public void drawHexagon(Point mouseClick) {
+		CmdAddShape cmdAddShape;
+		DialogHexagon dlgHexagon = new DialogHexagon();
+		dlgHexagon.setPoint(mouseClick);
+		dlgHexagon.setColors(edgeColor, innerColor);
+		dlgHexagon.setVisible(true);
 
-			if (dlgDonut.getDonut() != null) {
-				cmdAddShape = new CmdAddShape(dlgDonut.getDonut(), model);
-				executeCommand(cmdAddShape);
-			}
-			break;
-
-		case Hexagon:
-			DialogHexagon dlgHexagon = new DialogHexagon();
-			dlgHexagon.setPoint(mouseClick);
-			dlgHexagon.setColors(edgeColor, innerColor);
-			dlgHexagon.setVisible(true);
-
-			if (dlgHexagon.getHexagon() != null) {
-				cmdAddShape = new CmdAddShape(dlgHexagon.getHexagon(), model);
-				executeCommand(cmdAddShape);
-			}
-			break;
-
-		default:
-			break;
+		if (dlgHexagon.getHexagon() != null) {
+			cmdAddShape = new CmdAddShape(dlgHexagon.getHexagon(), model);
+			executeCommand(cmdAddShape);
 		}
 	}
 
@@ -185,7 +196,7 @@ public class MainController implements Subject {
 		} else if (selectedShape instanceof Line) {
 			DialogLine dialogLine = new DialogLine();
 			dialogLine.setLine((Line) selectedShape);
-			dialogLine.setVisible(true); 
+			dialogLine.setVisible(true);
 
 			if (dialogLine.getLine() != null) {
 				CmdUpdateLine cmdUpdateLine = new CmdUpdateLine((Line) selectedShape, dialogLine.getLine());

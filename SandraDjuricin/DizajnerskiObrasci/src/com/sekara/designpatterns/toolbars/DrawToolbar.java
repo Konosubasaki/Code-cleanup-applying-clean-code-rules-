@@ -267,7 +267,7 @@ public class DrawToolbar implements Observer {
 				fileController.saveToFile();
 			}
 		});
- 
+
 		btnPositionBringToBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainController.positionBringToBack();

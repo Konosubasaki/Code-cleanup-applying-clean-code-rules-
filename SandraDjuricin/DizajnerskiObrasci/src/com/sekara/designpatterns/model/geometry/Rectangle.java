@@ -29,22 +29,17 @@ public class Rectangle extends Shape {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(getEdgeColor());
-		g.drawRect(upperLeftPoint.getXCoordinate(), upperLeftPoint.getYCoordinate(), width,
-				height);
+		g.drawRect(upperLeftPoint.getXCoordinate(), upperLeftPoint.getYCoordinate(), width, height);
 		g.setColor(getInnerColor());
-		g.fillRect(upperLeftPoint.getXCoordinate() + 1, upperLeftPoint.getYCoordinate() + 1,
-				width - 1, height - 1);
+		g.fillRect(upperLeftPoint.getXCoordinate() + 1, upperLeftPoint.getYCoordinate() + 1, width - 1, height - 1);
 
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
-			g.drawRect(upperLeftPoint.getXCoordinate() - 3, upperLeftPoint.getYCoordinate() - 3, 6,
-					6);
-			g.drawRect(upperLeftPoint.getXCoordinate() - 3 + width,
-					upperLeftPoint.getYCoordinate() - 3, 6, 6);
-			g.drawRect(upperLeftPoint.getXCoordinate() - 3,
-					upperLeftPoint.getYCoordinate() - 3 + getHeight(), 6, 6);
-			g.drawRect(upperLeftPoint.getXCoordinate() + width - 3,
-					upperLeftPoint.getYCoordinate() + getHeight() - 3, 6, 6);
+			g.drawRect(upperLeftPoint.getXCoordinate() - 3, upperLeftPoint.getYCoordinate() - 3, 6, 6);
+			g.drawRect(upperLeftPoint.getXCoordinate() - 3 + width, upperLeftPoint.getYCoordinate() - 3, 6, 6);
+			g.drawRect(upperLeftPoint.getXCoordinate() - 3, upperLeftPoint.getYCoordinate() - 3 + getHeight(), 6, 6);
+			g.drawRect(upperLeftPoint.getXCoordinate() + width - 3, upperLeftPoint.getYCoordinate() + getHeight() - 3,
+					6, 6);
 		}
 	}
 
@@ -56,8 +51,7 @@ public class Rectangle extends Shape {
 
 	public boolean containsXYpoint(int x, int y) {
 		if (upperLeftPoint.getXCoordinate() <= x && x <= upperLeftPoint.getXCoordinate() + width
-				&& upperLeftPoint.getYCoordinate() <= y
-				&& y <= upperLeftPoint.getYCoordinate() + height) {
+				&& upperLeftPoint.getYCoordinate() <= y && y <= upperLeftPoint.getYCoordinate() + height) {
 			return true;
 		} else {
 			return false;
@@ -67,8 +61,8 @@ public class Rectangle extends Shape {
 	public boolean equals(Object obj) {
 		if (obj instanceof Rectangle) {
 			Rectangle rectangleToCompare = (Rectangle) obj;
-			if (upperLeftPoint.equals(rectangleToCompare.getUpperLeftPoint()) && height == rectangleToCompare.getHeight()
-					&& width == rectangleToCompare.getWidth()) {
+			if (upperLeftPoint.equals(rectangleToCompare.getUpperLeftPoint())
+					&& height == rectangleToCompare.getHeight() && width == rectangleToCompare.getWidth()) {
 				return true;
 			} else {
 				return false;

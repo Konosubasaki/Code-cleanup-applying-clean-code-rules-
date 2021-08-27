@@ -29,7 +29,7 @@ public class LogFile implements Strategy {
 	public void saveToFile(File file) {
 		try {
 			writer = new BufferedWriter(new FileWriter(file + ".log"));
-			DrawToolbar toolbar=frame.getDrawToolbar();
+			DrawToolbar toolbar = frame.getDrawToolbar();
 			DefaultListModel<String> logList = toolbar.getDefaultListLogModel();
 			for (int i = 0; i < logList.size(); i++) {
 				writer.write(logList.getElementAt(i));
@@ -52,7 +52,7 @@ public class LogFile implements Strategy {
 			e.printStackTrace();
 		}
 	}
- 
+
 	public void readNextCommand() {
 		try {
 			Command command;

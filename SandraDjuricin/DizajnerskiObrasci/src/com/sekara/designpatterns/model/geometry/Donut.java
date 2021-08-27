@@ -15,7 +15,7 @@ public class Donut extends Circle {
 
 	public Donut(Point center, int radius, int innerRadius) {
 		super(center, radius);
-		this.innerRadius = innerRadius; 
+		this.innerRadius = innerRadius;
 	}
 
 	public Donut(Point center, int radius, int innerRadius, Color edgeColor, Color innerColor) {
@@ -64,7 +64,7 @@ public class Donut extends Circle {
 		Point donutCenter = getCenter();
 		double distanceFromCenter = donutCenter.distance(x, y);
 		return super.containsXYpoint(x, y) && distanceFromCenter > innerRadius;
-	} 
+	}
 
 	public double area() {
 		return super.area() - (innerRadius * innerRadius * Math.PI);
