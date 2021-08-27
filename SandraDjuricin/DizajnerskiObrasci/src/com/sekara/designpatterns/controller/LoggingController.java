@@ -17,7 +17,7 @@ public class LoggingController {
 
 	public DefaultListModel<String> getLogger() {
 		return logger;
-	}
+	} 
 
 	public void addLog(String log) {
 		logger.addElement(log);

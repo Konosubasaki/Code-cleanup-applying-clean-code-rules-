@@ -13,7 +13,7 @@ public class CmdToBack extends Command {
 		this.shape = shape;
 		this.model = model;
 		indexOfShape = model.getIndexOfShape(shape);
-	}
+	} 
 
 	@Override
 	public void execute() {

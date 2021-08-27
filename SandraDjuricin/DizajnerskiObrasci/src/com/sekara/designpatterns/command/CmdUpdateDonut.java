@@ -15,8 +15,8 @@ public class CmdUpdateDonut extends Command {
 		this.currentDonut = currentDonut;
 		this.newStateOfDonut = newDonut;
 		oldStateOfDonut = (Donut) currentDonut.clone();
-	}
-
+	} 
+ 
 	public void updatingCurrentDonut(Donut donut) {
 		Point centerToSet = donut.getCenter();
 		int radiusToSet = donut.getRadius();

@@ -24,7 +24,7 @@ public class LogFile implements Strategy {
 		this.mainController = controller;
 		this.model = viewModel;
 	}
-
+ 
 	@Override
 	public void saveToFile(File file) {
 		try {

@@ -14,7 +14,7 @@ public class HexagonAdapter extends Shape {
 
 		hexagon = new Hexagon(centerXCoord, centerYCoord, radius);
 	}
-
+ 
 	public HexagonAdapter(Point center, int radius, Color edgeColor, Color innerColor) {
 		this(center, radius);
 		this.setEdgeColor(edgeColor);

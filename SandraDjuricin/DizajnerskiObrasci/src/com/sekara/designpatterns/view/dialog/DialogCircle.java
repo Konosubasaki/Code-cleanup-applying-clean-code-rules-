@@ -19,7 +19,7 @@ public class DialogCircle extends JDialog {
 	private JButton btnEdgeColor = new JButton(" ");
 	private JButton btnInnerColor = new JButton(" ");
 
-	public DialogCircle() {
+	public DialogCircle() { 
 		setResizable(false);
 		setTitle("I7 8 2020");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

@@ -16,7 +16,7 @@ public class ModelDrawing {
 	public Shape getShapeByIndex(int index) {
 		return shapes.get(index);
 	}
-
+ 
 	public int getIndexOfShape(Shape shape) {
 		return shapes.indexOf(shape);
 	}

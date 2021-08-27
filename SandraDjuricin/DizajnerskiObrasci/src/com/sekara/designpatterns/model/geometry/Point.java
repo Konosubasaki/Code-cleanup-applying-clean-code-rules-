@@ -16,7 +16,7 @@ public class Point extends Shape {
 	public Point(Point point, Color edgeColor) {
 		this(point.getXCoordinate(), point.getYCoordinate(), edgeColor);
 	}
-
+ 
 	public Point(int xCoordinate, int yCoordinate, Color edgeColor) {
 		this.xCoordinate = xCoordinate;
 		this.yCoordinate = yCoordinate;

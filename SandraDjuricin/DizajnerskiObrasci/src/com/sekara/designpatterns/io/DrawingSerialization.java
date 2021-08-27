@@ -25,7 +25,7 @@ public class DrawingSerialization implements Strategy {
 			objectOutputStream.close();
 			outputStream.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 

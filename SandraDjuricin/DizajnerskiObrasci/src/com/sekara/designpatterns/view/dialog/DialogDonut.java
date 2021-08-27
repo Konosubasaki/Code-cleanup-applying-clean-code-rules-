@@ -19,7 +19,7 @@ public class DialogDonut extends JDialog {
 	private JButton btnInnerColor = new JButton(" ");
 
 	public DialogDonut() {
-		setResizable(false);
+		setResizable(false); 
 		setTitle("I7 8 2020");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);

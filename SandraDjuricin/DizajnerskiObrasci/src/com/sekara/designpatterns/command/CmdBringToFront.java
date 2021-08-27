@@ -8,7 +8,7 @@ public class CmdBringToFront extends Command {
 	private Shape shape;
 	private ModelDrawing model;
 	private int indexOfShape;
-
+ 
 	public CmdBringToFront(Shape shape, ModelDrawing model) {
 		this.shape = shape;
 		this.model = model;

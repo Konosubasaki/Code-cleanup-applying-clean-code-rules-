@@ -82,12 +82,12 @@ public class MainController implements Subject {
 		else if (selectedShape == ShapeType.Rectangle)
 			drawRectangle(mouseClick);
 		else if (selectedShape == ShapeType.Circle)
-			drawCircle(mouseClick);
+			drawCircle(mouseClick); 
 		else if (selectedShape == ShapeType.Donut)
 			drawDonut(mouseClick);
 		else if (selectedShape == ShapeType.Hexagon)
 			drawHexagon(mouseClick);
-	}
+	} 
 
 	public void drawPoint(Point mouseClick) {
 		CmdAddShape cmdAddShape;

@@ -9,7 +9,7 @@ public class CmdAddShape extends Command {
 	private ModelDrawing model;
 
 	public CmdAddShape(Shape shape, ModelDrawing model) {
-		this.shape = shape;
+		this.shape = shape; 
 		this.model = model;
 	}
 

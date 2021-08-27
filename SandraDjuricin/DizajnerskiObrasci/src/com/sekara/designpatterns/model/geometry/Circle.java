@@ -15,7 +15,7 @@ public class Circle extends Shape {
 		this.center = center;
 		this.radius = radius;
 	}
-
+ 
 	public Circle(Point center, int radius, Color edgeColor, Color innerColor) {
 		this(center, radius);
 		setEdgeColor(edgeColor);

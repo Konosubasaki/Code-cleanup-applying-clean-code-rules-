@@ -20,7 +20,7 @@ public class ViewDrawing extends JPanel {
 	public void setModel(ModelDrawing modelDrawing) {
 		this.model = modelDrawing;
 	}
-
+ 
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));

@@ -12,7 +12,7 @@ public class CmdDeleteShapes extends Command {
 	public CmdDeleteShapes(List<Shape> shapes, ModelDrawing model) {
 		this.shapes = new ArrayList<Shape>(shapes);
 		this.model = model;
-	}
+	} 
 
 	@Override
 	public void execute() {

@@ -16,7 +16,7 @@ public class CmdUpdateLine extends Command {
 		this.newStateOfLine = newLine;
 		oldStateOfLine = (Line) currentLine.clone();
 	}
-
+ 
 	public void updatingCurrentLine(Line line) {
 		Point startPointToSet = line.getStartPoint();
 		Point endPointToSet = line.getEndPoint();

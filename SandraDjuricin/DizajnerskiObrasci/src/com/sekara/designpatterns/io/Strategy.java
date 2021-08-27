@@ -9,3 +9,4 @@ public interface Strategy {
 	void readFromFile(File file);
 
 }
+ 

@@ -11,3 +11,4 @@ public interface Observer {
 	void updateShapeManipulationButtonsState(int numOfSelectedShapes, ModeType currentMode, int numOfShapes);
 	
 }
+ 

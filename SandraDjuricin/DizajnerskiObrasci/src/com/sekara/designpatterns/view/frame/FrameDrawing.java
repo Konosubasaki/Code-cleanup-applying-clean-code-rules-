@@ -27,7 +27,7 @@ public class FrameDrawing extends JFrame {
 		view = new ViewDrawing();
 		view.setBorder(new LineBorder(SystemColor.textHighlight, 5));
 		drawToolbar = new DrawToolbar();
-		contentPanel = new JPanel();
+		contentPanel = new JPanel(); 
 		contentPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPanel);

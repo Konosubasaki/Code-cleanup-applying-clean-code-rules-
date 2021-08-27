@@ -19,7 +19,7 @@ public class Rectangle extends Shape {
 		this(upperLeftPoint, height, width);
 		setEdgeColor(edgeColor);
 		setInnerColor(innerColor);
-	}
+	} 
 
 	public Rectangle(Point upperLeftPoint, int height, int width, boolean selected) {
 		this(upperLeftPoint, height, width);

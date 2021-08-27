@@ -17,7 +17,7 @@ public class Donut extends Circle {
 		super(center, radius);
 		this.innerRadius = innerRadius;
 	}
-
+ 
 	public Donut(Point center, int radius, int innerRadius, Color edgeColor, Color innerColor) {
 		this(center, radius, innerRadius);
 		setEdgeColor(edgeColor);

@@ -16,7 +16,7 @@ public class CmdUpdateRectangle extends Command {
 		this.newStateOfRectangle = newRectangle;
 		oldStateOfRectangle = (Rectangle) currentRectangle.clone();
 	}
-
+ 
 	public void updatingCurrentRectangle(Rectangle rectangle) {
 		Point upperLeftToSet = rectangle.getUpperLeftPoint();
 		int widthToSet = rectangle.getWidth();

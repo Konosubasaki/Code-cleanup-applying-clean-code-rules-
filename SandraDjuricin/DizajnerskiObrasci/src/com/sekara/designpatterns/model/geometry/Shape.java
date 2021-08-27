@@ -20,7 +20,7 @@ public abstract class Shape implements Moveable, Cloneable, Serializable {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-
+ 
 	public Color getEdgeColor() {
 		return edgeColor;
 	}

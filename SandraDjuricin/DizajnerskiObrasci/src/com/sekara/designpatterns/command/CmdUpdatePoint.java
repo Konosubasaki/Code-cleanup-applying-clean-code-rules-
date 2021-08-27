@@ -15,7 +15,7 @@ public class CmdUpdatePoint extends Command {
 		this.newStateOfPoint = newPoint;
 		oldStateOfPoint = (Point) currentPoint.clone();
 	}
-
+ 
 	public void updatingCurrentPoint(Point point) {
 		int xCoordToSet = point.getXCoordinate();
 		int yCoordToSet = point.getYCoordinate();

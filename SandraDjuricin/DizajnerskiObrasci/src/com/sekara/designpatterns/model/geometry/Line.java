@@ -14,7 +14,7 @@ public class Line extends Shape {
 	public Line(Point startPoint, Point endPoint) {
 		this.startPoint = startPoint;
 		this.endPoint = endPoint;
-	}
+	} 
 
 	public Line(Point startPoint, Point endPoint, Color edgeColor) {
 		this(startPoint, endPoint);

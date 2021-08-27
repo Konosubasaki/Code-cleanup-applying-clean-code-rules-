@@ -4,3 +4,4 @@ public enum ModeType {
 	Drawing,
 	Selecting
 }
+ 

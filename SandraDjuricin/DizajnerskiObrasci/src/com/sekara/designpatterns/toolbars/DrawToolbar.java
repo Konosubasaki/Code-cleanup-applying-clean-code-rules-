@@ -25,7 +25,7 @@ public class DrawToolbar implements Observer {
 	private JButton btnUndo;
 	private JButton btnRedo;
 	private JButton btnPositionToFront;
-	private JButton btnPositionBringToFront;
+	private JButton btnPositionBringToFront; 
 	private JButton btnPositionToBack;
 	private JButton btnPositionBringToBack;
 	private JButton btnActionEdit;

@@ -8,7 +8,7 @@ public class CmdBringToBack extends Command {
 	private Shape shape;
 	private ModelDrawing model;
 	private int indexOfShape;
-
+ 
 	public CmdBringToBack(Shape shape, ModelDrawing model) {
 		this.shape = shape;
 		this.model = model;

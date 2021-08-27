@@ -23,7 +23,7 @@ public class FileController {
 		this.ioContext = new Context();
 		this.logToFileStrategy = new LogFile(frame, this.mainController, model);
 		this.drawingSerializationStrategy = new DrawingSerialization(model);
-	}
+	} 
 
 	public void SetFileStrategy(JFileChooser fileChooser) {
 		FileFilter fileFilter = fileChooser.getFileFilter();

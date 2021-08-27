@@ -21,7 +21,7 @@ public class DialogPoint extends JDialog {
 		setResizable(false);
 		setTitle("I7 8 2020");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setModal(true);
+		setModal(true); 
 		setBounds(100, 100, 300, 150);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout(0, 0));

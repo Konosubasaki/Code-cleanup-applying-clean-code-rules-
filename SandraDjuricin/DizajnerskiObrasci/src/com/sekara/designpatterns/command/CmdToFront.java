@@ -14,7 +14,7 @@ public class CmdToFront extends Command {
 		this.model = model;
 		indexOfShape = model.getIndexOfShape(shape);
 	}
-
+ 
 	@Override
 	public void execute() {
 		model.removeShape(shape);

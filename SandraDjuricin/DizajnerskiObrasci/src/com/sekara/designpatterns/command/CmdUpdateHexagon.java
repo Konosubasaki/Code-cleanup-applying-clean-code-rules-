@@ -16,7 +16,7 @@ public class CmdUpdateHexagon extends Command {
 		this.newStateOfHexagon = newHexagon;
 		oldStateOfHexagon = (HexagonAdapter) currentHexagon.clone();
 	}
-
+ 
 	public void updatingCurrentHexagon(HexagonAdapter hexagon) {
 		Point centerToSet = hexagon.getCenter();
 		int radiusToSet = hexagon.getRadius();
